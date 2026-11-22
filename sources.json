@@ -1,0 +1,290 @@
+[
+  {
+    "name": "solovyov-jenya2004 (all_subs)",
+    "url": "https://raw.githubusercontent.com/solovyov-jenya2004/all_subs/main/final_sorted",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "zieng2/wl (universal)",
+    "url": "https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "zieng2/wl (lite)",
+    "url": "https://raw.githubusercontent.com/zieng2/wl/main/vless_lite.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "LimeHi/LimeVPN (whitelist)",
+    "url": "https://raw.githubusercontent.com/LimeHi/LimeVPN/main/whitelist.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "flaafix/AetrisVPN",
+    "url": "https://raw.githubusercontent.com/flaafix/AetrisVPN/main/AetrisVPN.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "flaafix/AetrisVPN-lite",
+    "url": "https://raw.githubusercontent.com/flaafix/AetrisVPN-white-list-lite/main/AetrisVPN.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "gooseteam/GooseVPN (balanced)",
+    "url": "https://raw.githubusercontent.com/gooseteam-hackers/GooseVPN/main/configs/balanced.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "gooseteam/GooseVPN (plus)",
+    "url": "https://raw.githubusercontent.com/gooseteam-hackers/GooseVPN/main/configs/plus.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "Maskkost93/kizyak-vpn-4.0",
+    "url": "https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/main/kizyakbeta6.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "AirLinkVPN1/AirLinkVPN",
+    "url": "https://raw.githubusercontent.com/AirLinkVPN1/AirLinkVPN/main/rkn_white_list",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "OceaniaVPN/StekloVPN",
+    "url": "https://raw.githubusercontent.com/OceaniaVPN/StekloVPN/main/configs/whitelist.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "GitVerse 272/wl (RU Mirror)",
+    "url": "https://gitverse.ru/api/repos/272/wl/raw/branch/master/whitelist",
+    "type": "ru_mirror",
+    "enabled": true
+  },
+  {
+    "name": "GitVerse Akres/VPN (RU Mirror)",
+    "url": "https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/bwl",
+    "type": "ru_mirror",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Vless-Reality-White",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/BLACK_VLESS_RUS",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/WHITE-CIDR-RU-all",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-all.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/WHITE-CIDR-RU-checked",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-checked.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Happ-Mobile-White-Global",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Happ/GLOBAL/Vless-Reality-White-Lists-Rus-Mobile-Happ-global.json",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Happ-WHITE-CIDR-RU-all",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Happ/GLOBAL/WHITE-CIDR-RU-all-Happ-global.json",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Happ-WHITE-CIDR-RU-checked",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Happ/GLOBAL/WHITE-CIDR-RU-checked-Happ-global.json",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Happ-WHITE-SNI-RU-all",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Happ/GLOBAL/WHITE-SNI-RU-all-Happ-global.json",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Clash-Mobile-White-Global",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Clash/GLOBAL/Vless-Reality-White-Lists-Rus-Mobile-clash-global.yaml",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/Clash-WHITE-CIDR-RU-all",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Export/Clash/GLOBAL/WHITE-CIDR-RU-all-clash-global.yaml",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "mheidari98/proxy-vless",
+    "url": "https://raw.githubusercontent.com/mheidari98/.proxy/main/vless",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "LalatinaHub/Mineral",
+    "url": "https://raw.githubusercontent.com/LalatinaHub/Mineral/master/result/nodes",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "Pawdroid/Free-servers",
+    "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "barry-far/V2ray-config (vless)",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "igareck/WHITE-SNI-RU-all",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-SNI-RU-all.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/BLACK_VLESS_RUS_mobile",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (26.txt - WhiteList CIDR/SNI)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/26.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (12.txt - VOID-Bypass)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/12.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (8.txt - ShatakVPN)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/8.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (17.txt - MhdiTaheri/Mix)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/17.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (1.txt - OpenRay)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/1.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (3.txt - yitong)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/3.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (4.txt - acymz)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/4.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (5.txt - miladtahanian)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/5.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (6.txt - roosterkid)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/6.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (9.txt - mohamadfg)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/9.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (11.txt - youfoundamin)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/11.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (13.txt - cbusifabcap)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/13.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (15.txt - miladtahanian-collector)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/15.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (18.txt - free18)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/18.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (19.txt - MhdiTaheri-Collector)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/19.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (20.txt - Argh94)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/20.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (22.txt - wuqb2i4f)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/22.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (24.txt - Mr-Meshky)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/24.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "AvenCores/goida-vpn-configs (25.txt - V2RayRoot)",
+    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/25.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  }
+]
