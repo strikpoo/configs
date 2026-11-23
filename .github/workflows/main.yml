@@ -1,7 +1,7 @@
 name: Auto Update VPN Subscriptions
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 jobs:
   update-vpn:
