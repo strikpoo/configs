@@ -38,6 +38,9 @@ def deduplicate_nodes(nodes: List[ProxyNode]) -> List[ProxyNode]:
         else:
             if node.is_whitelist_source:
                 seen[key].is_whitelist_source = True
+            # Если у дубликата указан стандартный chrome, используем его
+            if node.params.get("fp") == "chrome":
+                seen[key].params["fp"] = "chrome"
 
     logger.info(f"Дедупликация: из {len(nodes)} узлов осталось уникальных: {len(seen)}")
     return list(seen.values())
@@ -55,7 +58,7 @@ def is_russian_cidr(node: ProxyNode) -> bool:
         return True
     
     name_upper = (node.name or "").upper()
-    if "[*CIDR]" in name_upper or "CIDR" in name_upper or "RUSSIA" in name_upper or "🇷🇺" in node.name or "GERMANY" in name_upper:
+    if "[*CIDR]" in name_upper or "CIDR" in name_upper or "RUSSIA" in name_upper or "🇷🇺" in node.name:
         return True
 
     return False
@@ -88,6 +91,7 @@ def get_wl_rank(node: ProxyNode) -> int:
         "nvidia.com" in check_domain
     )
     is_cidr = is_russian_cidr(node)
+    is_de = is_germany_node(node)
 
     if not is_p443:
         return 99
@@ -106,6 +110,10 @@ def get_wl_rank(node: ProxyNode) -> int:
             return 1  # Reg.ru VMess WS TLS
         return 2
 
+    # Немецкий релей для белого списка
+    if is_de and is_ru_sni:
+        return 0
+
     if is_real and is_ru_sni:
         if net in ("xhttp", "splithttp"):
             return 1
@@ -114,10 +122,13 @@ def get_wl_rank(node: ProxyNode) -> int:
         elif net in ("tcp", "raw", ""):
             return 3
         return 4
-    elif is_ru_sni or node.is_whitelist_source:
+    elif is_ru_sni:
         if net in ("xhttp", "splithttp"):
             return 4
         return 5
+    elif is_de:
+        return 6
+
     return 10
 
 
@@ -148,6 +159,10 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
     if "rkn" in sni or "fuck" in sni or "127.0.0.1" in h or "0.0.0.0" in h:
         return False
 
+    # Исключаем Cloudflare SNI (жестко блокируется ТСПУ на мобильных сетях в РФ)
+    if "cloudflare.com" in sni:
+        return False
+
     # Исключаем Cloudflare CDN и Fastly Anycast IP (они не работают как прямой Reality)
     bad_markers = (
         "fastly", "199.232.", "151.101.", "167.82.", "146.75.",
@@ -164,22 +179,46 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
     return True
 
 
+def is_trusted_sni(sni: str) -> bool:
+    """Проверка SNI на максимальную совместимость с мобильным ТСПУ МТС."""
+    if not sni:
+        return False
+    sni = sni.lower().strip()
+    # Приоритетные SNI, подтвержденные на сети МТС
+    if "nlafterdate" in sni or "h1clayd" in sni:
+        return True
+    trusted = (
+        "apple.com", "icloud.com", "itunes.com", "aaplimg.com",
+        "microsoft.com", "live.com", "azure.com", "skype.com",
+        "amazon.com", "aws.amazon.com", "cloudfront.net",
+        "samsung.com", "yahoo.com", "nvidia.com", "sony.com"
+    )
+    return any(sni == t or sni.endswith("." + t) for t in trusted)
+
+
 def get_bl_rank(node: ProxyNode) -> int:
-    """Приоритет узлов Black-List: TCP + Vision на порту 443 - золотой стандарт."""
+    """Приоритет узлов Black-List под мобильные сети (МТС ТСПУ):
+    Ранг 0: nlafterdate / h1clayd / Apple / Microsoft + Port 443 + Vision + Прямой IP
+    Ранг 1: nlafterdate / h1clayd / Apple / Microsoft + Port 443 + Vision (домен)
+    Ранг 2: Прочие Reality на порту 443 + Vision
+    Ранг 3: Reality на порту 443 без Vision
+    Ранг 4: Прочие порты
+    """
     flow = node.params.get("flow", "").lower()
     net = node.params.get("type", "tcp").lower().strip()
     is_p443 = str(node.port) == "443"
+    sni = (node.sni or "").lower()
+    is_mts_fav = is_trusted_sni(sni)
+    is_vision = "vision" in flow and net in ("tcp", "raw", "")
+    is_direct_ip = all(p.isdigit() for p in node.host.split(".")) if node.host.count(".") == 3 else False
 
-    # 0. Золотой стандарт: TCP + xtls-rprx-vision на порту 443 (идеально для INCY)
-    if is_p443 and "vision" in flow and net in ("tcp", "raw", ""):
-        return 0
-    # 1. Vision на других протоколах/портах
-    if "vision" in flow:
-        return 1
-    # 2. Обычный Reality на порту 443
-    if is_p443:
+    if is_p443 and is_vision and is_mts_fav:
+        return 0 if is_direct_ip else 1
+    if is_p443 and is_vision:
         return 2
-    return 3
+    if is_p443:
+        return 3
+    return 4
 
 
 def is_germany_node(node: ProxyNode) -> bool:
@@ -222,29 +261,32 @@ def classify_nodes(
     """
     wl_pairs: List[Tuple[ProxyNode, float, int]] = []
     seen_wl_keys = set()
-    bl_candidates: List[Tuple[ProxyNode, float]] = []
+    bl_candidates: List[Tuple[ProxyNode, float, bool]] = []
     seen_bl_keys = set()
 
     for node, ping_ms in alive_nodes_with_ping:
+        # Если узел подходит под Black-List - добавляем в Black-List с флагом проверенного URL-теста!
+        if is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
+            bl_candidates.append((node, ping_ms, True))
+            seen_bl_keys.add(node.unique_key)
+
+        # Если узел подходит под White-List - добавляем в White-List
         rank = get_wl_rank(node)
         if rank < 10 and node.unique_key not in seen_wl_keys:
             wl_pairs.append((node, ping_ms, rank))
             seen_wl_keys.add(node.unique_key)
-        elif is_valid_blacklist_node(node):
-            if node.unique_key not in seen_bl_keys:
-                bl_candidates.append((node, ping_ms))
-                seen_bl_keys.add(node.unique_key)
 
-    # 2. Берем подтвержденные живые узлы, проверенные по TCP порту
+    # 2. Берем подтвержденные живые узлы, проверенные по TCP порту (как запасные)
     if tcp_alive_nodes:
         for node in tcp_alive_nodes:
+            if is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
+                bl_candidates.append((node, node.tcp_ping or 150.0, False))
+                seen_bl_keys.add(node.unique_key)
+
             rank = get_wl_rank(node)
             if rank < 10 and node.unique_key not in seen_wl_keys:
                 wl_pairs.append((node, node.tcp_ping or 120.0, rank))
                 seen_wl_keys.add(node.unique_key)
-            elif is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
-                bl_candidates.append((node, node.tcp_ping or 150.0))
-                seen_bl_keys.add(node.unique_key)
 
     # 3. Гарантированное включение подтвержденных немецких релеев и российских CIDR для White-List
     if all_raw_nodes:
@@ -263,9 +305,18 @@ def classify_nodes(
     de_list.sort(key=lambda x: (x[2], x[1]))
     ru_list.sort(key=lambda x: (x[2], x[1]))
 
-    # Снято ограничение в 20 серверов: берем все валидные немецкие и российские узлы
-    # СТРОГО сначала все немецкие узлы (🇩🇪), затем российские (🇷🇺)
-    wl_pairs = de_list + ru_list
+    # Ограничение White-List максимум 100 серверами (быстрые и отзывчивые под мобильные):
+    # Балансируем: лучшие немецкие релеи (50 шт) и лучшие российские узлы (50 шт) по рангу и TCP-пингу
+    max_de = 50
+    max_ru = 50
+    selected_de = de_list[:max_de]
+    selected_ru = ru_list[:max_ru]
+    if len(selected_de) < max_de:
+        selected_ru = ru_list[:(100 - len(selected_de))]
+    elif len(selected_ru) < max_ru:
+        selected_de = de_list[:(100 - len(selected_ru))]
+
+    wl_pairs = selected_de + selected_ru
 
     whitelist_uris: List[str] = []
     de_count = 0
@@ -302,21 +353,32 @@ def classify_nodes(
         node.name = clean_name
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
-    # Ограничение Black-List максимум 50 серверами (сортировка: сначала кураторские, затем минимальный пинг)
-    bl_candidates.sort(key=lambda x: (get_bl_rank(x[0]), x[1] <= 0, x[1]))
+    # Ограничение Black-List максимум 50 серверами под мобильные сети (МТС ТСПУ):
+    # 1. Подтвержденные Sing-Box URL-тестом узлы с пингом < 800мс идут первыми, строго по возрастанию пинга
+    # 2. Подтвержденные узлы с высоким пингом (> 800мс) смещаются назад (на мобильных они дают таймаут)
+    # 3. Далее идут высокоранговые неподтвержденные узлы под МТС (nlafterdate, h1clayd, Apple, Microsoft)
+    bl_candidates.sort(
+        key=lambda x: (
+            not x[2],                                     # 0 если проверен Sing-Box (True), 1 если нет
+            x[1] > 800 if x[2] else True,                 # На мобильном интернете пинг > 800мс дает таймаут
+            x[1] if (x[2] and x[1] <= 800) else 9999.0,   # Быстрые проверенные строго по пингу
+            get_bl_rank(x[0]),                            # Ранг МТС (nlafterdate, h1clayd, direct IP)
+            x[1] if x[1] > 0 else 9999.0                  # Прочий TCP пинг
+        )
+    )
     selected_bl = bl_candidates[:50]
     blacklist_uris: List[str] = []
 
-    for i, (node, ping_ms) in enumerate(selected_bl, 1):
-        ping_str = f"{int(ping_ms)}ms" if ping_ms > 0 else "alive"
+    for i, (node, ping_ms, url_verified) in enumerate(selected_bl, 1):
         display_sni = node.sni or node.params.get("host", "no-sni")
         if len(display_sni) > 22:
             display_sni = display_sni[:20] + ".."
         orig_name = node.name.strip()
+        prefix = f"⚡ [{int(ping_ms)}ms] " if url_verified else ""
         if any(f in orig_name for f in ("🇨🇿", "🇩🇪", "🇯🇵", "🇸🇪", "🇸🇬", "🇮🇪", "🇦🇪", "🇫🇮", "🇧🇬", "🇳🇱", "🇺🇸", "🇬🇧", "🇫🇷")):
-            clean_name = f"{orig_name} ({display_sni})"
+            clean_name = f"{prefix}{orig_name} ({display_sni})"
         else:
-            clean_name = f"🌐 Global Reality #{i:02d} ({display_sni})"
+            clean_name = f"{prefix}🌐 Global Reality #{i:02d} ({display_sni})"
         blacklist_uris.append(node.build_uri(new_name=clean_name))
 
     logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит 50)")

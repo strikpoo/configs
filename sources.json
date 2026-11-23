@@ -174,116 +174,158 @@
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (26.txt - WhiteList CIDR/SNI)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/26.txt",
+    "name": "sakha1370/OpenRay",
+    "url": "https://raw.githubusercontent.com/sakha1370/OpenRay/main/output/all_valid_proxies.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "mahdibland/ShadowsocksAggregator",
+    "url": "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/sub_merge.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "Argh94/Proxy-List",
+    "url": "https://raw.githubusercontent.com/Argh94/Proxy-List/main/All_Config.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "Mr-Meshky/vify",
+    "url": "https://raw.githubusercontent.com/Mr-Meshky/vify/main/configs/vless.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "youfoundamin/V2rayCollector",
+    "url": "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/mixed_iran.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "miladtahanian/Config-Collector",
+    "url": "https://raw.githubusercontent.com/miladtahanian/Config-Collector/main/mixed_iran.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "miladtahanian/V2RayCFGDumper",
+    "url": "https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/main/sub.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "V2RayRoot/V2RayConfig",
+    "url": "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/main/Config/vless.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "wuqb2i4f/xray-config-toolkit",
+    "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "free18/v2ray",
+    "url": "https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "acymz/AutoVPN",
+    "url": "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "roosterkid/openproxylist",
+    "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
+    "type": "multi_protocol",
+    "enabled": true
+  },
+  {
+    "name": "cid-uskoritel/cid-white (GitVerse)",
+    "url": "https://gitverse.ru/api/repos/cid-uskoritel/cid-white/raw/branch/master/whitelist.txt",
     "type": "whitelist_focused",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (12.txt - VOID-Bypass)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/12.txt",
+    "name": "ByeWhiteLists2",
+    "url": "https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt",
     "type": "whitelist_focused",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (8.txt - ShatakVPN)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/8.txt",
+    "name": "shabane/kamaji",
+    "url": "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "Surfboardv2ray/TGParse",
+    "url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "chengaopan/AutoMergePublicNodes",
+    "url": "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (17.txt - MhdiTaheri/Mix)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/17.txt",
+    "name": "ermaozi/get_subscribe",
+    "url": "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (1.txt - OpenRay)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/1.txt",
+    "name": "barry-far/Sub1",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (3.txt - yitong)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/3.txt",
+    "name": "barry-far/Sub2",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (4.txt - acymz)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/4.txt",
+    "name": "barry-far/Sub3",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (5.txt - miladtahanian)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/5.txt",
+    "name": "barry-far/Sub4",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (6.txt - roosterkid)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/6.txt",
+    "name": "barry-far/Sub5",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub5.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (9.txt - mohamadfg)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/9.txt",
+    "name": "barry-far/Sub6",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (11.txt - youfoundamin)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/11.txt",
+    "name": "barry-far/Sub7",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "AvenCores/goida-vpn-configs (13.txt - cbusifabcap)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/13.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (15.txt - miladtahanian-collector)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/15.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (18.txt - free18)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/18.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (19.txt - MhdiTaheri-Collector)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/19.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (20.txt - Argh94)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/20.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (22.txt - wuqb2i4f)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/22.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (24.txt - Mr-Meshky)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/24.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "AvenCores/goida-vpn-configs (25.txt - V2RayRoot)",
-    "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/githubmirror/25.txt",
+    "name": "barry-far/Sub8",
+    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt",
     "type": "multi_protocol",
     "enabled": true
   }

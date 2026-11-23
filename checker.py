@@ -87,10 +87,15 @@ def run_singbox_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]
     Этап 2/2: Полноценное тестирование связи через ядро Sing-Box.
     Проверяет реальное прохождение трафика через VLESS Reality до тестового URL.
     """
+    import shutil
     singbox_bin = Path(SINGBOX_PATH)
     if not singbox_bin.exists():
-        logger.warning(f"Бинарник Sing-Box не найден по пути {SINGBOX_PATH}. Пропускаем Stage 2.")
-        return [(node, 50.0) for node in nodes]
+        which_sb = shutil.which("sing-box")
+        if which_sb:
+            singbox_bin = Path(which_sb)
+        else:
+            logger.warning(f"Бинарник Sing-Box не найден по пути {SINGBOX_PATH}. Пропускаем Stage 2.")
+            return [(node, 50.0) for node in nodes]
 
     if not nodes:
         return []
@@ -375,24 +380,29 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
         logger.warning("Ни один узел не ответил на TCP-пинг!")
         return [], []
 
-    # Разделяем на xHTTP узлы (Xray-core) и стандартные узлы (Sing-Box)
-    # Берем ТОП-кандидатов (узлы уже отсортированы по рангу белых списков и TCP-доступности)
-    xhttp_nodes = [n for n in tcp_alive_nodes if n.params.get("type", "").lower() in ("xhttp", "splithttp")][:35]
-    std_nodes = [n for n in tcp_alive_nodes if n.params.get("type", "").lower() not in ("xhttp", "splithttp")][:120]
+    from filter import is_valid_blacklist_node, get_bl_rank, get_wl_rank
 
-    logger.info(f"Распределение узлов на тестирование: xHTTP (Xray): {len(xhttp_nodes)} шт, Стандартные (Sing-Box): {len(std_nodes)} шт")
+    # 2. Формируем пул кандидатов Black-List для глубокого URL-теста через Sing-Box
+    bl_candidates = [n for n in tcp_alive_nodes if is_valid_blacklist_node(n)]
+    bl_candidates.sort(key=lambda x: (get_bl_rank(x), x.tcp_ping or 999.0))
+    from config import MAX_BL_TEST_NODES
+    bl_test_nodes = bl_candidates[:MAX_BL_TEST_NODES]
+
+    # 3. White-List кандидаты (xHTTP / Selectel)
+    xhttp_nodes = [n for n in tcp_alive_nodes if n.params.get("type", "").lower() in ("xhttp", "splithttp") and get_wl_rank(n) < 10][:35]
+
+    logger.info(f"На глубокий URL-тест отправлено: Black-List (Sing-Box Reality): {len(bl_test_nodes)} шт, xHTTP: {len(xhttp_nodes)} шт")
 
     results: List[Tuple[ProxyNode, float]] = []
 
-    # 2. Параллельный запуск тестирования обоих пулов
+    # Запуск параллельного тестирования Sing-Box для Black-List
+    if bl_test_nodes:
+        bl_alive = await asyncio.to_thread(run_singbox_urltest, bl_test_nodes)
+        results.extend(bl_alive)
+
+    # Запуск Xray для xHTTP
     if xhttp_nodes:
         xray_alive = await asyncio.to_thread(run_xray_urltest, xhttp_nodes)
         results.extend(xray_alive)
 
-    if std_nodes:
-        singbox_alive = await asyncio.to_thread(run_singbox_urltest, std_nodes)
-        results.extend(singbox_alive)
-
-    # Итоговая сортировка: сначала лучший ранг (WL-CIDR-xHTTP > xHTTP > gRPC > TCP), затем минимальная задержка
-    results.sort(key=lambda x: (get_wl_rank(x[0]), x[1]))
     return results, tcp_alive_nodes

@@ -68,10 +68,18 @@ TCP_CHECK_TIMEOUT = 1.2       # Тайм-аут сокет-проверки до
 FETCHER_TIMEOUT = 30.0        # Тайм-аут скачивания подписки из интернета
 
 # Настройки реального URL-теста (через Sing-Box core)
-SINGBOX_PATH = str(BASE_DIR.parent / "tools" / "sing-box.exe")
+if os.name == "nt":
+    SINGBOX_PATH = str(BASE_DIR.parent / "tools" / "sing-box.exe")
+    if not os.path.exists(SINGBOX_PATH):
+        alt = r"C:\Users\1\Desktop\v2rayN-windows-64\bin\sing_box\sing-box.exe"
+        if os.path.exists(alt):
+            SINGBOX_PATH = alt
+else:
+    SINGBOX_PATH = "/usr/local/bin/sing-box"
 URL_TEST_ENDPOINT = "https://www.google.com/generate_204"
-URL_TEST_TIMEOUT = 5.0        # Тайм-аут рукопожатия VLESS Reality + HTTP 204 в секундах
-URL_TEST_CONCURRENCY = 64     # Потоков одновременного URL-теста через Clash API
+URL_TEST_TIMEOUT = 3.0        # Тайм-аут рукопожатия VLESS Reality + HTTP 204 в секундах (строго под мобильный ТСПУ)
+URL_TEST_CONCURRENCY = 128    # Потоков одновременного URL-теста через Clash API
+MAX_BL_TEST_NODES = 1600      # Расширенный пул кандидатов Reality для глубокого теста
 SINGBOX_API_PORT = 19095
 
 # Настройки экспорта

@@ -5,9 +5,29 @@
 
 import json
 import base64
+import socket
 import urllib.parse
 from dataclasses import dataclass, field
 from typing import Dict, Optional, Any
+
+_DNS_CACHE: Dict[str, str] = {}
+
+def resolve_to_ip(hostname: str) -> str:
+    """Резолвит доменное имя в прямой IPv4 для обхода мобильных DNS-блокировок (МТС)."""
+    if not hostname:
+        return hostname
+    parts = hostname.split(".")
+    if len(parts) == 4 and all(p.isdigit() for p in parts):
+        return hostname
+    if hostname in _DNS_CACHE:
+        return _DNS_CACHE[hostname]
+    try:
+        ip = socket.gethostbyname(hostname)
+        _DNS_CACHE[hostname] = ip
+        return ip
+    except Exception:
+        _DNS_CACHE[hostname] = hostname
+        return hostname
 
 @dataclass
 class ProxyNode:
@@ -29,22 +49,44 @@ class ProxyNode:
 
     @property
     def unique_key(self) -> str:
-        """Уникальный ключ для дедупликации серверов."""
+        """Уникальный ключ для дедупликации серверов (строго физический сервер + учетные данные, без fp)."""
         pbk = self.params.get("pbk", "").strip().replace(" ", "+")
-        fp = self.params.get("fp", "chrome").strip().lower()
         net = self.params.get("type", "tcp").strip().lower()
-        if pbk:
-            return f"{self.protocol}@{self.host.lower()}:{self.port}@{pbk}@{net}@{fp}"
-        return f"{self.protocol}@{self.host.lower()}:{self.port}@{self.uuid}@{net}@{fp}"
+        auth = self.uuid.strip().lower() if self.uuid else pbk
+        return f"{self.protocol}@{self.host.lower()}:{self.port}@{auth}@{net}"
 
     def build_uri(self, new_name: Optional[str] = None) -> str:
         """Сборка нормализованной ссылки (vless:// или vmess://) с обновленным именем."""
         tag = new_name if new_name is not None else self.name
 
         if self.protocol == "vless":
-            query = urllib.parse.urlencode(self.params)
+            # Очистка мусорных и несовместимых параметров для мобильных клиентов
+            clean_params = {}
+            allowed_keys = {
+                "security", "encryption", "pbk", "sid", "sni", "fp",
+                "type", "flow", "path", "headerType", "host", "serviceName",
+                "mode", "packetEncoding"
+            }
+            for k, v in self.params.items():
+                if k not in allowed_keys:
+                    continue
+                # Чистим рекламу и спам в значениях параметров
+                if "telegram" in v.lower() or "t.me" in v.lower():
+                    continue
+                clean_params[k] = v
+
+            # Для мобильных сетей (МТС/ТСПУ) СТРОГО fp=chrome (стандартный отпечаток Android)
+            clean_params["fp"] = "chrome"
+
+            # Резолвим домен хоста в прямой IPv4 для обхода DNS-блокировок МТС
+            host_ip = resolve_to_ip(self.host)
+            # Если хост был доменом, сохраняем его в SNI, если SNI не был явно задан
+            if not clean_params.get("sni") and host_ip != self.host:
+                clean_params["sni"] = self.host
+
+            query = urllib.parse.urlencode(clean_params)
             fragment = urllib.parse.quote(tag) if tag else ""
-            return f"vless://{self.uuid}@{self.host}:{self.port}?{query}#{fragment}"
+            return f"vless://{self.uuid}@{host_ip}:{self.port}?{query}#{fragment}"
         elif self.protocol == "vmess":
             vmess_dict = {
                 "v": "2",
@@ -231,8 +273,13 @@ def parse_vless_uri(uri: str, is_whitelist_source: bool = False, is_blacklist_so
             host, port_str = host_port.rsplit(":", 1)
             port = int(port_str)
 
-        query_dict = urllib.parse.parse_qs(parsed.query)
-        params: Dict[str, str] = {k: v[0] for k, v in query_dict.items() if v}
+        query_str = parsed.query
+        if "#" in query_str:
+            query_str, embedded_frag = query_str.split("#", 1)
+            if not name:
+                name = urllib.parse.unquote(embedded_frag).strip()
+        query_dict = urllib.parse.parse_qs(query_str)
+        params: Dict[str, str] = {k: v[0].split("#")[0].strip() for k, v in query_dict.items() if v}
 
         name = urllib.parse.unquote(parsed.fragment).strip()
         sni = params.get("sni", "").strip().lower()
