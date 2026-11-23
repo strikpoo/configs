@@ -244,6 +244,7 @@ async def fetch_source(session: aiohttp.ClientSession, source: Dict[str, Any]) -
             
             source_type = source.get("type", "multi_protocol")
             is_wl = source_type in ("whitelist_focused", "ru_mirror")
+            is_bl = source_type == "blacklist_focused"
 
             # 1. Проверка JSON формата (Happ / Sing-Box / Xray)
             if content.strip().startswith("{"):
@@ -272,7 +273,7 @@ async def fetch_source(session: aiohttp.ClientSession, source: Dict[str, Any]) -
                         if prefix in line:
                             start_idx = line.find(prefix)
                             uri_part = line[start_idx:].split(" ")[0]
-                            node = parse_proxy_uri(uri_part, is_whitelist_source=is_wl)
+                            node = parse_proxy_uri(uri_part, is_whitelist_source=is_wl, is_blacklist_source=is_bl)
                             if node:
                                 nodes.append(node)
 

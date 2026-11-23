@@ -122,17 +122,45 @@ def get_wl_rank(node: ProxyNode) -> int:
 
 
 def is_valid_blacklist_node(node: ProxyNode) -> bool:
-    """Проверка узла для Black-List: только чистый VLESS Reality с настоящим зарубежным сервером."""
-    if node.protocol != "vless" or node.params.get("security") != "reality":
+    """Проверка узла для Black-List: зарубежный сервер для разблокировки сайтов (YouTube/Instagram)."""
+    is_reality = (node.protocol == "vless" and node.params.get("security") == "reality" and node.params.get("pbk"))
+    is_bl_src = getattr(node, "is_blacklist_source", False)
+    if not is_reality and not is_bl_src:
         return False
-    if not node.params.get("pbk"):
-        return False
+
     h = node.host.lower()
     sni = (node.sni or "").lower()
-    bad_markers = ("fastly", "cloudflare", "199.232.", "151.101.", "167.82.", "146.75.", "0.0.0.0", "127.0.0.1")
+
+    # СТРОГО исключаем российские домены и российские сети из Black-List!
+    # (Они принадлежат белому списку и не могут открыть YouTube/Instagram)
+    if is_ru_white_sni(sni) or sni.endswith(".ru") or is_russian_cidr(node):
+        return False
+
+    # Исключаем мусорные имена
+    if "rkn" in sni or "fuck" in sni:
+        return False
+
+    # Исключаем фейковые CDN-адреса Fastly
+    bad_markers = ("fastly", "199.232.", "151.101.", "167.82.", "146.75.", "0.0.0.0", "127.0.0.1")
     if any(m in h or m in sni for m in bad_markers):
         return False
+
+    # Порты 443 или 8443
+    if str(node.port) not in ("443", "8443"):
+        return False
+
     return True
+
+
+def get_bl_rank(node: ProxyNode) -> int:
+    """Приоритет узлов Black-List: проверенные кураторские серверы в приоритете."""
+    if getattr(node, "is_blacklist_source", False) and str(node.port) == "443":
+        return 0
+    if getattr(node, "is_blacklist_source", False):
+        return 1
+    if str(node.port) == "443":
+        return 2
+    return 3
 
 
 def is_germany_node(node: ProxyNode) -> bool:
@@ -188,20 +216,7 @@ def classify_nodes(
                 bl_candidates.append((node, ping_ms))
                 seen_bl_keys.add(node.unique_key)
 
-    # Гарантированное включение подтвержденных немецких релеев и российских CIDR
-    if all_raw_nodes:
-        for node in all_raw_nodes:
-            if is_germany_node(node) and get_wl_rank(node) < 10 and node.unique_key not in seen_wl_keys:
-                wl_pairs.append((node, 105.0, 0))
-                seen_wl_keys.add(node.unique_key)
-            elif get_wl_rank(node) == 0 and node.unique_key not in seen_wl_keys:
-                wl_pairs.append((node, 115.0, 0))
-                seen_wl_keys.add(node.unique_key)
-            elif is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
-                bl_candidates.append((node, 130.0))
-                seen_bl_keys.add(node.unique_key)
-
-    # Если после URL-теста не нашлось подходящих узлов, берем проверенные по TCP порту
+    # 2. Берем подтвержденные живые узлы, проверенные по TCP порту
     if tcp_alive_nodes:
         for node in tcp_alive_nodes:
             rank = get_wl_rank(node)
@@ -211,6 +226,16 @@ def classify_nodes(
             elif is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
                 bl_candidates.append((node, node.tcp_ping or 150.0))
                 seen_bl_keys.add(node.unique_key)
+
+    # 3. Гарантированное включение подтвержденных немецких релеев и российских CIDR для White-List
+    if all_raw_nodes:
+        for node in all_raw_nodes:
+            if is_germany_node(node) and get_wl_rank(node) < 10 and node.unique_key not in seen_wl_keys:
+                wl_pairs.append((node, 105.0, 0))
+                seen_wl_keys.add(node.unique_key)
+            elif get_wl_rank(node) == 0 and node.unique_key not in seen_wl_keys:
+                wl_pairs.append((node, 115.0, 0))
+                seen_wl_keys.add(node.unique_key)
 
     # Разделяем на немецкие релеи и российские узлы
     de_list = [p for p in wl_pairs if is_germany_node(p[0])]
@@ -258,8 +283,8 @@ def classify_nodes(
         node.name = clean_name
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
-    # Ограничение Black-List максимум 50 серверами (сортировка: сначала минимальный пинг)
-    bl_candidates.sort(key=lambda x: (x[1] <= 0, x[1]))
+    # Ограничение Black-List максимум 50 серверами (сортировка: сначала кураторские, затем минимальный пинг)
+    bl_candidates.sort(key=lambda x: (get_bl_rank(x[0]), x[1] <= 0, x[1]))
     selected_bl = bl_candidates[:50]
     blacklist_uris: List[str] = []
 
@@ -268,7 +293,11 @@ def classify_nodes(
         display_sni = node.sni or node.params.get("host", "no-sni")
         if len(display_sni) > 22:
             display_sni = display_sni[:20] + ".."
-        clean_name = f"🌐 Global Reality #{i:02d} ({display_sni})"
+        orig_name = node.name.strip()
+        if any(f in orig_name for f in ("🇨🇿", "🇩🇪", "🇯🇵", "🇸🇪", "🇸🇬", "🇮🇪", "🇦🇪", "🇫🇮", "🇧🇬", "🇳🇱", "🇺🇸", "🇬🇧", "🇫🇷")):
+            clean_name = f"{orig_name} ({display_sni})"
+        else:
+            clean_name = f"🌐 Global Reality #{i:02d} ({display_sni})"
         blacklist_uris.append(node.build_uri(new_name=clean_name))
 
     logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит 50)")

@@ -22,6 +22,7 @@ class ProxyNode:
     security: str = ""
     is_reality: bool = False
     is_whitelist_source: bool = False
+    is_blacklist_source: bool = False
     gemini_ok: bool = False
     gemini_delay: float = 0.0
     tcp_ping: float = 0.0
@@ -202,7 +203,7 @@ def decode_base64_content(data: str) -> str:
     return data
 
 
-def parse_vless_uri(uri: str, is_whitelist_source: bool = False) -> Optional[ProxyNode]:
+def parse_vless_uri(uri: str, is_whitelist_source: bool = False, is_blacklist_source: bool = False) -> Optional[ProxyNode]:
     """Парсинг ссылки vless:// в объект ProxyNode."""
     uri = uri.strip()
     if not uri.startswith("vless://"):
@@ -252,7 +253,8 @@ def parse_vless_uri(uri: str, is_whitelist_source: bool = False) -> Optional[Pro
             sni=sni,
             security=security,
             is_reality=is_reality,
-            is_whitelist_source=is_whitelist_source
+            is_whitelist_source=is_whitelist_source,
+            is_blacklist_source=is_blacklist_source
         )
     except Exception:
         return None
@@ -317,11 +319,11 @@ def parse_vmess_uri(uri: str, is_whitelist_source: bool = False) -> Optional[Pro
         return None
 
 
-def parse_proxy_uri(uri: str, is_whitelist_source: bool = False) -> Optional[ProxyNode]:
+def parse_proxy_uri(uri: str, is_whitelist_source: bool = False, is_blacklist_source: bool = False) -> Optional[ProxyNode]:
     """Универсальный парсер ссылок vless:// и vmess://."""
     uri = uri.strip()
     if uri.startswith("vless://"):
-        return parse_vless_uri(uri, is_whitelist_source=is_whitelist_source)
+        return parse_vless_uri(uri, is_whitelist_source=is_whitelist_source, is_blacklist_source=is_blacklist_source)
     elif uri.startswith("vmess://"):
         return parse_vmess_uri(uri, is_whitelist_source=is_whitelist_source)
     return None

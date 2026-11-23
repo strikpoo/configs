@@ -15,16 +15,16 @@ logger = logging.getLogger("harvester.exporter")
 import json
 from parser import parse_proxy_uri
 
-def generate_happ_json(whitelist: List[str], max_nodes: int = 50) -> Path:
+def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist: bool = True) -> Path:
     """
     Генерация проверенного, 100% валидного профиля Happ VPN (Xray-core) в формате JSON,
     соответствующего официальной спецификации Happ (rawSettings, xhttpSettings, grpcSettings, VMess).
     """
     outbounds = []
-    first_tag = "ru-wl-001"
+    first_tag = "node-001"
     valid_count = 0
 
-    for i, uri in enumerate(whitelist):
+    for i, uri in enumerate(nodes_list):
         node = parse_proxy_uri(uri)
         if not node or not node.uuid or not node.host or not node.port:
             continue
@@ -199,11 +199,15 @@ def generate_happ_json(whitelist: List[str], max_nodes: int = 50) -> Path:
             "routing": {}
         }
 
+    cfg_name = f"🇷🇺 White-List TSPO Bypass ({len(outbounds)} nodes)" if is_whitelist else f"🌐 Global Black-List ({len(outbounds)} nodes)"
+    target_filename = "happ_whitelist.json" if is_whitelist else "happ_blacklist.json"
+    subject_selector = ["🇩🇪", "🇷🇺", "node-"] if is_whitelist else ["🌐", "node-"]
+
     happ_config["_meta"] = {
-        "name": f"🇷🇺 White-List TSPO Bypass ({len(outbounds)} nodes)",
+        "name": cfg_name,
         "generator": "VPN Harvester Pipeline",
         "notes": [
-            f"{len(outbounds)} RU White-List servers",
+            f"{len(outbounds)} servers",
             "Interval is 5 minutes + leastPing + routing GLOBAL."
         ],
         "client": "Happ"
@@ -213,7 +217,7 @@ def generate_happ_json(whitelist: List[str], max_nodes: int = 50) -> Path:
 
     # Настраиваем балансировщик leastPing под созданные теги с флагами стран
     happ_config["observatory"] = {
-        "subjectSelector": ["🇩🇪", "🇷🇺", "node-"],
+        "subjectSelector": subject_selector,
         "probeURL": "https://www.gstatic.com/generate_204",
         "probeInterval": "5m",
         "enableConcurrency": True
@@ -222,7 +226,7 @@ def generate_happ_json(whitelist: List[str], max_nodes: int = 50) -> Path:
     happ_config["routing"]["balancers"] = [
         {
             "tag": "auto-leastPing",
-            "selector": ["🇩🇪", "🇷🇺", "node-"],
+            "selector": subject_selector,
             "fallbackTag": first_tag,
             "strategy": {"type": "leastPing"}
         }
@@ -247,7 +251,7 @@ def generate_happ_json(whitelist: List[str], max_nodes: int = 50) -> Path:
         if "sniffing" in ib and "destOverride" in ib["sniffing"]:
             ib["sniffing"]["destOverride"] = [x for x in ib["sniffing"]["destOverride"] if x != "fakedns"]
 
-    happ_file = OUTPUT_DIR / "happ_whitelist.json"
+    happ_file = OUTPUT_DIR / target_filename
     with open(happ_file, "w", encoding="utf-8") as f:
         json.dump(happ_config, f, ensure_ascii=False, indent=2)
 
@@ -287,13 +291,15 @@ def save_subscriptions(whitelist: List[str], blacklist: List[str]) -> Path:
     with open(bl_b64_file, "w", encoding="utf-8") as f:
         f.write(bl_b64 + "\n")
 
-    # Сохранение профиля Happ JSON
-    happ_json_file = generate_happ_json(whitelist)
+    # Сохранение профилей Happ JSON
+    happ_json_file = generate_happ_json(whitelist, is_whitelist=True)
+    happ_bl_json_file = generate_happ_json(blacklist, is_whitelist=False)
 
     logger.info(f"Файлы успешно сохранены в папку: {OUTPUT_DIR}")
     logger.info(f" -> {wl_file.name} ({len(whitelist)} узлов)")
     logger.info(f" -> {bl_file.name} ({len(blacklist)} узлов)")
-    logger.info(f" -> {happ_json_file.name} (профиль Happ VPN JSON)")
+    logger.info(f" -> {happ_json_file.name} (профиль Happ White-List JSON)")
+    logger.info(f" -> {happ_bl_json_file.name} (профиль Happ Black-List JSON)")
     logger.info(f" -> {happ_txt_file.name} (список URI для Happ VPN)")
     logger.info(f" -> {happ_b64_file.name} (Base64 для Happ VPN)")
 
