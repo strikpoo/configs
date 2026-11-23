@@ -1,0 +1,1746 @@
+{
+  "_meta": {
+    "name": "🌐 Global Black-List (50 nodes)",
+    "generator": "VPN Harvester Pipeline",
+    "notes": [
+      "50 servers",
+      "Interval is 5 minutes + leastPing + routing GLOBAL."
+    ],
+    "client": "Happ"
+  },
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": [
+      "tcp+local://77.88.8.8:53",
+      "tcp+local://77.88.8.88:53",
+      "https://common.dot.dns.yandex.net/dns-query",
+      "https://dns.google/dns-query"
+    ],
+    "queryStrategy": "UseIPv4",
+    "disableCache": false
+  },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "metadataOnly": false
+      }
+    },
+    {
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {},
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "metadataOnly": false
+      }
+    },
+    {
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "port": 10853,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "1.1.1.1",
+        "port": 53,
+        "network": "tcp,udp"
+      }
+    }
+  ],
+  "observatory": {
+    "subjectSelector": [
+      "🌐",
+      "node-"
+    ],
+    "probeURL": "https://www.gstatic.com/generate_204",
+    "probeInterval": "5m",
+    "enableConcurrency": true
+  },
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "domainMatcher": "hybrid",
+    "balancers": [
+      {
+        "tag": "auto-leastPing",
+        "selector": [
+          "🌐",
+          "node-"
+        ],
+        "fallbackTag": "🌐 Global Reality #01 (sinavm3.soft10.ir)",
+        "strategy": {
+          "type": "leastPing"
+        }
+      }
+    ],
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "dns-remote"
+        ],
+        "balancerTag": "igareck-auto"
+      },
+      {
+        "type": "field",
+        "inboundTag": [
+          "dns-in"
+        ],
+        "outboundTag": "dns-out"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "full:localhost",
+          "domain:local",
+          "domain:lan",
+          "regexp:^[^.]+$"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "127.0.0.0/8",
+          "10.0.0.0/8",
+          "172.16.0.0/12",
+          "192.168.0.0/16",
+          "169.254.0.0/16",
+          "100.64.0.0/10",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "network": "tcp,udp",
+        "balancerTag": "igareck-auto"
+      }
+    ]
+  },
+  "outbounds": [
+    {
+      "tag": "🌐 Global Reality #01 (sinavm3.soft10.ir)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.155.209",
+            "port": 443,
+            "users": [
+              {
+                "id": "14eccb4f-ca88-4732-b191-d8daacf63448",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/SiNAVM-SiNAVM-SiNAVM-SiNAVM",
+          "headers": {
+            "Host": "sinavm3.soft10.ir"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.185",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "%2Ftyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Global Reality #03 (sinavm3.soft10.ir)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.155.209",
+            "port": 443,
+            "users": [
+              {
+                "id": "14eccb4f-ca88-4732-b191-d8daacf63448",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/SiNAVM-SiNAVM-SiNAVM-SiNAVM",
+          "headers": {
+            "Host": "sinavm3.soft10.ir"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.22",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.22",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.17.50.53",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.190.13",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.19.33.25",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.19.33.25",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.190.13",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇯🇵 🇿🇿 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.111.102",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.234",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Global Reality #13 (estuary.gerqix.online)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.17.145.43",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/api/de7/stream",
+          "headers": {
+            "Host": "estuary.gerqix.online"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.185",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "%2Ftyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Global Reality #15 (estuary.gerqix.online)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.17.145.43",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/api/de7/stream",
+          "headers": {
+            "Host": "estuary.gerqix.online"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.10.234",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇯🇵 🇿🇿 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.111.102",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v1/stream",
+          "host": "crm.dpdns.org",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.17.50.53",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.6.186",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.67.139.189",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.34.106",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.94.203",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.6.186",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v1/stream",
+          "host": "crm.dpdns.org",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.34.106",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.24.31.89",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.24.31.89",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v1/stream",
+          "host": "crm.dpdns.org",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.67.139.189",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.21.94.203",
+            "port": 443,
+            "users": [
+              {
+                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/700gvl",
+          "headers": {
+            "Host": "fr-free.fastestrelay.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.27.46.35",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.27.46.35",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/tyxyws",
+          "headers": {
+            "Host": "jp3.yohototo.top"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇺🇸 United States, Los Angeles | [BL] (ws.liuzedong.ltd)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "ws.liuzedong.ltd",
+            "port": 443,
+            "users": [
+              {
+                "id": "FCEAD694-2E27-4EEB-8836-9D4ACF3E028B",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/ws",
+          "headers": {
+            "Host": "ws.liuzedong.ltd"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "141.193.213.21",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "matrix.learnpodedu.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇨🇦 🇯🇵 🇸🇪 | [BL] (freeceshi6.frii.site)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.154.113",
+            "port": 8443,
+            "users": [
+              {
+                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "%2Fproxyip%3DProxyIP.JP.CMLiussss.net",
+          "headers": {
+            "Host": "freeceshi6.frii.site"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "141.193.213.20",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "matrix.learnpodedu.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "141.193.213.21",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "matrix.learnpodedu.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇨🇦 🇬🇧 🇸🇪 | [BL] (freeceshi6.frii.site)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.154.113",
+            "port": 8443,
+            "users": [
+              {
+                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "freeceshi6.frii.site"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇨🇦 🇸🇪 | [BL] (freeceshi6.frii.site)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.154.113",
+            "port": 8443,
+            "users": [
+              {
+                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/proxyip",
+          "headers": {
+            "Host": "freeceshi6.frii.site"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇨🇦 🇬🇧 | [BL] (sinavm2.soft10.ir)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.155.209",
+            "port": 8443,
+            "users": [
+              {
+                "id": "55b3fd10-3658-40a2-8951-ec90932d1d30",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/",
+          "host": "vk.com",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Anycast-IP | 🇨🇦 🇬🇧 | [BL] (sinavm2.soft10.ir)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.155.209",
+            "port": 8443,
+            "users": [
+              {
+                "id": "55b3fd10-3658-40a2-8951-ec90932d1d30",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/",
+          "host": "vk.com",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "news.zoom.us",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "matrix.learnpodedu.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "news.zoom.us",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "matrix.learnpodedu.com"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🌐 Global Reality #50 (aparat.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "1.1.1.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "25c22f91-c391-49b7-ac8f-c948bfd0e3de",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/a7k9p2-aparat-xhttp?ed=2048",
+          "host": "aparat.com",
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "aparat.com",
+          "fingerprint": "chrome",
+          "publicKey": "QZE2pxLFdPCfeowBZXM02Z6A8Rx3b4r9mkmuOMWBFC8",
+          "shortId": "b7e56c01a9d4f230"
+        }
+      }
+    }
+  ]
+}
