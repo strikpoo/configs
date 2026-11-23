@@ -122,10 +122,18 @@ def get_wl_rank(node: ProxyNode) -> int:
 
 
 def is_valid_blacklist_node(node: ProxyNode) -> bool:
-    """Проверка узла для Black-List: зарубежный сервер для разблокировки сайтов (YouTube/Instagram)."""
-    is_reality = (node.protocol == "vless" and node.params.get("security") == "reality" and node.params.get("pbk"))
-    is_bl_src = getattr(node, "is_blacklist_source", False)
-    if not is_reality and not is_bl_src:
+    """Проверка узла для Black-List: СТРОГО чистый VLESS Reality для обхода ТСПУ."""
+    if node.protocol != "vless":
+        return False
+    if node.params.get("security") != "reality":
+        return False
+    pbk = node.params.get("pbk", "").strip()
+    if len(pbk) < 40:
+        return False
+
+    # Исключаем WebSocket (ws блокируется ТСПУ в РФ на мобильных сетях)
+    net = node.params.get("type", "tcp").lower().strip()
+    if net == "ws":
         return False
 
     h = node.host.lower()
@@ -137,11 +145,15 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
         return False
 
     # Исключаем мусорные имена
-    if "rkn" in sni or "fuck" in sni:
+    if "rkn" in sni or "fuck" in sni or "127.0.0.1" in h or "0.0.0.0" in h:
         return False
 
-    # Исключаем фейковые CDN-адреса Fastly
-    bad_markers = ("fastly", "199.232.", "151.101.", "167.82.", "146.75.", "0.0.0.0", "127.0.0.1")
+    # Исключаем Cloudflare CDN и Fastly Anycast IP (они не работают как прямой Reality)
+    bad_markers = (
+        "fastly", "199.232.", "151.101.", "167.82.", "146.75.",
+        "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.24.", "104.27.",
+        "172.64.", "172.67.", "188.114.", "162.159."
+    )
     if any(m in h or m in sni for m in bad_markers):
         return False
 
@@ -153,12 +165,19 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
 
 
 def get_bl_rank(node: ProxyNode) -> int:
-    """Приоритет узлов Black-List: проверенные кураторские серверы в приоритете."""
-    if getattr(node, "is_blacklist_source", False) and str(node.port) == "443":
+    """Приоритет узлов Black-List: TCP + Vision на порту 443 - золотой стандарт."""
+    flow = node.params.get("flow", "").lower()
+    net = node.params.get("type", "tcp").lower().strip()
+    is_p443 = str(node.port) == "443"
+
+    # 0. Золотой стандарт: TCP + xtls-rprx-vision на порту 443 (идеально для INCY)
+    if is_p443 and "vision" in flow and net in ("tcp", "raw", ""):
         return 0
-    if getattr(node, "is_blacklist_source", False):
+    # 1. Vision на других протоколах/портах
+    if "vision" in flow:
         return 1
-    if str(node.port) == "443":
+    # 2. Обычный Reality на порту 443
+    if is_p443:
         return 2
     return 3
 
