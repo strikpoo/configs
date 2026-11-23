@@ -88,7 +88,7 @@
           "🌐",
           "node-"
         ],
-        "fallbackTag": "🌐 Global Reality #01 (sinavm3.soft10.ir)",
+        "fallbackTag": "🌐 Global Reality #01 (speed.cloudflare.com)",
         "strategy": {
           "type": "leastPing"
         }
@@ -143,1354 +143,1612 @@
   },
   "outbounds": [
     {
-      "tag": "🌐 Global Reality #01 (sinavm3.soft10.ir)",
+      "tag": "🌐 Global Reality #01 (speed.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.155.209",
+            "address": "146.19.90.10",
             "port": 443,
             "users": [
               {
-                "id": "14eccb4f-ca88-4732-b191-d8daacf63448",
-                "encryption": "none"
+                "id": "a0de1607-5b63-fab8-a759-9f98706b6125",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/SiNAVM-SiNAVM-SiNAVM-SiNAVM",
-          "headers": {
-            "Host": "sinavm3.soft10.ir"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "speed.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "oE7ZEghzkaOUiw1q3PqBtpllP1NlPHLY8ydJRuICtko",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #02 (speed.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.19.33.25",
+            "address": "103.175.79.10",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "49ed01ad-3bb4-204f-b0ff-a58f658fd618",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "speed.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "4e-unF1RO2v--E7-X3aqxnCSPaK9QaTfJ7LawAr2bRI",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #03 (addons.mozilla.org)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.234",
+            "address": "34.3.107.0",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "ac3a403e-f7f1-4804-8a25-23b0ffe458f9",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "addons.mozilla.org",
+          "fingerprint": "chrome",
+          "publicKey": "IdpEClCPDYsXitgvDe5WedR1-BIryffkpjyZyAsQCUk",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #04 (www.amazon.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.22",
+            "address": "47.251.25.74",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "18805ff3-b420-45de-af18-93be14024ae8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amazon.com",
+          "fingerprint": "chrome",
+          "publicKey": "H56cOJhw0xw76lDEpt7IuJJmVGemK6_CK34KtHwDMX8",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🌐 Anycast-IP | 🇯🇵 🇿🇿 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #05 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.111.102",
+            "address": "178.248.236.229",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "144.hexdey.com",
+          "fingerprint": "chrome",
+          "publicKey": "_3mkK8SY6YVqws73SUVPKL77tzxDVNUt4ag9J9ec-D0",
+          "shortId": "d05a120d3506d2cc"
+        }
       }
     },
     {
-      "tag": "🌐 Anycast-IP | 🇯🇵 🇿🇿 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #06 (www.amazon.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.111.102",
+            "address": "47.251.25.74",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "18805ff3-b420-45de-af18-93be14024ae8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amazon.com",
+          "fingerprint": "firefox",
+          "publicKey": "H56cOJhw0xw76lDEpt7IuJJmVGemK6_CK34KtHwDMX8",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #07 (www.amazon.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.190.13",
+            "address": "47.251.25.74",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "18805ff3-b420-45de-af18-93be14024ae8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amazon.com",
+          "fingerprint": "chrome",
+          "publicKey": "H56cOJhw0xw76lDEpt7IuJJmVGemK6_CK34KtHwDMX8",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #08 (www.amd.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.190.13",
+            "address": "108.62.60.24",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "43488128-319e-f480-64ea-0acdc712e2a8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amd.com",
+          "fingerprint": "chrome",
+          "publicKey": "yK54RqOvWlWIXOyrvqs9OhT4LQvBU3u9Fh_CPvGCT2I",
+          "shortId": "2d41a02da93feb08"
+        }
       }
     },
     {
-      "tag": "🌐 Global Reality #09 (estuary.gerqix.online)",
+      "tag": "🌐 Global Reality #09 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.145.43",
+            "address": "47.251.108.158",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
+                "id": "975fc322-6e38-434b-a53c-d39fed49b9a9",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/api/de7/stream",
-          "headers": {
-            "Host": "estuary.gerqix.online"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "firefox",
+          "publicKey": "SmgYcFIvvFXW3xh4gvGhIJuQsaZvWkAylcjB6TEddEs",
+          "shortId": "896f52ba2cfca903"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🇩🇪 Germany Relay #142 (academy.nvidia.com) (academy.nvidia.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.22",
+            "address": "107.172.214.195",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "2af77824-f83d-4f50-9dd0-560bb6e7cd45",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "academy.nvidia.com",
+          "fingerprint": "firefox",
+          "publicKey": "jK8yu9AMtNQ4J_uKE1inAzJr6V5J4GNK3sAN6nZBbUo",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🌐 Global Reality #11 (sinavm3.soft10.ir)",
+      "tag": "🌐 Global Reality #11 (addons.mozilla.org)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.155.209",
+            "address": "198.247.127.131",
             "port": 443,
             "users": [
               {
-                "id": "14eccb4f-ca88-4732-b191-d8daacf63448",
-                "encryption": "none"
+                "id": "59548d2d-5d7c-4328-aa81-0d5614da0c1b",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/SiNAVM-SiNAVM-SiNAVM-SiNAVM",
-          "headers": {
-            "Host": "sinavm3.soft10.ir"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "addons.mozilla.org",
+          "fingerprint": "chrome",
+          "publicKey": "vmHHRwA9ER6c8dfgtL-gh2HBMCvjySy1xLimqYpLiCI",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #12 (caissuers.microsoft...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.234",
+            "address": "69.17.3.150",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "140d6fc9-2c6d-41bd-a487-182b52c0184f",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "caissuers.microsoft.com",
+          "fingerprint": "chrome",
+          "publicKey": "zUbdpLqoZN7kSFDrHgGnAcZqJzKilme_rIJwI3FPGCA",
+          "shortId": "d898752d58acbfe0"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #13 (api.videobereg.cc)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.185",
+            "address": "152.232.62.82",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "31d0f8a6-3dac-4f89-b2f1-aca50f293f70",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "%2Ftyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.videobereg.cc",
+          "fingerprint": "firefox",
+          "publicKey": "r5WB5FnSCt4eeBC1FJMfkWHbzsMuabo0Rc6wuAhlZUs",
+          "shortId": "a8"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🇺🇸US-🚀@VPNine1 (1) (arxiv.org)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.10.185",
+            "address": "172.252.125.77",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "217d5b38-a3a9-4ee1-9ca4-20667ee85933",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "%2Ftyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "arxiv.org",
+          "fingerprint": "chrome",
+          "publicKey": "wLfv-FK7CWwt57C7Ye-zx0MNraxYoQXAsjIx4f27WWY",
+          "shortId": "a88038293e33"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #15 (api.videobereg.cc)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.50.53",
+            "address": "152.232.62.85",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "3208bc65-8489-442e-982a-6d18893a38c0",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.videobereg.cc",
+          "fingerprint": "firefox",
+          "publicKey": "r5WB5FnSCt4eeBC1FJMfkWHbzsMuabo0Rc6wuAhlZUs",
+          "shortId": "a8"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #16 (diffoscope.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.19.33.25",
+            "address": "89.18.60.230",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "bc93a03d-13b5-0006-8ee7-d50c11459dab",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "diffoscope.com",
+          "fingerprint": "chrome",
+          "publicKey": "6VMgXXhZdJCiOG05EyK_zTHh00kpFGrZJeZIEPgqhjY",
+          "shortId": "1c3e8241a8743df9"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #17 (www.samsung.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.6.186",
+            "address": "95.111.212.241",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "924fe46b-b6e0-479e-ae7f-a3661680e706",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.samsung.com",
+          "fingerprint": "chrome",
+          "publicKey": "BSTnEthBXhb_UyuWpLBDxg82-C-wcpU2_kOD5ohS12g",
+          "shortId": "3a697adb4c58d495"
+        }
       }
     },
     {
-      "tag": "🌐 Global Reality #18 (estuary.gerqix.online)",
+      "tag": "🌐 Global Reality #18 (www.sony.fi)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.145.43",
+            "address": "23.172.217.23",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
+                "id": "1ab3c7c3-e1cf-4a20-bd19-ea9041e5518b",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/api/de7/stream",
-          "headers": {
-            "Host": "estuary.gerqix.online"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.sony.fi",
+          "fingerprint": "firefox",
+          "publicKey": "2dhlb69O7SFVKy9U3waY8qcErDJAIv-wqgT0Iz8JHyA",
+          "shortId": "99"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #19 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.6.186",
+            "address": "195.123.240.65",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "ce18d0eb-5c71-41f9-96e5-1632e22456e4",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "StPbcmBuzpuYUfa4oZ5SI3Bq1OSF_-oU1vp2AcyvQVE",
+          "shortId": "19296c9f1bf9c7b1"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #20 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.67.139.189",
+            "address": "38.244.5.231",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "1bd6c8a2-01db-4a3d-8b2c-0b2f2c3e8b5a",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "DUpNPvLjiL1GzeF7DfKWba-LYLz1KPuQXewhgNGPiDM",
+          "shortId": "ab0a5b56"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #21 (www.bing.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.50.53",
+            "address": "179.254.94.184",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "2f12e5b5-6ce7-47ab-88b9-6110c1a3fc60",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.bing.com",
+          "fingerprint": "firefox",
+          "publicKey": "q49v36UVMNsNION3nn-cQU6_8VwgM_psm1s5z7XVaWc",
+          "shortId": "e6052385636f0700"
+        }
       }
     },
     {
-      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "tag": "🌐 Global Reality #22 (5us.skorostnet.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "89.185.80.195",
             "port": 443,
             "users": [
               {
-                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
-                "encryption": "none"
+                "id": "c04bf2df-2b7f-44da-a893-3792d3910fd8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/api/v1/stream",
-          "host": "crm.dpdns.org",
-          "mode": "auto"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "5us.skorostnet.space",
+          "fingerprint": "chrome",
+          "publicKey": "aBNWkd8CVkuimbtzgsDNsIUIENI-PQuKkpUInLncz2o",
+          "shortId": "fdda9806fe5d8584"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #23 (www.amazon.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.67.139.189",
+            "address": "205.186.112.19",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "f1a04d4c-56b3-4f93-a4ec-91a5039a48bd",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amazon.com",
+          "fingerprint": "chrome",
+          "publicKey": "cwao9PnlNhUTd19WxIKAOdAjkaqVJihY0d2WOR8I2WY",
+          "shortId": "cce23a6bce3bc925"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #24 (www.microsoft.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "132.226.85.167",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "e43dd231-7c75-4606-80ec-50fbb8335ce7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.microsoft.com",
+          "fingerprint": "chrome",
+          "publicKey": "3ik9ws7ATJ5dKDY2Fofv9y7_vpFYsTqgOJRxiQKwA3A",
+          "shortId": "7b233a973c94ca0a"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #25 (212.192.156.15)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.94.203",
+            "address": "150.241.83.223",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "bae8ddd3-84c6-4684-ad58-8e50ea90bcb5",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "212.192.156.15",
+          "fingerprint": "firefox",
+          "publicKey": "a9O5evb8g385KJm77j9SKlB7MvHzUBGes6c8BAxyO1U",
+          "shortId": "5fd3245e96291c37"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #26 (game.worldoftanks.eu)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.94.203",
+            "address": "176.126.122.168",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "3dfc0554-e264-424c-8836-d35fc7b5e731",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "game.worldoftanks.eu",
+          "fingerprint": "chrome",
+          "publicKey": "6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "tag": "🌐 Global Reality #27 (rss.worldoftanks.asia)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "176.126.122.236",
             "port": 443,
             "users": [
               {
-                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
-                "encryption": "none"
+                "id": "7e58a654-c964-4d49-96c3-60b9f0d96bbc",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/api/v1/stream",
-          "host": "crm.dpdns.org",
-          "mode": "auto"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "rss.worldoftanks.asia",
+          "fingerprint": "chrome",
+          "publicKey": "6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #28 (liggo.love)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.24.31.89",
+            "address": "87.120.252.67",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "7bc17f77-2ae7-4a53-822c-5f83a0bba49e",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "liggo.love",
+          "fingerprint": "chrome",
+          "publicKey": "6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #29 (www.microsoft.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.24.31.89",
+            "address": "209.50.50.174",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "3f879389-1002-412f-a318-a2cfc625ab0d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.microsoft.com",
+          "fingerprint": "chrome",
+          "publicKey": "SetkHCEuwTCJLii9zJ4K_wz2Oe8ut4au8Czm5y_xt18",
+          "shortId": "fa0435d4"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #30 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.34.106",
+            "address": "195.211.98.43",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "1b4b11d5-4c2d-4533-9a55-636757cdee94",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "xPnpkXu5qfwIArlHKvJsqKJnGdGbJK1tT2GzWMyLohA",
+          "shortId": "9c56fddf237e8eaf"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #31 (dl.google.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.27.46.35",
+            "address": "23.191.200.206",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "3258e8fa-dcff-4e38-9974-38ba8d76a0d7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "dl.google.com",
+          "fingerprint": "firefox",
+          "publicKey": "7j3hmlHrEDk3Kjx-dFG3E3jf0c6PZF45trIPFsuKWmI",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #32 (dl.google.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "23.191.200.207",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "058a5d84-08f5-486e-97a5-a09f87030206",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "dl.google.com",
+          "fingerprint": "chrome",
+          "publicKey": "7j3hmlHrEDk3Kjx-dFG3E3jf0c6PZF45trIPFsuKWmI",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇬🇧 United Kingdom, Slough | [BL] (crm.dpdns.org)",
+      "tag": "🌐 Global Reality #33 (assets-70.topp-con.xyz)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "179.254.92.134",
             "port": 443,
             "users": [
               {
-                "id": "e58384f2-76ba-400b-ae0a-8271b4c9c310",
-                "encryption": "none"
+                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/api/v1/stream",
-          "host": "crm.dpdns.org",
-          "mode": "auto"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "assets-70.topp-con.xyz",
+          "fingerprint": "chrome",
+          "publicKey": "OQu-e59wDwOSwiBBawquNAPhg8Li1hmioWU2Up1TGDw",
+          "shortId": "c33807f76b689c9a"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #34 (assets-32.topp-con.xyz)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "179.254.92.190",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "assets-32.topp-con.xyz",
+          "fingerprint": "chrome",
+          "publicKey": "66-TFe0f5ub9A27G6hLPLm-KRZ4LGixHi8IA_Nv7jVM",
+          "shortId": "81d36ba71dddfc3e"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #35 (dl.google.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "23.191.200.207",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "2efb2403-a285-424e-933e-2aae2a9d4bc6",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "dl.google.com",
+          "fingerprint": "firefox",
+          "publicKey": "7j3hmlHrEDk3Kjx-dFG3E3jf0c6PZF45trIPFsuKWmI",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🇺🇸 (assets-32.topp-con.xyz)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "179.254.92.190",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "assets-32.topp-con.xyz",
+          "fingerprint": "chrome",
+          "publicKey": "66-TFe0f5ub9A27G6hLPLm-KRZ4LGixHi8IA_Nv7jVM",
+          "shortId": "81d36ba71dddfc3e"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | 🌐 | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #37 (www.amazon.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.34.106",
+            "address": "166.0.25.92",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "ea240abb-cbff-4250-a7e2-81fead273be4",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.amazon.com",
+          "fingerprint": "chrome",
+          "publicKey": "sM_GJx22-fLTXSSyhHKWZGwUUlRajZLXgg7JXo8l0gs",
+          "shortId": "f616956add605348"
+        }
       }
     },
     {
-      "tag": "🇯🇵 Japan, Inzai (Otsuka) | [BL] (jp3.yohototo.top)",
+      "tag": "🌐 Global Reality #38 (us2.accessboy.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.27.46.35",
+            "address": "88.216.57.148",
             "port": 443,
             "users": [
               {
-                "id": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-                "encryption": "none"
+                "id": "caf3d607-95c9-4ea0-98b5-864027056ba0",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/tyxyws",
-          "headers": {
-            "Host": "jp3.yohototo.top"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "us2.accessboy.com",
+          "fingerprint": "firefox",
+          "publicKey": "1TtWNQhTJr_3H7-ypMw4EiLzVxy22AzUtMiE5JmQMl4",
+          "shortId": "1c5869a95671bcb0"
+        }
       }
     },
     {
-      "tag": "🇺🇸 United States, Ashburn | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #39 (usahk2-r.bankai.party)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "147.45.60.136",
             "port": 443,
             "users": [
               {
-                "id": "43BCAE0A-10A6-4003-8615-BD510F4215BA",
-                "encryption": "none"
+                "id": "a346c521-7a7f-452b-9356-a4893feb5982",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl-us-free"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "usahk2-r.bankai.party",
+          "fingerprint": "chrome",
+          "publicKey": "FWitre1jinQR7qz5HQ0q2Q4Gg9xA9B0SyizCziN7Ch0",
+          "shortId": "457fab2ac885dbe0"
+        }
       }
     },
     {
-      "tag": "🇺🇸 United States, Ashburn | [BL] (fr-free.fastestrelay..)",
+      "tag": "Channel id: @ShadowProxy66 🇺🇸 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "47.253.226.114",
             "port": 443,
             "users": [
               {
-                "id": "43BCAE0A-10A6-4003-8615-BD510F4215BA",
-                "encryption": "none"
+                "id": "055a1ce8-2a16-4a0d-a2c2-22826c9b2413",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl-us-free",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "firefox",
+          "publicKey": "Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇺🇸 United States, Los Angeles | [BL] (ws.liuzedong.ltd)",
+      "tag": "🇺🇸 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "ws.liuzedong.ltd",
+            "address": "169.40.42.74",
             "port": 443,
             "users": [
               {
-                "id": "FCEAD694-2E27-4EEB-8836-9D4ACF3E028B",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/ws",
-          "headers": {
-            "Host": "ws.liuzedong.ltd"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🇺🇸 United States, Ashburn | [BL] (fr-free.fastestrelay..)",
+      "tag": "Channel id: @ShadowProxy66 🇺🇸 (www.cloudflare.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "47.253.226.114",
             "port": 443,
             "users": [
               {
-                "id": "43BCAE0A-10A6-4003-8615-BD510F4215BA",
-                "encryption": "none"
+                "id": "055a1ce8-2a16-4a0d-a2c2-22826c9b2413",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl-us-free",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "ios",
+          "publicKey": "Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc",
+          "shortId": ""
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #43 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "169.40.42.89",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
                 "encryption": "none"
               }
             ]
@@ -1498,236 +1756,289 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "ios",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🇺🇸 United States, Ashburn | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #44 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "169.40.42.168",
             "port": 443,
             "users": [
               {
-                "id": "43BCAE0A-10A6-4003-8615-BD510F4215BA",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl-us-free"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #45 (canwec.kramiliantha...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "185.218.17.172",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "ed1d539a-8507-45de-8253-cbc272161473",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "canwec.kramiliantha.sbs",
+          "fingerprint": "chrome",
+          "publicKey": "oTsYnjjxzyoBI2rJn0TjihgaOcNMPa9bNwHhp4RdDkg",
+          "shortId": "be7d0c9dda4dd4e6"
+        }
       }
     },
     {
-      "tag": "🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
+      "tag": "🌐 Global Reality #46 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fr-free.fastestrelay.com",
+            "address": "169.40.42.231",
             "port": 443,
             "users": [
               {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/700gvl"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🌐 Anycast-IP | 🇨🇦 🇬🇧 🇸🇪 | [BL] (freeceshi6.frii.site)",
+      "tag": "🌐 Global Reality #47 (www.apple.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.154.113",
-            "port": 8443,
+            "address": "185.95.231.156",
+            "port": 443,
             "users": [
               {
-                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
-                "encryption": "none"
+                "id": "1f8cf47a-b66a-4916-979f-26edfcf44eea",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "freeceshi6.frii.site"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.apple.com",
+          "fingerprint": "random",
+          "publicKey": "8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To",
+          "shortId": "a3a578ab"
+        }
       }
     },
     {
-      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "tag": "🌐 Global Reality #48 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "141.193.213.21",
-            "port": 8443,
+            "address": "169.40.42.163",
+            "port": 443,
             "users": [
               {
-                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "matrix.learnpodedu.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "ios",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🇸🇬 Singapore, Singapore (Outram) | 🌐 | [BL] (matrix.learnpodedu.com)",
+      "tag": "🌐 Global Reality #49 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "141.193.213.21",
-            "port": 8443,
+            "address": "169.40.42.90",
+            "port": 443,
             "users": [
               {
-                "id": "4d8d9640-7cc7-4c55-ba54-6ce0d1709541",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "matrix.learnpodedu.com"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     },
     {
-      "tag": "🌐 Anycast-IP | 🇨🇦 🇸🇪 | [BL] (freeceshi6.frii.site)",
+      "tag": "🌐 Global Reality #50 (yahoo.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.154.113",
-            "port": 8443,
+            "address": "169.40.42.168",
+            "port": 443,
             "users": [
               {
-                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/proxyip",
-          "headers": {
-            "Host": "freeceshi6.frii.site"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "ios",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
       }
     }
   ]
