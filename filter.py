@@ -121,6 +121,20 @@ def get_wl_rank(node: ProxyNode) -> int:
     return 10
 
 
+def is_valid_blacklist_node(node: ProxyNode) -> bool:
+    """Проверка узла для Black-List: только чистый VLESS Reality с настоящим зарубежным сервером."""
+    if node.protocol != "vless" or node.params.get("security") != "reality":
+        return False
+    if not node.params.get("pbk"):
+        return False
+    h = node.host.lower()
+    sni = (node.sni or "").lower()
+    bad_markers = ("fastly", "cloudflare", "199.232.", "151.101.", "167.82.", "146.75.", "0.0.0.0", "127.0.0.1")
+    if any(m in h or m in sni for m in bad_markers):
+        return False
+    return True
+
+
 def is_germany_node(node: ProxyNode) -> bool:
     """Определение, является ли узел сервером / релеем с выходом в Германию."""
     h = node.host.strip()
@@ -169,7 +183,7 @@ def classify_nodes(
         if rank < 10 and node.unique_key not in seen_wl_keys:
             wl_pairs.append((node, ping_ms, rank))
             seen_wl_keys.add(node.unique_key)
-        else:
+        elif is_valid_blacklist_node(node):
             if node.unique_key not in seen_bl_keys:
                 bl_candidates.append((node, ping_ms))
                 seen_bl_keys.add(node.unique_key)
@@ -183,6 +197,9 @@ def classify_nodes(
             elif get_wl_rank(node) == 0 and node.unique_key not in seen_wl_keys:
                 wl_pairs.append((node, 115.0, 0))
                 seen_wl_keys.add(node.unique_key)
+            elif is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
+                bl_candidates.append((node, 130.0))
+                seen_bl_keys.add(node.unique_key)
 
     # Если после URL-теста не нашлось подходящих узлов, берем проверенные по TCP порту
     if tcp_alive_nodes:
@@ -191,7 +208,7 @@ def classify_nodes(
             if rank < 10 and node.unique_key not in seen_wl_keys:
                 wl_pairs.append((node, node.tcp_ping or 120.0, rank))
                 seen_wl_keys.add(node.unique_key)
-            elif rank >= 10 and node.unique_key not in seen_bl_keys:
+            elif is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
                 bl_candidates.append((node, node.tcp_ping or 150.0))
                 seen_bl_keys.add(node.unique_key)
 
@@ -246,12 +263,12 @@ def classify_nodes(
     selected_bl = bl_candidates[:50]
     blacklist_uris: List[str] = []
 
-    for node, ping_ms in selected_bl:
+    for i, (node, ping_ms) in enumerate(selected_bl, 1):
         ping_str = f"{int(ping_ms)}ms" if ping_ms > 0 else "alive"
         display_sni = node.sni or node.params.get("host", "no-sni")
         if len(display_sni) > 22:
             display_sni = display_sni[:20] + ".."
-        clean_name = f"[BL] {display_sni} | {ping_str} | {node.host}:{node.port}"
+        clean_name = f"🌐 Global Reality #{i:02d} ({display_sni})"
         blacklist_uris.append(node.build_uri(new_name=clean_name))
 
     logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит 50)")
