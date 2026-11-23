@@ -183,173 +183,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #02 (seaglass.gerqix.online)",
+      "tag": "🇩🇪 Germany Relay #02 (reedbank.moltex.click)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "seaglass.gerqix.online",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de5/sync",
-          "host": "seaglass.gerqix.online",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #03 (rainwater.elvano.web..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "rainwater.elvano.website",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de6/sync",
-          "host": "rainwater.elvano.website",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #04 (fernglade.gerqix.onl..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "81.200.158.26",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "glush.de1.v1"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #05 (files-qzgs.login.ope..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "95.129.236.239",
-            "port": 443,
-            "users": [
-              {
-                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/origin/246825491/fetch",
-          "headers": {
-            "Host": "files-qzgs.login.opendns.stream"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #06 (eh4.vk.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "212.233.123.94",
-            "port": 443,
-            "users": [
-              {
-                "id": "a16a3e32-8d63-4dec-8c67-1361388a64ca",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "eh4.vk.ru",
-          "fingerprint": "firefox",
-          "publicKey": "sfrOxTviJp1f1woMZiMOj1zkeStBPUoVogApP2eovgA",
-          "shortId": "b254091454b40458"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #07 (fresco.merlano.monster)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "fresco.merlano.monster",
+            "address": "reedbank.moltex.click",
             "port": 443,
             "users": [
               {
@@ -368,19 +207,108 @@
         },
         "xhttpSettings": {
           "path": "/api/de4/sync",
-          "host": "fresco.merlano.monster",
+          "host": "reedbank.moltex.click",
           "mode": "auto"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #08 (fieldstone.moltex.cl..)",
+      "tag": "🇩🇪 Germany Selectel #03 (olvento.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "cedar.filnex.baby",
+            "address": "188.225.36.219",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "olvento.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #04 (cadrin.wtf)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "cadrin.wtf",
+            "port": 443,
+            "users": [
+              {
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #05 (no-sni)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "193.160.208.240",
+            "port": 443,
+            "users": [
+              {
+                "id": "4777d90d-265b-4927-a0d1-63f36ed1421c",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/assets/twru01/",
+          "host": "vk.com",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #06 (parchment.merlano.mo..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "72.56.238.135",
             "port": 443,
             "users": [
               {
@@ -400,19 +328,19 @@
         "wsSettings": {
           "path": "/api/de7/stream",
           "headers": {
-            "Host": "fieldstone.moltex.click"
+            "Host": "parchment.merlano.monster"
           }
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #09 (fernglade.gerqix.onl..)",
+      "tag": "🇩🇪 Germany Selectel #07 (olvento.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "81.200.158.26",
+            "address": "188.225.36.219",
             "port": 443,
             "users": [
               {
@@ -430,7 +358,67 @@
           "tcpKeepAliveInterval": 60
         },
         "grpcSettings": {
-          "serviceName": "glush.de1.v1"
+          "serviceName": "olvento.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #08 (cadrin.wtf)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.225.78.178",
+            "port": 443,
+            "users": [
+              {
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #09 (reedbank.moltex.click)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "reedbank.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de4/sync",
+          "host": "reedbank.moltex.click",
+          "mode": "auto"
         },
         "security": "tls"
       }
@@ -468,45 +456,16 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #11 (fieldstone.moltex.cl..)",
+      "tag": "🇩🇪 Germany Selectel #11 (fernglade.gerqix.onl..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "cedar.filnex.baby",
+            "address": "81.200.158.26",
             "port": 443,
             "users": [
               {
                 "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/api/de7/stream"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #12 (cadrin.wtf)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.225.78.178",
-            "port": 443,
-            "users": [
-              {
-                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
                 "encryption": "none"
               }
             ]
@@ -520,53 +479,22 @@
           "tcpKeepAliveInterval": 60
         },
         "grpcSettings": {
-          "serviceName": "cache.sync.v1"
+          "serviceName": "glush.de1.v1"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #13 (greenhouse.elvano.we..)",
+      "tag": "🇩🇪 Germany Selectel #12 (v4.clequinix.globali..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "greenhouse.elvano.website",
+            "address": "109.248.17.252",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de6/sync",
-          "host": "greenhouse.elvano.website",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #14 (flintstack.dev)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.225.57.185",
-            "port": 443,
-            "users": [
-              {
-                "id": "88e79aa6-f431-4453-8dcc-652a0c747198",
+                "id": "9000a7f3-df2a-49a8-ae56-3e7777bd32f7",
                 "encryption": "none"
               }
             ]
@@ -580,59 +508,22 @@
           "tcpKeepAliveInterval": 60
         },
         "grpcSettings": {
-          "serviceName": ""
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "flintstack.dev",
-          "fingerprint": "random",
-          "publicKey": "4JggwEKhrkrIjQjO8kRX6iGvHQJixIFkiDOnE7zd3xE",
-          "shortId": ""
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #15 (grovewood.moltex.click)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "grovewood.moltex.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de5/sync",
-          "host": "grovewood.moltex.click",
-          "mode": "auto"
+          "serviceName": "v4-clequinix-globalinetforallalwaysandneverbanyoubelieveme-com"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #16 (content-iv1k.login.o..)",
+      "tag": "🇩🇪 Germany Relay #13 (files-qzgs.login.ope..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "95.129.236.239",
+            "address": "files-qzgs.login.opendns.stream",
             "port": 443,
             "users": [
               {
-                "id": "77998cc6-8a4d-4251-b974-ebff48a84c4d",
+                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
                 "encryption": "none"
               }
             ]
@@ -646,16 +537,71 @@
           "tcpKeepAliveInterval": 60
         },
         "wsSettings": {
-          "path": "/sock/relay/007f9c12e265",
-          "headers": {
-            "Host": "content-iv1k.login.opendns.stream"
-          }
+          "path": "/origin/246825491/fetch"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #17 (terrace.elvano.website)",
+      "tag": "🇩🇪 Germany Relay #14 (files-qzgs.login.ope..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "files-qzgs.login.opendns.stream",
+            "port": 443,
+            "users": [
+              {
+                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/origin/246825491/fetch"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #15 (olvento.space)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.225.36.219",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "olvento.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #16 (terrace.elvano.website)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -686,129 +632,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #18 (wildflower.elvano.we..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "wildflower.elvano.website",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de5/sync",
-          "host": "wildflower.elvano.website",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #19 (tealeaf.elvano.website)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "tealeaf.elvano.website",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de4/sync",
-          "host": "tealeaf.elvano.website",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #20 (sw-api.telemetryapi...)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "sw-api.telemetryapi.org",
-            "port": 443,
-            "users": [
-              {
-                "id": "6bd1d88f-0a26-4d21-b325-15d85120b883",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/api/v2/client/session/connect"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #21 (brookside.moltex.click)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "brookside.moltex.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de7/sync",
-          "host": "brookside.moltex.click",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #22 (gesso.merlano.monster)",
+      "tag": "🇩🇪 Germany Relay #17 (gesso.merlano.monster)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -839,145 +663,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #23 (71b840t.de7.h1clayd...)",
+      "tag": "🇩🇪 Germany Relay #18 (marina.gerqix.online)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "71b840t.de7.h1clayd.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "26843758-24de-4f76-b5d0-624038e353c4",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "71b840t.de7.h1clayd.click",
-          "fingerprint": "edge",
-          "publicKey": "3wFF83gtIA0sXj-6GGCAa--oQbSr0MVUj0FBc-0QmiE",
-          "shortId": "e572b6579ea525d4"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #24 (files-qzgs.login.ope..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "files-qzgs.login.opendns.stream",
-            "port": 443,
-            "users": [
-              {
-                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/origin/246825491/fetch"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #25 (olvento.space)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.225.36.219",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "olvento.sync.v1"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #26 (api.setevoypriliv.cc)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "api.setevoypriliv.cc",
-            "port": 443,
-            "users": [
-              {
-                "id": "755a5cf7-355c-48fb-b699-01b58c64eabc",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api.setevoypriliv.cc",
-          "fingerprint": "chrome",
-          "publicKey": "r5WB5FnSCt4eeBC1FJMfkWHbzsMuabo0Rc6wuAhlZUs",
-          "shortId": "a8"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #27 (fieldstone.moltex.cl..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "cedar.filnex.baby",
+            "address": "194.87.131.9",
             "port": 443,
             "users": [
               {
@@ -995,74 +686,13 @@
           "tcpKeepAliveInterval": 60
         },
         "wsSettings": {
-          "path": "/api/de7/stream"
+          "path": "/api/de3/stream"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #28 (elmharbor.gerqix.onl..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "archive.filnex.baby",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "glush.de7.v1"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #29 (content-iv1k.login.o..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "95.129.236.239",
-            "port": 443,
-            "users": [
-              {
-                "id": "77998cc6-8a4d-4251-b974-ebff48a84c4d",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/sock/relay/007f9c12e265",
-          "headers": {
-            "Host": "content-iv1k.login.opendns.stream"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #30 (cadrin.wtf)",
+      "tag": "🇩🇪 Germany Selectel #19 (cadrin.wtf)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1091,12 +721,161 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #31 (garden.elvano.website)",
+      "tag": "🇩🇪 Germany Relay #20 (clearing.moltex.click)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "garden.elvano.website",
+            "address": "clearing.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de5/sync",
+          "host": "clearing.moltex.click",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #21 (cadrin.wtf)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "cadrin.wtf",
+            "port": 443,
+            "users": [
+              {
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #22 (sw-api.telemetryapi...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.178.208.167",
+            "port": 443,
+            "users": [
+              {
+                "id": "6bd1d88f-0a26-4d21-b325-15d85120b883",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/api/v2/client/session/connect"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #23 (heatherfield.moltex...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "heatherfield.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de6/sync",
+          "host": "heatherfield.moltex.click",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #24 (cadrin.wtf)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.225.78.178",
+            "port": 443,
+            "users": [
+              {
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #25 (lowland.moltex.click)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "lowland.moltex.click",
             "port": 443,
             "users": [
               {
@@ -1115,23 +894,23 @@
         },
         "xhttpSettings": {
           "path": "/api/de3/sync",
-          "host": "garden.elvano.website",
+          "host": "lowland.moltex.click",
           "mode": "auto"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #32 (no-sni)",
+      "tag": "🇩🇪 Germany Relay #26 (parchment.merlano.mo..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "193.160.208.240",
+            "address": "72.56.238.135",
             "port": 443,
             "users": [
               {
-                "id": "4777d90d-265b-4927-a0d1-63f36ed1421c",
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
                 "encryption": "none"
               }
             ]
@@ -1139,26 +918,59 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "ws",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/assets/twru01/",
-          "host": "vk.com",
-          "mode": "auto"
+        "wsSettings": {
+          "path": "/api/de7/stream",
+          "headers": {
+            "Host": "parchment.merlano.monster"
+          }
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #33 (moonstone.gerqix.onl..)",
+      "tag": "🇩🇪 Germany Relay #27 (mosaic.topp-con.xyz)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "moonstone.gerqix.online",
+            "address": "176.98.176.60",
+            "port": 443,
+            "users": [
+              {
+                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #28 (seedling.elvano.webs..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "seedling.elvano.website",
             "port": 443,
             "users": [
               {
@@ -1177,23 +989,23 @@
         },
         "xhttpSettings": {
           "path": "/api/de4/sync",
-          "host": "moonstone.gerqix.online",
+          "host": "seedling.elvano.website",
           "mode": "auto"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #34 (cloverleaf.moltex.cl..)",
+      "tag": "🇩🇪 Germany Selectel #29 (cadrin.wtf)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "cloverleaf.moltex.click",
+            "address": "188.225.78.178",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
                 "encryption": "none"
               }
             ]
@@ -1201,26 +1013,24 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "grpc",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/api/de3/sync",
-          "host": "cloverleaf.moltex.click",
-          "mode": "auto"
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #35 (birchbark.gerqix.onl..)",
+      "tag": "🇩🇪 Germany Selectel #30 (olvento.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "birchbark.gerqix.online",
+            "address": "188.225.36.219",
             "port": 443,
             "users": [
               {
@@ -1238,18 +1048,56 @@
           "tcpKeepAliveInterval": 60
         },
         "grpcSettings": {
-          "serviceName": "glush.de7.v1"
+          "serviceName": "olvento.sync.v1"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #36 (rowanberry.moltex.cl..)",
+      "tag": "🇩🇪 Germany Relay #31 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "rowanberry.moltex.click",
+            "address": "178.248.236.229",
+            "port": 443,
+            "users": [
+              {
+                "id": "a71d6c6d-c95e-4ec1-a892-22e21733bf09",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "144.hexdey.com",
+          "fingerprint": "chrome",
+          "publicKey": "_3mkK8SY6YVqws73SUVPKL77tzxDVNUt4ag9J9ec-D0",
+          "shortId": "d05a120d3506d2cc"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #32 (tealeaf.elvano.website)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "tealeaf.elvano.website",
             "port": 443,
             "users": [
               {
@@ -1261,19 +1109,21 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "xhttp",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/api/de7/stream"
+        "xhttpSettings": {
+          "path": "/api/de4/sync",
+          "host": "tealeaf.elvano.website",
+          "mode": "auto"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #37 (claywick.elvano.webs..)",
+      "tag": "🇩🇪 Germany Relay #33 (claywick.elvano.webs..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1302,12 +1152,43 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #38 (rowanberry.moltex.cl..)",
+      "tag": "🇩🇪 Germany Relay #34 (clearing.moltex.click)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "rowanberry.moltex.click",
+            "address": "clearing.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de5/sync",
+          "host": "clearing.moltex.click",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #35 (estuary.gerqix.online)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "estuary.gerqix.online",
             "port": 443,
             "users": [
               {
@@ -1326,6 +1207,104 @@
         },
         "wsSettings": {
           "path": "/api/de7/stream"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #36 (cadrin.wtf)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "cadrin.wtf",
+            "port": 443,
+            "users": [
+              {
+                "id": "a4740bee-81ad-4a58-99c9-eca576ecb6e6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "cache.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #37 (api.setevoypriliv.cc)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "189.74.106.121",
+            "port": 443,
+            "users": [
+              {
+                "id": "a5b36e51-15a7-4c33-bc8a-accfaabd3cc6",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.setevoypriliv.cc",
+          "fingerprint": "safari",
+          "publicKey": "r5WB5FnSCt4eeBC1FJMfkWHbzsMuabo0Rc6wuAhlZUs",
+          "shortId": "a8"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #38 (garden.elvano.website)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "garden.elvano.website",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de3/sync",
+          "host": "garden.elvano.website",
+          "mode": "auto"
         },
         "security": "tls"
       }
@@ -1360,104 +1339,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #40 (mosaic.topp-con.xyz)",
+      "tag": "🇩🇪 Germany Relay #40 (rowanberry.moltex.cl..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "176.98.176.60",
-            "port": 443,
-            "users": [
-              {
-                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #41 (rbzummkhxtmdipkpij.f..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "168.113.254.3",
-            "port": 443,
-            "users": [
-              {
-                "id": "6b58e234-9907-0001-9e32-01bc90599182",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #42 (olvento.space)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.225.36.219",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "olvento.sync.v1"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #43 (estuary.gerqix.online)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "estuary.gerqix.online",
+            "address": "rowanberry.moltex.click",
             "port": 443,
             "users": [
               {
@@ -1481,70 +1368,45 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #44 (claywick.elvano.webs..)",
+      "tag": "🇩🇪 Germany Relay #41 (9ed8a8t.se4.h1clayd...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "cabinet.filnex.baby",
+            "address": "9ed8a8t.se4.h1clayd.click",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
+                "id": "f15a2e25-6859-4bcc-b4c4-a14bb8ae0fbb",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "wsSettings": {
-          "path": "/api/de7/stream",
-          "headers": {
-            "Host": "cabinet.filnex.baby"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "9ed8a8t.se4.h1clayd.click",
+          "fingerprint": "android",
+          "publicKey": "aJ_qFu55iLaiUWJ157VIAfAf7Cc6PKbZhFIvE03nNDc",
+          "shortId": "1cc8aab4a9fa9280"
+        }
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #45 (palette.merlano.mons..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "palette.merlano.monster",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/de7/sync",
-          "host": "palette.merlano.monster",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #46 (0ef47cx.se4.h1clayd...)",
+      "tag": "🇩🇪 Germany Relay #42 (0ef47cx.se4.h1clayd...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1553,7 +1415,7 @@
             "port": 443,
             "users": [
               {
-                "id": "f15a2e25-6859-4bcc-b4c4-a14bb8ae0fbb",
+                "id": "d3863595-3afe-4a74-8305-612ab69cd21c",
                 "encryption": "none"
               }
             ]
@@ -1581,12 +1443,72 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #47 (mosaic.merlano.monster)",
+      "tag": "🇩🇪 Germany Selectel #43 (elmharbor.gerqix.onl..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "mosaic.merlano.monster",
+            "address": "archive.filnex.baby",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "glush.de7.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #44 (riverstone.gerqix.on..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "riverstone.gerqix.online",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de7/sync",
+          "host": "riverstone.gerqix.online",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #45 (garden.elvano.website)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "garden.elvano.website",
             "port": 443,
             "users": [
               {
@@ -1605,19 +1527,81 @@
         },
         "xhttpSettings": {
           "path": "/api/de3/sync",
-          "host": "mosaic.merlano.monster",
+          "host": "garden.elvano.website",
           "mode": "auto"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #48 (olvento.space)",
+      "tag": "🇩🇪 Germany Relay #46 (heatherfield.moltex...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.225.36.219",
+            "address": "heatherfield.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de6/sync",
+          "host": "heatherfield.moltex.click",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #47 (heatherfield.moltex...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "heatherfield.moltex.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/de6/sync",
+          "host": "heatherfield.moltex.click",
+          "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #48 (birchbark.gerqix.onl..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "birchbark.gerqix.online",
             "port": 443,
             "users": [
               {
@@ -1635,50 +1619,18 @@
           "tcpKeepAliveInterval": 60
         },
         "grpcSettings": {
-          "serviceName": "olvento.sync.v1"
+          "serviceName": "glush.de7.v1"
         },
         "security": "tls"
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #49 (claywick.elvano.webs..)",
+      "tag": "🇩🇪 Germany Relay #49 (wildflower.elvano.we..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "cabinet.filnex.baby",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/api/de7/stream",
-          "headers": {
-            "Host": "cabinet.filnex.baby"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #50 (terrace.elvano.website)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "terrace.elvano.website",
+            "address": "wildflower.elvano.website",
             "port": 443,
             "users": [
               {
@@ -1697,8 +1649,40 @@
         },
         "xhttpSettings": {
           "path": "/api/de5/sync",
-          "host": "terrace.elvano.website",
+          "host": "wildflower.elvano.website",
           "mode": "auto"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #50 (mosaic.topp-con.xyz)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "176.98.176.60",
+            "port": 443,
+            "users": [
+              {
+                "id": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
         "security": "tls"
       }
