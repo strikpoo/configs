@@ -138,26 +138,8 @@
     "enabled": true
   },
   {
-    "name": "mheidari98/proxy-vless",
-    "url": "https://raw.githubusercontent.com/mheidari98/.proxy/main/vless",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "LalatinaHub/Mineral",
-    "url": "https://raw.githubusercontent.com/LalatinaHub/Mineral/master/result/nodes",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
     "name": "Pawdroid/Free-servers",
     "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/V2ray-config (vless)",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt",
     "type": "multi_protocol",
     "enabled": true
   },
@@ -174,74 +156,14 @@
     "enabled": true
   },
   {
-    "name": "sakha1370/OpenRay",
-    "url": "https://raw.githubusercontent.com/sakha1370/OpenRay/main/output/all_valid_proxies.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "mahdibland/ShadowsocksAggregator",
-    "url": "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/sub_merge.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
     "name": "Argh94/Proxy-List",
     "url": "https://raw.githubusercontent.com/Argh94/Proxy-List/main/All_Config.txt",
     "type": "multi_protocol",
     "enabled": true
   },
   {
-    "name": "Mr-Meshky/vify",
-    "url": "https://raw.githubusercontent.com/Mr-Meshky/vify/main/configs/vless.txt",
-    "type": "blacklist_focused",
-    "enabled": true
-  },
-  {
-    "name": "youfoundamin/V2rayCollector",
-    "url": "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/mixed_iran.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "miladtahanian/Config-Collector",
-    "url": "https://raw.githubusercontent.com/miladtahanian/Config-Collector/main/mixed_iran.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "miladtahanian/V2RayCFGDumper",
-    "url": "https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/main/sub.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "V2RayRoot/V2RayConfig",
-    "url": "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/main/Config/vless.txt",
-    "type": "blacklist_focused",
-    "enabled": true
-  },
-  {
     "name": "wuqb2i4f/xray-config-toolkit",
     "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "free18/v2ray",
-    "url": "https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "acymz/AutoVPN",
-    "url": "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "roosterkid/openproxylist",
-    "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
     "type": "multi_protocol",
     "enabled": true
   },
@@ -258,75 +180,9 @@
     "enabled": true
   },
   {
-    "name": "shabane/kamaji",
-    "url": "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt",
-    "type": "blacklist_focused",
-    "enabled": true
-  },
-  {
     "name": "Surfboardv2ray/TGParse",
     "url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless",
     "type": "blacklist_focused",
-    "enabled": true
-  },
-  {
-    "name": "chengaopan/AutoMergePublicNodes",
-    "url": "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "ermaozi/get_subscribe",
-    "url": "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub1",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub2",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub3",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub4",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub5",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub5.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub6",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub7",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "barry-far/Sub8",
-    "url": "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt",
-    "type": "multi_protocol",
     "enabled": true
   }
 ]
