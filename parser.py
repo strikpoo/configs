@@ -296,6 +296,7 @@ def parse_vless_uri(uri: str, is_whitelist_source: bool = False, is_blacklist_so
             host, port_str = host_port.rsplit(":", 1)
             port = int(port_str)
 
+        name = urllib.parse.unquote(parsed.fragment).strip()
         query_str = parsed.query
         if "#" in query_str:
             query_str, embedded_frag = query_str.split("#", 1)
@@ -303,8 +304,6 @@ def parse_vless_uri(uri: str, is_whitelist_source: bool = False, is_blacklist_so
                 name = urllib.parse.unquote(embedded_frag).strip()
         query_dict = urllib.parse.parse_qs(query_str)
         params: Dict[str, str] = {k: v[0].split("#")[0].strip() for k, v in query_dict.items() if v}
-
-        name = urllib.parse.unquote(parsed.fragment).strip()
         sni = params.get("sni", "").strip().lower()
         security = params.get("security", "").strip().lower()
         pbk = params.get("pbk", "").strip().replace(" ", "+")

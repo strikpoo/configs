@@ -52,5 +52,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add output/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🚀 Auto-update VPN subscriptions [$(date -u +'%Y-%m-%d %H:%M UTC')]" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "🚀 Auto-update VPN subscriptions [$(date -u +'%Y-%m-%d %H:%M UTC')]"
+            git fetch origin main
+            if [ "$(git rev-list --count HEAD..origin/main)" -gt 0 ]; then
+              git rebase -X ours origin/main || git rebase --abort
+            fi
+            git push
+          fi
 

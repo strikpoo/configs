@@ -225,7 +225,10 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
         "client": "Happ"
     }
 
-    happ_config["outbounds"] = outbounds
+    if not outbounds:
+        first_tag = "direct"
+
+    happ_config["outbounds"] = outbounds + system_outbounds
 
     # Настраиваем балансировщик leastPing под созданные теги с флагами стран
     happ_config["observatory"] = {
@@ -243,9 +246,13 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
             "strategy": {"type": "leastPing"}
         }
     ]
+    for rule in happ_config.get("routing", {}).get("rules", []):
+        if rule.get("balancerTag") == "igareck-auto":
+            rule["balancerTag"] = "auto-leastPing"
 
     # Чистый стабильный DNS для гарантированной работы на мобильных сетях РФ
     happ_config["dns"] = {
+        "tag": "dns-remote",
         "servers": [
             "tcp+local://77.88.8.8:53",
             "tcp+local://77.88.8.88:53",

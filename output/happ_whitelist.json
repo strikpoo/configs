@@ -12,6 +12,7 @@
     "loglevel": "warning"
   },
   "dns": {
+    "tag": "dns-remote",
     "servers": [
       "tcp+local://77.88.8.8:53",
       "tcp+local://77.88.8.88:53",
@@ -106,7 +107,7 @@
         "inboundTag": [
           "dns-remote"
         ],
-        "balancerTag": "igareck-auto"
+        "balancerTag": "auto-leastPing"
       },
       {
         "type": "field",
@@ -143,7 +144,7 @@
       {
         "type": "field",
         "network": "tcp,udp",
-        "balancerTag": "igareck-auto"
+        "balancerTag": "auto-leastPing"
       }
     ]
   },
@@ -2116,6 +2117,29 @@
           "publicKey": "WSoclfqxCDnfT4JJOeRXkXedigewJQFCvfKrScqvYTs",
           "shortId": "5d4c3c6c3990a22a"
         }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      }
+    },
+    {
+      "tag": "dns-out",
+      "protocol": "dns",
+      "settings": {
+        "network": "tcp,udp"
       }
     }
   ]

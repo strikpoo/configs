@@ -49,6 +49,8 @@ def _log(msg: str) -> None:
 
 def _run_cmd(args, env=None, timeout=120):
     merged_env = os.environ.copy()
+    merged_env.setdefault("PYTHONUTF8", "1")
+    merged_env.setdefault("PYTHONIOENCODING", "utf-8")
     if env:
         merged_env.update(env)
     return subprocess.run(
@@ -110,7 +112,7 @@ def main() -> int:
         _log("=== Старт фонового обновления на ПК ===")
         py_cli = _get_python_cli()
         t0 = time.monotonic()
-        res = _run_cmd([py_cli, "main.py", "--no-push"], timeout=300)
+        res = _run_cmd([py_cli, "main.py", "--no-push"], timeout=420)
         elapsed = time.monotonic() - t0
         combined_lines = [l.strip() for l in ((res.stdout or "") + "\n" + (res.stderr or "")).splitlines() if l.strip()]
         for tail in combined_lines[-10:]:
@@ -187,6 +189,13 @@ def main() -> int:
 
         err = (push_res.stderr or push_res.stdout).strip()
         _log(f"ОШИБКА git push (нужна первичная авторизация GitHub через Войти_и_отправить_на_GitHub.bat?): {err[:300]}")
+        return 1
+    except subprocess.TimeoutExpired as exc:
+        cmd_str = " ".join(str(x) for x in (exc.cmd or []))
+        _log(f"ОШИБКА таймаута ({exc.timeout}с) команды: {cmd_str}")
+        return 1
+    except Exception as exc:
+        _log(f"НЕПРЕДВИДЕННАЯ ОШИБКА auto_run_pc: {exc}")
         return 1
     finally:
         try:
