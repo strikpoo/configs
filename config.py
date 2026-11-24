@@ -74,12 +74,16 @@ if os.name == "nt":
         alt = r"C:\Users\1\Desktop\v2rayN-windows-64\bin\sing_box\sing-box.exe"
         if os.path.exists(alt):
             SINGBOX_PATH = alt
+    # Предпочитаем Xray 26.x из v2rayN (поддерживает xHTTP), иначе локальный tools/xray.exe
+    alt_xray = r"C:\Users\1\Desktop\v2rayN-windows-64\bin\xray\xray.exe"
+    XRAY_PATH = alt_xray if os.path.exists(alt_xray) else str(BASE_DIR.parent / "tools" / "xray.exe")
 else:
     SINGBOX_PATH = "/usr/local/bin/sing-box"
-URL_TEST_ENDPOINT = "https://www.google.com/generate_204"
-URL_TEST_TIMEOUT = 3.0        # Тайм-аут рукопожатия VLESS Reality + HTTP 204 в секундах (строго под мобильный ТСПУ)
+    XRAY_PATH = "/usr/local/bin/xray"
+URL_TEST_ENDPOINT = "https://www.youtube.com/generate_204"
+URL_TEST_TIMEOUT = 3.5        # Тайм-аут рукопожатия VLESS Reality/TLS + YouTube 204 в секундах
 URL_TEST_CONCURRENCY = 128    # Потоков одновременного URL-теста через Clash API
-MAX_BL_TEST_NODES = 1600      # Расширенный пул кандидатов Reality для глубокого теста
+MAX_BL_TEST_NODES = 1600      # Расширенный пул кандидатов для глубокого теста
 SINGBOX_API_PORT = 19095
 
 # Настройки экспорта

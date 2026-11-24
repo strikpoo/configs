@@ -125,11 +125,17 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
                 "header": {"type": "none"}
             }
         elif net_type == "xhttp":
-            stream_settings["xhttpSettings"] = {
-                "path": node.params.get("path", "/api/v1/e0163615") or "/api/v1/e0163615",
-                "host": node.params.get("host", "vk.com") or "vk.com",
-                "mode": node.params.get("mode", "stream-one") or "stream-one"
+            xh_cfg = {
+                "path": node.params.get("path", "/") or "/",
+                "host": node.params.get("host", "") or node.sni or "",
+                "mode": node.params.get("mode", "auto") or "auto"
             }
+            if node.params.get("extra"):
+                try:
+                    xh_cfg["extra"] = json.loads(node.params["extra"])
+                except Exception:
+                    pass
+            stream_settings["xhttpSettings"] = xh_cfg
         elif net_type == "grpc":
             svc = node.params.get("serviceName", "") or node.params.get("path", "")
             stream_settings["grpcSettings"] = {
@@ -148,6 +154,12 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
                 "fingerprint": node.params.get("fp", "chrome") or "chrome",
                 "publicKey": pbk,
                 "shortId": node.params.get("sid", "")
+            }
+        elif node.security == "tls":
+            stream_settings["security"] = "tls"
+            stream_settings["tlsSettings"] = {
+                "serverName": node.sni or node.params.get("host", "") or node.host,
+                "fingerprint": node.params.get("fp", "chrome") or "chrome"
             }
         else:
             stream_settings["security"] = node.security or "none"
@@ -201,7 +213,7 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
 
     cfg_name = f"🇷🇺 White-List TSPO Bypass ({len(outbounds)} nodes)" if is_whitelist else f"🌐 Global Black-List ({len(outbounds)} nodes)"
     target_filename = "happ_whitelist.json" if is_whitelist else "happ_blacklist.json"
-    subject_selector = ["🇩🇪", "🇷🇺", "node-"] if is_whitelist else ["🌐", "node-"]
+    subject_selector = ["⚡", "🇷🇺", "🇩🇪", "🌐", "node-"] if is_whitelist else ["⚡", "🌐", "node-"]
 
     happ_config["_meta"] = {
         "name": cfg_name,

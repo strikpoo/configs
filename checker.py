@@ -18,26 +18,25 @@ import tempfile
 import subprocess
 import urllib.request
 import urllib.error
+import urllib.parse
 import concurrent.futures
 from pathlib import Path
 from typing import List, Tuple, Optional
 
 from parser import ProxyNode
-from filter import is_ru_white_sni, get_wl_rank
+from filter import is_ru_white_sni, get_wl_rank, is_tspu_cidr, _ensure_tspu_lists
 from config import (
     CHECKER_CONCURRENCY,
     TCP_CHECK_TIMEOUT,
     SINGBOX_PATH,
+    XRAY_PATH,
     URL_TEST_ENDPOINT,
     URL_TEST_TIMEOUT,
     URL_TEST_CONCURRENCY
 )
 
-XRAY_PATH = str(Path(__file__).parent.parent / "tools" / "xray.exe")
-if not os.path.exists(XRAY_PATH):
-    XRAY_PATH = r"C:\Users\1\Desktop\v2rayN-windows-64\bin\xray\xray.exe"
-
 logger = logging.getLogger("harvester.checker")
+_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
 def get_free_port() -> int:
@@ -48,12 +47,13 @@ def get_free_port() -> int:
 
 
 async def check_tcp_single(sem: asyncio.Semaphore, node: ProxyNode) -> Tuple[ProxyNode, bool, float]:
-    """Быстрая сокет-проверка доступности порта (Stage 1)."""
+    """Быстрая сокет-проверка доступности порта (Stage 1) с увеличенным тайм-аутом для ТСПУ-подсетей."""
+    timeout = max(TCP_CHECK_TIMEOUT, 2.0) if is_tspu_cidr(node.host) else TCP_CHECK_TIMEOUT
     async with sem:
         start_time = time.monotonic()
         try:
             connect_task = asyncio.open_connection(node.host, node.port)
-            reader, writer = await asyncio.wait_for(connect_task, timeout=TCP_CHECK_TIMEOUT)
+            reader, writer = await asyncio.wait_for(connect_task, timeout=timeout)
             writer.close()
             await writer.wait_closed()
             elapsed_ms = (time.monotonic() - start_time) * 1000.0
@@ -68,7 +68,8 @@ async def filter_tcp_alive(nodes: List[ProxyNode]) -> List[ProxyNode]:
     if not nodes:
         return []
 
-    logger.info(f"Этап 1/2: Экспресс TCP-фильтр {len(nodes)} узлов (пул {CHECKER_CONCURRENCY} потоков, тайм-аут {TCP_CHECK_TIMEOUT}с)...")
+    _ensure_tspu_lists()
+    logger.info(f"Этап 1/2: Экспресс TCP-фильтр {len(nodes)} узлов (пул {CHECKER_CONCURRENCY} потоков, тайм-аут {TCP_CHECK_TIMEOUT}с / ТСПУ 2.0с)...")
     sem = asyncio.Semaphore(CHECKER_CONCURRENCY)
     tasks = [check_tcp_single(sem, node) for node in nodes]
     results = await asyncio.gather(*tasks)
@@ -139,7 +140,7 @@ def run_singbox_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]
         with open(config_file, "w", encoding="utf-8") as f:
             json.dump(singbox_config, f)
 
-        chk = subprocess.run([str(singbox_bin), "check", "-c", str(config_file)], capture_output=True, text=True)
+        chk = subprocess.run([str(singbox_bin), "check", "-c", str(config_file)], capture_output=True, text=True, creationflags=_NO_WINDOW)
         if chk.returncode == 0:
             break
 
@@ -159,14 +160,15 @@ def run_singbox_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]
     if pruned_count > 0:
         logger.info(f"Автоматически отсеяно несовместимых для ядра узлов: {pruned_count}")
 
-    logger.info(f"Этап 2/2: Запуск глубокого URL-теста (VLESS Reality + HTTPS 204) для {len(node_tag_map)} узлов...")
+    logger.info(f"Этап 2/2: Запуск глубокого URL-теста (VLESS Reality/TLS + YouTube 204) для {len(node_tag_map)} узлов...")
     logger.info(f"Целевой URL: {URL_TEST_ENDPOINT}, тайм-аут: {URL_TEST_TIMEOUT}с, потоков: {URL_TEST_CONCURRENCY}")
 
     # Запуск фонового процесса Sing-Box
     proc = subprocess.Popen(
         [str(singbox_bin), "run", "-c", str(config_file)],
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
+        stderr=subprocess.PIPE,
+        creationflags=_NO_WINDOW
     )
 
     # Проверка, что процесс успешно поднялся
@@ -181,20 +183,19 @@ def run_singbox_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]
 
     def test_single_tag(tag: str) -> Optional[Tuple[ProxyNode, float]]:
         node = node_tag_map[tag]
-        is_wl = node.is_whitelist_source or is_ru_white_sni(node.sni)
-        
-        # Тест на реальный интернет (Google 204 или Cloudflare 204)
-        for ep in (URL_TEST_ENDPOINT, "https://cp.cloudflare.com/generate_204"):
-            url = f"http://127.0.0.1:{api_port}/proxies/{tag}/delay?timeout={timeout_ms}&url={ep}"
-            try:
-                req = urllib.request.Request(url)
-                with urllib.request.urlopen(req, timeout=URL_TEST_TIMEOUT + 0.5) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
-                    delay = data.get("delay", 0)
-                    if delay > 0:
-                        return (node, float(delay))
-            except Exception:
-                pass
+
+        # Строгий тест через YouTube 204 (отсеивает внутренние/заблокированные выходы)
+        ep = urllib.parse.quote(URL_TEST_ENDPOINT, safe="")
+        url = f"http://127.0.0.1:{api_port}/proxies/{tag}/delay?timeout={timeout_ms}&url={ep}"
+        try:
+            req = urllib.request.Request(url)
+            with urllib.request.urlopen(req, timeout=URL_TEST_TIMEOUT + 0.5) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                delay = data.get("delay", 0)
+                if delay > 0:
+                    return (node, float(delay))
+        except Exception:
+            pass
 
         return None
 
@@ -246,96 +247,125 @@ def is_valid_reality_key(pbk_raw: str) -> bool:
     return False
 
 
-def run_xray_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]:
-    """
-    Тестирование xHTTP (SplitHTTP) Reality узлов через нативное ядро Xray-core.
-    Именно этот транспорт обходит ТСПУ белые списки на мобильных сетях в РФ.
-    """
-    xray_bin = Path(XRAY_PATH)
-    if not xray_bin.exists() or not nodes:
-        return []
+def _build_xray_outbound(n: ProxyNode, tag_out: str) -> Optional[dict]:
+    """Формирует VLESS outbound для Xray-core (>= 25.x) с поддержкой tcp/raw, xhttp, grpc и ws."""
+    if n.protocol != "vless":
+        return None
+    net = n.params.get("type", "tcp").lower().strip()
+    if net in ("raw", ""):
+        net = "tcp"
+    elif net == "splithttp":
+        net = "xhttp"
+    if net not in ("tcp", "xhttp", "grpc", "ws"):
+        return None
 
-    # Отбираем узлы с валидными Reality ключами
-    valid_nodes = []
-    for n in nodes:
+    sec = n.params.get("security", "none").lower().strip()
+    if sec not in ("reality", "tls"):
+        return None
+    if sec == "reality":
         pbk = n.params.get("pbk", "").strip().replace(" ", "+")
-        if is_valid_reality_key(pbk):
-            n.params["pbk"] = pbk
-            valid_nodes.append(n)
+        if not is_valid_reality_key(pbk):
+            return None
+        n.params["pbk"] = pbk
 
-    # Ограничиваем пул топ-кандидатами для стабильности портов
-    valid_nodes = valid_nodes[:25]
-    if not valid_nodes:
+    enc = (n.params.get("encryption", "none") or "none").strip()
+    user = {"id": n.uuid, "encryption": enc}
+    flow = n.params.get("flow", "").strip()
+    if flow and net == "tcp":
+        user["flow"] = flow
+
+    stream = {"network": net, "security": sec or "none"}
+    if net == "xhttp":
+        xs = {
+            "path": n.params.get("path", "/") or "/",
+            "host": n.params.get("host", "") or n.sni or "",
+            "mode": n.params.get("mode", "auto") or "auto"
+        }
+        if n.params.get("extra"):
+            try:
+                xs["extra"] = json.loads(n.params["extra"])
+            except Exception:
+                pass
+        stream["xhttpSettings"] = xs
+    elif net == "grpc":
+        stream["grpcSettings"] = {
+            "serviceName": n.params.get("serviceName", "") or n.params.get("path", ""),
+            "multiMode": n.params.get("mode", "") == "multi"
+        }
+    elif net == "ws":
+        ws = {"path": n.params.get("path", "/") or "/"}
+        ws_host = n.params.get("host", "")
+        if ws_host:
+            ws["headers"] = {"Host": ws_host}
+        stream["wsSettings"] = ws
+
+    if sec == "reality":
+        stream["realitySettings"] = {
+            "serverName": n.sni or "ok.ru",
+            "fingerprint": n.params.get("fp", "chrome") or "chrome",
+            "publicKey": n.params["pbk"],
+            "shortId": n.params.get("sid", "")
+        }
+    elif sec == "tls":
+        ts = {
+            "serverName": n.sni or n.params.get("host", "") or n.host,
+            "fingerprint": n.params.get("fp", "chrome") or "chrome"
+        }
+        if n.params.get("alpn"):
+            ts["alpn"] = [x.strip() for x in n.params["alpn"].split(",") if x.strip()]
+        stream["tlsSettings"] = ts
+
+    return {
+        "tag": tag_out,
+        "protocol": "vless",
+        "settings": {"vnext": [{"address": n.host, "port": int(n.port), "users": [user]}]},
+        "streamSettings": stream
+    }
+
+
+def _run_xray_chunk(xray_bin: Path, chunk: List[Tuple[ProxyNode, dict]]) -> List[Tuple[ProxyNode, float]]:
+    """Запуск одного чанка узлов в Xray-core с автоделением при сбойном конфиге."""
+    if not chunk:
         return []
-
-    base_port = 19200
+    base_port = get_free_port() + 50
     inbounds = []
     outbounds = []
     rules = []
     test_map = []
 
-    for i, n in enumerate(valid_nodes):
+    for i, (n, ob) in enumerate(chunk):
         port = base_port + i
         tag_in = f"in_{i}"
-        tag_out = f"out_{i}"
-        pbk = n.params["pbk"]
-
-        inbounds.append({
-            "port": port,
-            "listen": "127.0.0.1",
-            "protocol": "http",
-            "tag": tag_in
-        })
-        outbounds.append({
-            "tag": tag_out,
-            "protocol": "vless",
-            "settings": {
-                "vnext": [{
-                    "address": n.host,
-                    "port": int(n.port),
-                    "users": [{"id": n.uuid, "encryption": "none"}]
-                }]
-            },
-            "streamSettings": {
-                "network": "xhttp",
-                "security": "reality",
-                "realitySettings": {
-                    "serverName": n.sni or "ok.ru",
-                    "fingerprint": n.params.get("fp", "chrome") or "chrome",
-                    "publicKey": pbk,
-                    "shortId": n.params.get("sid", "")
-                },
-                "xhttpSettings": {
-                    "path": n.params.get("path", "/api/v1/e0163615") or "/api/v1/e0163615",
-                    "host": n.params.get("host", "vk.com") or "vk.com",
-                    "mode": n.params.get("mode", "stream-one") or "stream-one"
-                }
-            }
-        })
-        rules.append({"type": "field", "inboundTag": [tag_in], "outboundTag": tag_out})
+        ob_copy = dict(ob)
+        ob_copy["tag"] = f"out_{i}"
+        inbounds.append({"port": port, "listen": "127.0.0.1", "protocol": "http", "tag": tag_in})
+        outbounds.append(ob_copy)
+        rules.append({"type": "field", "inboundTag": [tag_in], "outboundTag": ob_copy["tag"]})
         test_map.append((n, port))
 
-    temp_cfg = Path(tempfile.gettempdir()) / f"xray_xhttp_{base_port}.json"
-    cfg = {
-        "log": {"loglevel": "error"},
-        "inbounds": inbounds,
-        "outbounds": outbounds,
-        "routing": {"rules": rules}
-    }
+    temp_cfg = Path(tempfile.gettempdir()) / f"xray_wl_{base_port}.json"
+    cfg = {"log": {"loglevel": "error"}, "inbounds": inbounds, "outbounds": outbounds, "routing": {"rules": rules}}
     with open(temp_cfg, "w", encoding="utf-8") as f:
         json.dump(cfg, f)
 
-    proc = subprocess.Popen([str(xray_bin), "run", "-c", str(temp_cfg)])
-    time.sleep(1.5)
+    proc = subprocess.Popen([str(xray_bin), "run", "-c", str(temp_cfg)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags=_NO_WINDOW)
+    time.sleep(1.3)
+    if proc.poll() is not None:
+        err = proc.stdout.read().decode("utf-8", errors="ignore")
+        temp_cfg.unlink(missing_ok=True)
+        if len(chunk) > 1:
+            mid = len(chunk) // 2
+            return _run_xray_chunk(xray_bin, chunk[:mid]) + _run_xray_chunk(xray_bin, chunk[mid:])
+        logger.warning(f"Xray пропустил сбойный узел {chunk[0][0].host}:{chunk[0][0].port} ({err.strip()[-160:]})")
+        return []
 
     def check_node(item):
         node, port = item
-        proxy_handler = urllib.request.ProxyHandler({'http': f'http://127.0.0.1:{port}', 'https': f'http://127.0.0.1:{port}'})
-        opener = urllib.request.build_opener(proxy_handler)
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({'http': f'http://127.0.0.1:{port}', 'https': f'http://127.0.0.1:{port}'}))
         t0 = time.time()
         try:
             req = urllib.request.Request(URL_TEST_ENDPOINT, headers={'User-Agent': 'Mozilla/5.0'})
-            with opener.open(req, timeout=URL_TEST_TIMEOUT) as resp:
+            with opener.open(req, timeout=max(URL_TEST_TIMEOUT + 0.5, 6.5)) as resp:
                 elapsed = (time.time() - t0) * 1000.0
                 if resp.status in (200, 204):
                     return (node, elapsed)
@@ -346,13 +376,11 @@ def run_xray_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]:
     alive: List[Tuple[ProxyNode, float]] = []
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=min(len(test_map), 25)) as executor:
-            futures = [executor.submit(check_node, item) for item in test_map]
-            for f in concurrent.futures.as_completed(futures):
-                res = f.result()
+            for res in executor.map(check_node, test_map):
                 if res:
                     node, delay = res
                     alive.append((node, delay))
-                    logger.info(f" [Xray xHTTP OK] {delay:.0f}ms | {node.sni or node.host} ({node.host})")
+                    logger.info(f" [Xray OK] {delay:.0f}ms | {node.params.get('type','tcp')} | {node.sni or node.host} ({node.host})")
     finally:
         try:
             proc.terminate()
@@ -363,10 +391,111 @@ def run_xray_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]:
             except Exception:
                 pass
         temp_cfg.unlink(missing_ok=True)
+    return alive
+
+
+def run_xray_urltest(nodes: List[ProxyNode], max_nodes: int = 220) -> List[Tuple[ProxyNode, float]]:
+    """
+    Тестирование White-List узлов (xHTTP, TCP/RAW, gRPC, WS) через нативное ядро Xray-core (>= 25.x).
+    Работает на всех транспортах и поддерживает реальные клиенты INCY / Happ / v2rayN.
+    """
+    import shutil
+    xray_bin = Path(XRAY_PATH)
+    if not xray_bin.exists():
+        which_xr = shutil.which("xray")
+        if which_xr:
+            xray_bin = Path(which_xr)
+        else:
+            logger.warning(f"Бинарник Xray не найден по пути {XRAY_PATH}. Пропускаем Xray тест.")
+            return []
+    if not nodes:
+        return []
+
+    prepared: List[Tuple[ProxyNode, dict]] = []
+    for n in nodes:
+        ob = _build_xray_outbound(n, f"out_{len(prepared)}")
+        if ob:
+            prepared.append((n, ob))
+            if len(prepared) >= max_nodes:
+                break
+
+    if not prepared:
+        return []
+
+    alive: List[Tuple[ProxyNode, float]] = []
+    for start in range(0, len(prepared), 35):
+        alive.extend(_run_xray_chunk(xray_bin, prepared[start:start + 35]))
 
     alive.sort(key=lambda x: x[1])
-    logger.info(f"Xray xHTTP тест завершен: проверено {len(test_map)} узлов, РАБОТАЮТ: {len(alive)} серверов!")
+    logger.info(f"Xray URL-тест завершен: проверено {len(prepared)} узлов, РАБОТАЮТ: {len(alive)} серверов!")
     return alive
+
+
+def verify_ru_reachability_checkhost(alive_pairs: List[Tuple[ProxyNode, float]], max_checks: int = 45) -> List[Tuple[ProxyNode, float]]:
+    """
+    Кросс-проверка доступности выживших узлов из РФ (для запуска на GitHub Actions вне России).
+    Отбрасывает узлы только если оба московских сенсора (ru1, ru3) подтвердили TCP timeout.
+    При сбоях API или лимитах срабатывает fail-open (узел сохраняется).
+    """
+    if not alive_pairs:
+        return alive_pairs
+
+    unique_eps = []
+    seen_hp = set()
+    for node, _ in sorted(alive_pairs, key=lambda x: x[1]):
+        hp = (node.host.strip(), int(node.port))
+        if hp not in seen_hp:
+            seen_hp.add(hp)
+            unique_eps.append(hp)
+        if len(unique_eps) >= max_checks:
+            break
+
+    logger.info(f"Кросс-проверка доступности из РФ (check-host.net) для {len(unique_eps)} уникальных адресов...")
+    rids = []
+    for h, p in unique_eps:
+        target = urllib.parse.quote(f"{h}:{p}", safe=":")
+        api_url = f"https://check-host.net/check-tcp?host={target}&node=ru1.node.check-host.net&node=ru3.node.check-host.net"
+        try:
+            req = urllib.request.Request(api_url, headers={"Accept": "application/json", "User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=6) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                rid = data.get("request_id")
+                if rid:
+                    rids.append(((h, p), rid))
+        except Exception:
+            pass
+        time.sleep(0.35)
+
+    if not rids:
+        return alive_pairs
+
+    time.sleep(2.5)
+    blocked_eps = set()
+    for hp, rid in rids:
+        try:
+            req = urllib.request.Request(f"https://check-host.net/check-result/{rid}", headers={"Accept": "application/json", "User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=6) as r:
+                res = json.loads(r.read().decode("utf-8"))
+            ok_cnt = 0
+            fail_cnt = 0
+            for probe_res in res.values():
+                if isinstance(probe_res, list) and probe_res and isinstance(probe_res[0], dict):
+                    if "address" in probe_res[0]:
+                        ok_cnt += 1
+                    elif "error" in probe_res[0]:
+                        fail_cnt += 1
+            if ok_cnt == 0 and fail_cnt >= 2:
+                blocked_eps.add(hp)
+                logger.info(f" [RU BLOCKED] {hp[0]}:{hp[1]} недоступен с сенсоров в РФ (ru1+ru3 timeout)")
+        except Exception:
+            pass
+
+    if not blocked_eps:
+        return alive_pairs
+
+    filtered = [(n, d) for n, d in alive_pairs if (n.host.strip(), int(n.port)) not in blocked_eps]
+    logger.info(f"После кросс-проверки из РФ осталось: {len(filtered)} из {len(alive_pairs)} серверов")
+    return filtered
 
 
 async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode, float]], List[ProxyNode]]:
@@ -380,29 +509,69 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
         logger.warning("Ни один узел не ответил на TCP-пинг!")
         return [], []
 
-    from filter import is_valid_blacklist_node, get_bl_rank, get_wl_rank
+    from filter import is_valid_blacklist_node, get_bl_rank, get_wl_rank, is_cloudflare_ip
 
-    # 2. Формируем пул кандидатов Black-List для глубокого URL-теста через Sing-Box
+    # 2. Формируем пул кандидатов Black-List + White-List (не-xHTTP) для глубокого URL-теста через Sing-Box
     bl_candidates = [n for n in tcp_alive_nodes if is_valid_blacklist_node(n)]
     bl_candidates.sort(key=lambda x: (get_bl_rank(x), x.tcp_ping or 999.0))
     from config import MAX_BL_TEST_NODES
     bl_test_nodes = bl_candidates[:MAX_BL_TEST_NODES]
 
-    # 3. White-List кандидаты (xHTTP / Selectel)
-    xhttp_nodes = [n for n in tcp_alive_nodes if n.params.get("type", "").lower() in ("xhttp", "splithttp") and get_wl_rank(n) < 10][:35]
+    wl_sb_candidates = [
+        n for n in tcp_alive_nodes
+        if get_wl_rank(n) < 10 and n.params.get("type", "tcp").lower() not in ("xhttp", "splithttp")
+    ]
+    wl_sb_candidates.sort(key=lambda x: (get_wl_rank(x), x.tcp_ping or 999.0))
 
-    logger.info(f"На глубокий URL-тест отправлено: Black-List (Sing-Box Reality): {len(bl_test_nodes)} шт, xHTTP: {len(xhttp_nodes)} шт")
+    # Объединяем без дубликатов для единого прогона Sing-Box
+    sb_combined = []
+    seen_sb = set()
+    for n in bl_test_nodes + wl_sb_candidates[:400]:
+        if n.unique_key not in seen_sb:
+            seen_sb.add(n.unique_key)
+            sb_combined.append(n)
+
+    # 3. White-List кандидаты для Xray-core (>= 25.x): все xHTTP + топовые non-xHTTP (которые мог отсеять Sing-Box)
+    xhttp_candidates = [
+        n for n in tcp_alive_nodes
+        if n.params.get("type", "").lower() in ("xhttp", "splithttp") and get_wl_rank(n) < 10
+    ]
+    xhttp_candidates.sort(key=lambda x: (get_wl_rank(x), x.tcp_ping or 999.0))
+    xhttp_nodes = xhttp_candidates[:90]
+
+    logger.info(f"На глубокий URL-тест отправлено: Sing-Box (BL+WL): {len(sb_combined)} шт, Xray (WL + BL-добор): до {len(xhttp_nodes) + 250} шт")
 
     results: List[Tuple[ProxyNode, float]] = []
+    seen_res = set()
 
-    # Запуск параллельного тестирования Sing-Box для Black-List
-    if bl_test_nodes:
-        bl_alive = await asyncio.to_thread(run_singbox_urltest, bl_test_nodes)
-        results.extend(bl_alive)
+    # Запуск параллельного тестирования Sing-Box
+    if sb_combined:
+        sb_alive = await asyncio.to_thread(run_singbox_urltest, sb_combined)
+        for n, d in sb_alive:
+            if n.unique_key not in seen_res:
+                seen_res.add(n.unique_key)
+                results.append((n, d))
 
-    # Запуск Xray для xHTTP
-    if xhttp_nodes:
-        xray_alive = await asyncio.to_thread(run_xray_urltest, xhttp_nodes)
-        results.extend(xray_alive)
+    # Запуск Xray для всех xHTTP, не прошедших Sing-Box White-List кандидатов и добора прямых Black-List (до 105 шт)
+    wl_extra_for_xray = [n for n in wl_sb_candidates if n.unique_key not in seen_res][:180]
+    bl_direct_for_xray = [
+        n for n in bl_test_nodes
+        if not is_cloudflare_ip(n.host) and n.unique_key not in seen_res and get_bl_rank(n) <= 2
+    ][:105]
+    xray_queue = []
+    seen_xr = set()
+    for n in xhttp_nodes + wl_extra_for_xray + bl_direct_for_xray:
+        if n.unique_key not in seen_xr:
+            seen_xr.add(n.unique_key)
+            xray_queue.append(n)
+    if xray_queue:
+        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 360)
+        for n, d in xray_alive:
+            if n.unique_key not in seen_res:
+                seen_res.add(n.unique_key)
+                results.append((n, d))
+
+    if os.name != "nt" and results:
+        results = await asyncio.to_thread(verify_ru_reachability_checkhost, results)
 
     return results, tcp_alive_nodes

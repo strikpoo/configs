@@ -2,7 +2,7 @@ name: Auto Update VPN Subscriptions
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '15 */2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -31,6 +31,14 @@ jobs:
           sudo chmod +x /usr/local/bin/sing-box
           sing-box version
 
+      - name: Install Xray-core (for xHTTP White-List URL-Test)
+        run: |
+          curl -fsSL https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o /tmp/xray.zip
+          sudo unzip -oq /tmp/xray.zip xray -d /usr/local/bin/
+          sudo chmod +x /usr/local/bin/xray
+          rm -f /tmp/xray.zip
+          xray version
+
       - name: Run Harvester
         run: |
           python main.py --no-push
@@ -41,3 +49,4 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add output/
           git diff --quiet && git diff --staged --quiet || (git commit -m "🚀 Auto-update VPN subscriptions [$(date -u +'%Y-%m-%d %H:%M UTC')]" && git push)
+

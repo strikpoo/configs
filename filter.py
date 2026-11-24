@@ -4,12 +4,81 @@
 """
 
 import re
+import ipaddress
 import logging
-from typing import List, Tuple, Dict
+import urllib.request
+from typing import List, Tuple, Dict, Set
 from parser import ProxyNode
 from config import RU_WHITE_SNI
 
 logger = logging.getLogger("harvester.filter")
+
+# Официальные списки ТСПУ белых списков РФ (домены и IP CIDR из hxehex/russia-mobile-internet-whitelist)
+_TSPU_LOADED = False
+_TSPU_DOMAINS: Set[str] = set()
+_TSPU_CIDRS_BY_FIRST: Dict[int, List[ipaddress.IPv4Network]] = {}
+_FALLBACK_TSPU_CIDRS = (
+    "185.229.0.0/18",
+    "185.86.144.0/22",
+)
+
+
+def _ensure_tspu_lists() -> None:
+    """Ленивая загрузка актуальных списков разрешенных доменов и подсетей ТСПУ (с офлайн-фоллбэком)."""
+    global _TSPU_LOADED
+    if _TSPU_LOADED:
+        return
+    _TSPU_LOADED = True
+
+    for cidr_str in _FALLBACK_TSPU_CIDRS:
+        net = ipaddress.ip_network(cidr_str, strict=False)
+        _TSPU_CIDRS_BY_FIRST.setdefault(int(net.network_address) >> 24, []).append(net)
+
+    base = "https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/main/"
+    try:
+        raw_dom = urllib.request.urlopen(base + "whitelist.txt", timeout=5.0).read().decode("utf-8", errors="ignore")
+        for line in raw_dom.splitlines():
+            d = line.strip().lower()
+            if d and not d.startswith("#"):
+                _TSPU_DOMAINS.add(d)
+    except Exception as e:
+        logger.debug(f"Не удалось подгрузить TSPU whitelist.txt ({e}), используем встроенный список")
+
+    try:
+        raw_cidr = urllib.request.urlopen(base + "cidrwhitelist.txt", timeout=5.0).read().decode("utf-8", errors="ignore")
+        loaded_cidrs = 0
+        _TSPU_CIDRS_BY_FIRST.clear()
+        for line in raw_cidr.splitlines():
+            c = line.strip()
+            if not c or c.startswith("#"):
+                continue
+            try:
+                net = ipaddress.ip_network(c, strict=False)
+                if net.version == 4:
+                    _TSPU_CIDRS_BY_FIRST.setdefault(int(net.network_address) >> 24, []).append(net)
+                    loaded_cidrs += 1
+            except Exception:
+                continue
+        if loaded_cidrs > 0:
+            logger.info(f"Загружены списки ТСПУ: {len(_TSPU_DOMAINS)} доменов, {loaded_cidrs} IPv4 CIDR")
+    except Exception as e:
+        logger.debug(f"Не удалось подгрузить TSPU cidrwhitelist.txt ({e}), используем резервные CIDR")
+
+
+def is_tspu_cidr(host: str) -> bool:
+    """Точная проверка IP-адреса на вхождение в официальный список ТСПУ-подсетей (cidrwhitelist.txt), исключая зарубежные пулы (Contabo FR / AEZA FI)."""
+    _ensure_tspu_lists()
+    h = (host or "").strip()
+    if h.startswith(("194.163.", "185.102.", "185.103.")):
+        return False
+    try:
+        ip = ipaddress.ip_address(h)
+        if ip.version != 4:
+            return False
+        first_octet = int(ip) >> 24
+        return any(ip in net for net in _TSPU_CIDRS_BY_FIRST.get(first_octet, ()))
+    except Exception:
+        return False
 
 
 def is_ru_white_sni(sni: str) -> bool:
@@ -38,145 +107,202 @@ def deduplicate_nodes(nodes: List[ProxyNode]) -> List[ProxyNode]:
         else:
             if node.is_whitelist_source:
                 seen[key].is_whitelist_source = True
-            # Если у дубликата указан стандартный chrome, используем его
-            if node.params.get("fp") == "chrome":
-                seen[key].params["fp"] = "chrome"
+            if node.is_blacklist_source:
+                seen[key].is_blacklist_source = True
 
     logger.info(f"Дедупликация: из {len(nodes)} узлов осталось уникальных: {len(seen)}")
     return list(seen.values())
 
 
 def is_russian_cidr(node: ProxyNode) -> bool:
-    """Проверка, относится ли сервер к российским пулам адресов (VK Cloud, Selectel, Yandex, Timeweb, Reg.ru)."""
+    """Проверка, относится ли сервер к ТСПУ-подсетям или российским облакам (VK, Yandex, Timeweb, Beget, RTK)."""
     h = node.host.strip()
+    if is_tspu_cidr(h):
+        return True
+
     ru_prefixes = (
-        "95.163.", "51.250.", "77.88.", "87.250.", "185.12.", "185.129.",
-        "188.68.", "188.93.", "92.53.", "80.90.", "95.173.", "95.182.",
-        "194.226.", "195.19.", "5.188.", "195.209."
+        "95.163.", "51.250.", "158.160.", "84.201.", "89.169.", "178.154.", "130.193.", "62.84.",
+        "77.88.", "87.250.", "188.72.", "84.23.", "193.168.", "185.12.", "185.129.", "188.68.", "188.93.",
+        "92.53.", "95.85.", "80.90.", "95.173.", "95.182.", "194.226.", "195.19.", "5.188.", "195.209.",
+        "72.56.", "91.185.", "46.243.", "188.127.", "188.225.", "94.241.", "90.156.",
+        "176.108.", "78.37.", "195.208.", "213.171.", "109.120.", "212.233.", "185.248.",
+        "141.133.", "185.229.", "185.86.", "178.248.", "88.218.", "88.210.", "84.54.",
+        "45.67.", "186.246."
     )
     if any(h.startswith(p) for p in ru_prefixes):
         return True
-    
+
     name_upper = (node.name or "").upper()
-    if "[*CIDR]" in name_upper or "CIDR" in name_upper or "RUSSIA" in name_upper or "🇷🇺" in node.name:
+    if "[*CIDR]" in name_upper or "[CIDR]" in name_upper:
         return True
 
     return False
 
 
+def is_official_ru_sni(sni_or_host: str) -> bool:
+    """Проверка на официальные российские домены из белых списков Минцифры / ТСПУ."""
+    _ensure_tspu_lists()
+    dom = (sni_or_host or "").lower().strip()
+    if not dom or dom == "maps.apple.com":
+        return False
+
+    if _TSPU_DOMAINS:
+        parts = dom.split(".")
+        for i in range(len(parts)):
+            if ".".join(parts[i:]) in _TSPU_DOMAINS:
+                return True
+
+    if is_ru_white_sni(dom):
+        return True
+    extra_official = (
+        "wbbasket.ru", "yastatic.net", "mts.ru", "t2.ru", "tele2.ru", "megafon.ru", "beeline.ru",
+        "pochta.ru", "rzd.ru", "alfabank.ru", "gazprombank.ru", "2gis.ru",
+        "kp.ru", "ivi.ru", "wink.ru", "hh.ru"
+    )
+    return any(dom == d or dom.endswith("." + d) for d in extra_official)
+
+
+def is_ru_domain_sni(sni_or_host: str) -> bool:
+    """Проверка, относится ли SNI/Host к российским доменам (.ru / .su / .рф или официальным платформам)."""
+    check_domain = (sni_or_host or "").lower().strip()
+    if not check_domain:
+        return False
+    return (
+        is_official_ru_sni(check_domain) or
+        check_domain.endswith((".ru", ".su", ".xn--p1ai"))
+    )
+
+
+def is_confirmed_wl_prefix(host: str) -> bool:
+    """Подсети из cidrwhitelist.txt, реально пробивающие региональные белые списки (VK, Citytelecom, HLL, Yandex Cloud)."""
+    h = (host or "").strip()
+    return h.startswith((
+        "185.86.", "185.229.", "178.248.",
+        "95.163.", "84.23.", "51.250.", "158.160.", "84.201.",
+        "84.252.", "217.13.", "37.9."
+    ))
+
+
 def get_wl_rank(node: ProxyNode) -> int:
     """
-    Приоритет узлов для обхода региональных белых списков:
-    Ранг 0: Внутрироссийский CIDR / Релей (VK xHTTP, Selectel gRPC Reality, Reg.ru VMess WS) на 443 с RU-SNI / RU-Host
-    Ранг 1: VLESS Reality xHTTP на 443 порт с RU-SNI
-    Ранг 2: VLESS Reality gRPC на 443 порт с RU-SNI
-    Ранг 3: VLESS Reality TCP (Raw) на 443 порт с RU-SNI
-    Ранг 4: Другие xHTTP узлы из белых источников
-    Ранг 5: Прочие узлы из белых источников (VMess WS, etc.)
+    Приоритет узлов для обхода региональных белых списков ТСПУ:
+    Ранг 0: IP в официальном ТСПУ cidrwhitelist + официальный SNI Минцифры (максимальный шанс пробития!)
+    Ранг 1: Проверенные белые подсети в ТСПУ cidrwhitelist (VK Cloud / Citytelecom / HLL / Yandex Cloud)
+    Ранг 2: Прочие российские IP в официальном ТСПУ cidrwhitelist
+    Ранг 3: Официальный SNI Минцифры на любом живом сервере (yandex.net, yandex.ru, max.ru, mail.ru, vk.com)
+    Ранг 4: Прочие RU-префиксы + российский доменный SNI (.ru / .su / .рф)
+    Ранг 5: Российский доменный SNI (.ru / .su / .рф) на прочих серверах
+    Ранг 6: Прочие RU-префиксы на стандартном/нестандартном порту
     """
-    net = node.params.get("type", "tcp").lower().strip()
-    is_real = node.is_reality or node.params.get("security") == "reality"
-    is_p443 = node.port in (443, 80)
-    
-    check_domain = (node.sni or node.params.get("host", "")).lower().strip()
-    is_ru_sni = (
-        is_ru_white_sni(check_domain) or
-        check_domain in ("ok.ru", "vk.com", "ya.ru", "yandex.ru", "alfastat.ru", "donatov.net", "git.xpkg.ru", "git.medrocket.ru") or
-        check_domain.endswith(".ru") or
-        check_domain.endswith(".userapi.com") or
-        check_domain.endswith(".yandex.net") or
-        check_domain.endswith(".mirra.now") or
-        "mirra.now" in check_domain or
-        "wbbasket.ru" in check_domain or
-        "nvidia.com" in check_domain
-    )
-    is_cidr = is_russian_cidr(node)
-    is_de = is_germany_node(node)
-
-    if not is_p443:
+    if node.protocol not in ("vless", "vmess"):
         return 99
 
-    # Топовый приоритет: Внутрироссийский CIDR / Релей на 443 порт
-    if is_cidr and is_ru_sni:
-        if "wbbasket.ru" in check_domain:
-            return 0  # Selectel gRPC Reality (Wildberries - надежно открыт на мобильных сетях)
-        elif "nvidia.com" in check_domain:
-            return 0  # Nvidia Relay 443
-        elif net in ("xhttp", "splithttp") and is_real:
-            return 1  # VK xHTTP Reality
-        elif net == "grpc" and is_real:
-            return 1  # Другие gRPC Reality
-        elif node.protocol == "vmess" and net == "ws":
-            return 1  # Reg.ru VMess WS TLS
-        return 2
+    net = node.params.get("type", "tcp").lower().strip()
+    if net not in ("tcp", "raw", "xhttp", "splithttp", "grpc", "ws", "http", "h2", ""):
+        return 99
 
-    # Немецкий релей для белого списка
-    if is_de and is_ru_sni:
+    if node.protocol == "vless":
+        sec = node.params.get("security", "").lower().strip()
+        if sec not in ("reality", "tls"):
+            return 99
+        if sec == "reality" or node.is_reality:
+            pbk = node.params.get("pbk", "").strip().replace(" ", "+")
+            if len(pbk) < 42 or len(pbk) > 45:
+                return 99
+
+    check_domain = (node.sni or node.params.get("host", "")).lower().strip()
+    if "cloudflare.com" in check_domain or "rkn" in check_domain:
+        return 99
+
+    in_tspu_ip = is_tspu_cidr(node.host)
+    in_tspu_sni = is_official_ru_sni(check_domain)
+    in_ru_net = is_russian_cidr(node)
+    in_ru_dom = is_ru_domain_sni(check_domain)
+
+    if not (in_tspu_ip or in_tspu_sni or in_ru_net or in_ru_dom):
+        return 99
+
+    if in_tspu_ip and in_tspu_sni:
         return 0
-
-    if is_real and is_ru_sni:
-        if net in ("xhttp", "splithttp"):
-            return 1
-        elif net == "grpc":
-            return 2
-        elif net in ("tcp", "raw", ""):
-            return 3
+    if in_tspu_ip and is_confirmed_wl_prefix(node.host):
+        return 1
+    if in_tspu_ip:
+        return 2
+    if in_tspu_sni:
+        return 3
+    if in_ru_net and in_ru_dom:
         return 4
-    elif is_ru_sni:
-        if net in ("xhttp", "splithttp"):
-            return 4
+    if in_ru_dom:
         return 5
-    elif is_de:
+    if in_ru_net:
         return 6
 
-    return 10
+    return 99
+
+
+def is_cloudflare_ip(host: str) -> bool:
+    """Проверка, относится ли адрес к диапазонам Cloudflare CDN Anycast."""
+    h = (host or "").lower().strip()
+    cf_prefixes = (
+        "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.",
+        "104.23.", "104.24.", "104.25.", "104.26.", "104.27.", "104.28.", "104.29.", "104.30.", "104.31.",
+        "172.64.", "172.65.", "172.66.", "172.67.", "188.114.", "162.158.", "162.159."
+    )
+    return any(h.startswith(p) for p in cf_prefixes)
 
 
 def is_valid_blacklist_node(node: ProxyNode) -> bool:
-    """Проверка узла для Black-List: СТРОГО чистый VLESS Reality для обхода ТСПУ."""
+    """Проверка узла для Black-List: VLESS Reality (без CDN) или проверенный VLESS TLS для обхода ТСПУ."""
     if node.protocol != "vless":
         return False
-    if node.params.get("security") != "reality":
-        return False
-    pbk = node.params.get("pbk", "").strip()
-    if len(pbk) < 40:
+
+    sec = node.params.get("security", "").lower().strip()
+    if sec not in ("reality", "tls"):
         return False
 
-    # Исключаем WebSocket (ws блокируется ТСПУ в РФ на мобильных сетях)
     net = node.params.get("type", "tcp").lower().strip()
-    if net == "ws":
+    if net not in ("tcp", "raw", "ws", "grpc", ""):
         return False
 
     h = node.host.lower()
     sni = (node.sni or "").lower()
 
-    # СТРОГО исключаем российские домены и российские сети из Black-List!
-    # (Они принадлежат белому списку и не могут открыть YouTube/Instagram)
-    if is_ru_white_sni(sni) or sni.endswith(".ru") or is_russian_cidr(node):
+    if sec == "reality":
+        pbk = node.params.get("pbk", "").strip()
+        if len(pbk) < 40:
+            return False
+        # Reality не может работать через WebSocket или за прокси Cloudflare/Fastly
+        if net == "ws" or is_cloudflare_ip(h):
+            return False
+    else:
+        # Для VLESS TLS + WS требуется доменный host/sni (не голый IP и не cloudflare.com)
+        if net == "ws" and not (sni or node.params.get("host")):
+            return False
+
+    # СТРОГО исключаем российские домены (.ru/VK/Yandex/White-SNI) из Black-List
+    if is_ru_white_sni(sni) or sni.endswith((".ru", ".su")):
         return False
 
-    # Исключаем мусорные имена
+    # Исключаем мусорные имена и локальные адреса
     if "rkn" in sni or "fuck" in sni or "127.0.0.1" in h or "0.0.0.0" in h:
         return False
 
-    # Исключаем Cloudflare SNI (жестко блокируется ТСПУ на мобильных сетях в РФ)
-    if "cloudflare.com" in sni:
+    # Исключаем сам домен cloudflare.com в SNI (жестко сбрасывается мобильным ТСПУ МТС)
+    if "cloudflare.com" in sni or "cloudflare.com" in (node.params.get("host", "").lower()):
         return False
 
-    # Исключаем Cloudflare CDN и Anycast IP, а также заблокированные в РФ подсети
+    # Исключаем Fastly и облачные подсети, массово заблокированные РКН в РФ (IBM/Alibaba/Oracle)
     bad_markers = (
         "fastly", "199.232.", "151.101.", "167.82.", "146.75.",
-        "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.24.", "104.27.",
-        "172.64.", "172.67.", "188.114.", "162.159.",
-        # Подсети Anycast / IBM Cloud / Alibaba / Chinese proxies, заблокированные РКН в РФ:
-        "169.40.", "47.251.", "47.252.", "47.253.", "47.254.",
-        "156.229.", "166.0.", "185.95.231."
+        "169.40.", "47.84.", "47.251.", "47.252.", "47.253.", "47.254.",
+        "156.229.", "166.0.", "185.95.231.",
+        "158.101.", "140.245.", "130.61.", "132.145.", "129.151."
     )
     if any(m in h or m in sni for m in bad_markers):
         return False
 
-    # Порты 443 или 8443
-    if str(node.port) not in ("443", "8443"):
+    # Разрешаем стандартные HTTPS/CDN порты, а для курируемых RU Black-List источников — любые порты (напр. 29976, 39790, 6750)
+    if not node.is_blacklist_source and str(node.port) not in ("443", "8443", "2053", "2083", "2087", "2096"):
         return False
 
     return True
@@ -206,36 +332,25 @@ def is_trusted_sni(sni: str) -> bool:
 
 
 def get_bl_rank(node: ProxyNode) -> int:
-    """Приоритет узлов Black-List под мобильные сети (МТС ТСПУ):
-    Ранг 0: nlafterdate / h1clayd на 443 с Vision (прямой IP)
-    Ранг 1: nlafterdate / h1clayd на 443 с Vision (домен)
-    Ранг 2: Доверенные мировые SNI (Apple, Microsoft, Samsung) на 443 с Vision
-    Ранг 3: Прочие Reality на 443 с Vision
-    Ранг 4: Reality на 443 без Vision
-    Ранг 5: Прочие порты
+    """Ранжирование узлов Black-List с учетом совместимости с МТС и Wi-Fi:
+    Ранг 0: Прямой не-Cloudflare VLESS Reality TCP (Vision) на порту 443 (лучший выбор и для МТС, и для Wi-Fi)
+    Ранг 1: Прямой не-Cloudflare VLESS TLS TCP на 443/8443 (быстрые прямые и каскадные TLS-узлы)
+    Ранг 2: Прочие прямые не-Cloudflare Reality/TLS (gRPC, нестандартные порты, прямой WS)
+    Ранг 3: Чистые Cloudflare CDN Worker VLESS TLS WS (без cloudflare.com в SNI)
     """
+    sec = node.params.get("security", "").lower().strip()
     flow = node.params.get("flow", "").lower()
     net = node.params.get("type", "tcp").lower().strip()
     is_p443 = str(node.port) == "443"
-    sni = (node.sni or "").lower()
-    is_vision = "vision" in flow and net in ("tcp", "raw", "")
-    is_direct_ip = all(p.isdigit() for p in node.host.split(".")) if node.host.count(".") == 3 else False
+    is_cf = is_cloudflare_ip(node.host)
 
-    if is_mts_confirmed_sni(sni) and is_p443 and is_vision:
-        return 0 if is_direct_ip else 1
-    elif is_mts_confirmed_sni(sni):
-        return 1
-
-    if is_trusted_sni(sni) and is_p443 and is_vision:
-        return 2
-
-    if is_p443 and is_vision:
+    if is_cf:
         return 3
-
-    if is_p443:
-        return 4
-
-    return 5
+    if sec == "reality" and is_p443 and "vision" in flow and net in ("tcp", "raw", ""):
+        return 0
+    if sec == "tls" and net in ("tcp", "raw", "") and str(node.port) in ("443", "8443"):
+        return 1
+    return 2
 
 
 def is_germany_node(node: ProxyNode) -> bool:
@@ -276,7 +391,7 @@ def classify_nodes(
     1. White-List (СТРОГО: xHTTP / gRPC / VMess WS + порт 443/80 + официальный RU-SNI под шатдауны Минцифры)
     2. Black-List (Обход блокировок, зарубежные сайты)
     """
-    wl_pairs: List[Tuple[ProxyNode, float, int]] = []
+    wl_pairs: List[Tuple[ProxyNode, float, int, bool]] = []
     seen_wl_keys = set()
     bl_candidates: List[Tuple[ProxyNode, float, bool]] = []
     seen_bl_keys = set()
@@ -287,13 +402,13 @@ def classify_nodes(
             bl_candidates.append((node, ping_ms, True))
             seen_bl_keys.add(node.unique_key)
 
-        # Если узел подходит под White-List - добавляем в White-List
+        # Если узел подходит под White-List - добавляем с флагом URL-теста!
         rank = get_wl_rank(node)
         if rank < 10 and node.unique_key not in seen_wl_keys:
-            wl_pairs.append((node, ping_ms, rank))
+            wl_pairs.append((node, ping_ms, rank, True))
             seen_wl_keys.add(node.unique_key)
 
-    # 2. Берем подтвержденные живые узлы, проверенные по TCP порту (как запасные)
+    # 2. Берем подтвержденные по TCP порту узлы ТОЛЬКО как резерв после URL-проверенных
     if tcp_alive_nodes:
         for node in tcp_alive_nodes:
             if is_valid_blacklist_node(node) and node.unique_key not in seen_bl_keys:
@@ -302,89 +417,116 @@ def classify_nodes(
 
             rank = get_wl_rank(node)
             if rank < 10 and node.unique_key not in seen_wl_keys:
-                wl_pairs.append((node, node.tcp_ping or 120.0, rank))
+                wl_pairs.append((node, node.tcp_ping or 120.0, rank, False))
                 seen_wl_keys.add(node.unique_key)
 
-    # 3. Гарантированное включение подтвержденных немецких релеев и российских CIDR для White-List
-    if all_raw_nodes:
-        for node in all_raw_nodes:
-            if is_germany_node(node) and get_wl_rank(node) < 10 and node.unique_key not in seen_wl_keys:
-                wl_pairs.append((node, 105.0, 0))
-                seen_wl_keys.add(node.unique_key)
-            elif get_wl_rank(node) == 0 and node.unique_key not in seen_wl_keys:
-                wl_pairs.append((node, 115.0, 0))
-                seen_wl_keys.add(node.unique_key)
+    # Сортировка White-List:
+    # 1. URL-проверенные (Xray xHTTP + Sing-Box YouTube 204) ВСЕГДА впереди!
+    # 2. Ранг устойчивости (0 = RU-CIDR + RU-SNI -> 1 = RU-CIDR -> 2..4 = RU-SNI)
+    # 3. Задержка
+    wl_pairs.sort(key=lambda x: (not x[3], x[2], x[1] > 1200 if x[3] else True, x[1]))
 
-    # Разделяем на немецкие релеи и российские узлы
-    de_list = [p for p in wl_pairs if is_germany_node(p[0])]
-    ru_list = [p for p in wl_pairs if not is_germany_node(p[0])]
-
-    de_list.sort(key=lambda x: (x[2], x[1]))
-    ru_list.sort(key=lambda x: (x[2], x[1]))
-
-    # Ограничение White-List максимум 100 серверами (быстрые и отзывчивые под мобильные):
-    # Балансируем: лучшие немецкие релеи (50 шт) и лучшие российские узлы (50 шт) по рангу и TCP-пингу
-    max_de = 50
-    max_ru = 50
-    selected_de = de_list[:max_de]
-    selected_ru = ru_list[:max_ru]
-    if len(selected_de) < max_de:
-        selected_ru = ru_list[:(100 - len(selected_de))]
-    elif len(selected_ru) < max_ru:
-        selected_de = de_list[:(100 - len(selected_ru))]
-
-    wl_pairs = selected_de + selected_ru
+    # Ограничение White-List до 100 уникальных серверов (максимум 2 записи на host:port)
+    selected_wl = []
+    wl_overflow = []
+    wl_hp_counts: Dict[Tuple[str, int], int] = {}
+    for item in wl_pairs:
+        hp = (item[0].host.lower(), int(item[0].port))
+        cnt = wl_hp_counts.get(hp, 0)
+        if cnt < 2:
+            selected_wl.append(item)
+            wl_hp_counts[hp] = cnt + 1
+            if len(selected_wl) >= 100:
+                break
+        else:
+            wl_overflow.append(item)
+    if len(selected_wl) < 100:
+        selected_wl.extend(wl_overflow[:(100 - len(selected_wl))])
 
     whitelist_uris: List[str] = []
     de_count = 0
     ru_count = 0
 
-    for node, ping_ms, rank in wl_pairs:
+    for node, ping_ms, rank, url_verified in selected_wl:
         display_sni = node.sni or node.params.get("host", "no-sni")
         if len(display_sni) > 22:
             display_sni = display_sni[:20] + ".."
         net = node.params.get("type", "tcp").lower().strip()
+        prefix = f"⚡ [{int(ping_ms)}ms] " if url_verified else ""
 
-        if is_germany_node(node):
-            de_count += 1
-            flag = "🇩🇪"
-            if node.protocol == "vmess":
-                label = f"Germany VMess #{de_count:02d}"
-            elif net == "grpc":
-                label = f"Germany Selectel #{de_count:02d}"
-            else:
-                label = f"Germany Relay #{de_count:02d}"
-        else:
+        if is_russian_cidr(node):
             ru_count += 1
             flag = "🇷🇺"
             if "nvidia" in display_sni:
                 label = f"Russia Nvidia #{ru_count:02d}"
             elif net in ("xhttp", "splithttp"):
-                label = f"Russia VK #{ru_count:02d}"
+                label = f"Russia xHTTP #{ru_count:02d}"
             elif net == "grpc":
                 label = f"Russia gRPC #{ru_count:02d}"
             else:
                 label = f"Russia CIDR #{ru_count:02d}"
+        else:
+            de_count += 1
+            flag = "🇩🇪" if is_germany_node(node) else "🌐"
+            if net in ("xhttp", "splithttp"):
+                label = f"White xHTTP #{de_count:02d}"
+            elif net == "grpc":
+                label = f"White gRPC #{de_count:02d}"
+            else:
+                label = f"White Relay #{de_count:02d}"
 
-        clean_name = f"{flag} {label} ({display_sni})"
+        clean_name = f"{prefix}{flag} {label} ({display_sni})"
         node.name = clean_name
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
-    # Для мобильной сети МТС (железный приоритет проверенных в РФ доменов):
-    # 1. Подтвержденные Sing-Box URL-тестом узлы (0 если проверен, 1 если нет)
-    # 2. ЖЕЛЕЗНЫЙ РАНГ МТС: Ранг 0 (nlafterdate и h1clayd) ВСЕГДА ВПЕРЕДИ!
-    #    (Никакой американский датацентр с пингом 34мс на GitHub не имеет права вытеснять рабочий узел в РФ!)
-    # 3. Отсекаем пинг > 800мс
-    # 4. По возрастанию пинга внутри ранга
-    bl_candidates.sort(
-        key=lambda x: (
-            not x[2],                                     # 0 если проверен Sing-Box (True), 1 если нет
-            get_bl_rank(x[0]),                            # Ранг МТС (0 = nlafterdate/h1clayd ВСЕГДА ПЕРВЫМИ!)
-            x[1] > 800 if x[2] else True,                 # На мобильном интернете пинг > 800мс дает таймаут
-            x[1] if x[1] > 0 else 9999.0                  # Задержка
+    # Для Black-List (МТС + Wi-Fi):
+    # 1. Проверенные YouTube-тестом узлы всегда впереди
+    # 2. Прямые не-CDN узлы до 1200мс впереди медленных (> 1200мс) и Cloudflare CDN
+    # 3. Внутри уровня — минимальный реальный пинг, а доля Cloudflare CDN ограничена (не более 6 шт при наличии прямых)
+    def bl_sort_key(item):
+        node, ping_ms, verified = item
+        rank = get_bl_rank(node)
+        tier = 0 if rank <= 1 else (1 if rank == 2 else 2)
+        is_slow = (ping_ms > 1200 or ping_ms <= 0) if verified else True
+        return (
+            not verified,
+            tier == 2,
+            is_slow,
+            tier,
+            ping_ms if ping_ms > 0 else 9999.0,
+            rank,
         )
-    )
-    selected_bl = bl_candidates[:50]
+
+    bl_candidates.sort(key=bl_sort_key)
+
+    # Ограничиваем до 2 узлов на один (host, port) и до 6 Cloudflare CDN в топе 50
+    selected_bl = []
+    cf_overflow = []
+    overflow_bl = []
+    host_port_counts: Dict[Tuple[str, int], int] = {}
+    cf_count = 0
+    for item in bl_candidates:
+        is_cf = is_cloudflare_ip(item[0].host)
+        hp = (item[0].host.lower(), int(item[0].port))
+        cnt = host_port_counts.get(hp, 0)
+        if cnt < 2:
+            if is_cf and cf_count >= 6:
+                cf_overflow.append(item)
+                continue
+            selected_bl.append(item)
+            host_port_counts[hp] = cnt + 1
+            if is_cf:
+                cf_count += 1
+            if len(selected_bl) >= 50:
+                break
+        else:
+            overflow_bl.append(item)
+
+    if len(selected_bl) < 50:
+        selected_bl.extend(cf_overflow[:(50 - len(selected_bl))])
+    if len(selected_bl) < 50:
+        selected_bl.extend(overflow_bl[:(50 - len(selected_bl))])
+
     blacklist_uris: List[str] = []
 
     for i, (node, ping_ms, url_verified) in enumerate(selected_bl, 1):

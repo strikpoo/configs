@@ -1,19 +1,55 @@
 [
   {
+    "name": "vpn.akres.fun/bwl",
+    "url": "https://vpn.akres.fun/bwl",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "sub.vlessfo.ru/working",
+    "url": "https://sub.vlessfo.ru/vlessforu/working_configs.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "aviamastersgh/verified",
+    "url": "https://raw.githubusercontent.com/aviamastersgh/vpn-free-russia/main/verified_configs.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "Diversan313/alive_bs",
+    "url": "https://raw.githubusercontent.com/Diversan313/apex-parser/main/subs/main/alive_bs.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/BLACK_VLESS_RUS_mobile",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "igareck/BLACK_VLESS_RUS",
+    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
+    "type": "blacklist_focused",
+    "enabled": true
+  },
+  {
+    "name": "vladvarp/Prometheus (WhiteList)",
+    "url": "https://raw.githubusercontent.com/vladvarp/Prometheus/refs/heads/main/WhiteList/vless.txt",
+    "type": "whitelist_focused",
+    "enabled": true
+  },
+  {
     "name": "solovyov-jenya2004 (all_subs)",
     "url": "https://raw.githubusercontent.com/solovyov-jenya2004/all_subs/main/final_sorted",
     "type": "whitelist_focused",
     "enabled": true
   },
   {
-    "name": "zieng2/wl (universal)",
-    "url": "https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt",
-    "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
-    "name": "zieng2/wl (lite)",
-    "url": "https://raw.githubusercontent.com/zieng2/wl/main/vless_lite.txt",
+    "name": "etoneya.su/whitelist",
+    "url": "https://etoneya.su/whitelist",
     "type": "whitelist_focused",
     "enabled": true
   },
@@ -36,18 +72,6 @@
     "enabled": true
   },
   {
-    "name": "gooseteam/GooseVPN (balanced)",
-    "url": "https://raw.githubusercontent.com/gooseteam-hackers/GooseVPN/main/configs/balanced.txt",
-    "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
-    "name": "gooseteam/GooseVPN (plus)",
-    "url": "https://raw.githubusercontent.com/gooseteam-hackers/GooseVPN/main/configs/plus.txt",
-    "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
     "name": "Maskkost93/kizyak-vpn-4.0",
     "url": "https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/main/kizyakbeta6.txt",
     "type": "whitelist_focused",
@@ -66,27 +90,9 @@
     "enabled": true
   },
   {
-    "name": "GitVerse 272/wl (RU Mirror)",
-    "url": "https://gitverse.ru/api/repos/272/wl/raw/branch/master/whitelist",
-    "type": "ru_mirror",
-    "enabled": true
-  },
-  {
-    "name": "GitVerse Akres/VPN (RU Mirror)",
-    "url": "https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/bwl",
-    "type": "ru_mirror",
-    "enabled": true
-  },
-  {
     "name": "igareck/Vless-Reality-White",
     "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
     "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
-    "name": "igareck/BLACK_VLESS_RUS",
-    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
-    "type": "blacklist_focused",
     "enabled": true
   },
   {
@@ -138,38 +144,8 @@
     "enabled": true
   },
   {
-    "name": "Pawdroid/Free-servers",
-    "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
     "name": "igareck/WHITE-SNI-RU-all",
     "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-SNI-RU-all.txt",
-    "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
-    "name": "igareck/BLACK_VLESS_RUS_mobile",
-    "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
-    "type": "blacklist_focused",
-    "enabled": true
-  },
-  {
-    "name": "Argh94/Proxy-List",
-    "url": "https://raw.githubusercontent.com/Argh94/Proxy-List/main/All_Config.txt",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "wuqb2i4f/xray-config-toolkit",
-    "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
-    "type": "multi_protocol",
-    "enabled": true
-  },
-  {
-    "name": "cid-uskoritel/cid-white (GitVerse)",
-    "url": "https://gitverse.ru/api/repos/cid-uskoritel/cid-white/raw/branch/master/whitelist.txt",
     "type": "whitelist_focused",
     "enabled": true
   },
@@ -177,12 +153,6 @@
     "name": "ByeWhiteLists2",
     "url": "https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt",
     "type": "whitelist_focused",
-    "enabled": true
-  },
-  {
-    "name": "Surfboardv2ray/TGParse",
-    "url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless",
-    "type": "blacklist_focused",
     "enabled": true
   }
 ]

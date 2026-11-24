@@ -23,6 +23,10 @@ def resolve_to_ip(hostname: str) -> str:
         return _DNS_CACHE[hostname]
     try:
         ip = socket.gethostbyname(hostname)
+        # Отсекаем локальные и фейковые NXDOMAIN-заглушки провайдеров
+        if ip.startswith(("127.", "0.", "10.", "192.168.")) or ip == "76.223.54.146":
+            _DNS_CACHE[hostname] = hostname
+            return hostname
         _DNS_CACHE[hostname] = ip
         return ip
     except Exception:
@@ -65,24 +69,39 @@ class ProxyNode:
             allowed_keys = {
                 "security", "encryption", "pbk", "sid", "sni", "fp",
                 "type", "flow", "path", "headerType", "host", "serviceName",
-                "mode", "packetEncoding"
+                "mode", "packetEncoding", "alpn", "allowInsecure", "insecure", "authority", "extra"
             }
             for k, v in self.params.items():
                 if k not in allowed_keys:
                     continue
-                # Чистим рекламу и спам в значениях параметров
-                if "telegram" in v.lower() or "t.me" in v.lower():
+                if k in ("pbk", "sid") and not v.strip():
+                    continue
+                if k == "extra":
+                    try:
+                        json.loads(v)
+                    except Exception:
+                        continue
+                # Чистим рекламный спам Telegram, не задевая легитимные домены (например parchment.merlano)
+                val_low = v.lower()
+                if any(spam in val_low for spam in ("telegram.me", "telegram.org", "t.me/", "@")):
                     continue
                 clean_params[k] = v
 
-            # Для мобильных сетей (МТС/ТСПУ) СТРОГО fp=chrome (стандартный отпечаток Android)
-            clean_params["fp"] = "chrome"
+            # Не ломаем рабочий отпечаток сервера (firefox/ios/edge/safari/chrome); заменяем только пустой или qq/360
+            fp_cur = (clean_params.get("fp") or "").strip().lower()
+            valid_keep_fps = {"chrome", "firefox", "safari", "ios", "android", "edge", "random", "randomized"}
+            if fp_cur not in valid_keep_fps:
+                clean_params["fp"] = "chrome"
 
             # Резолвим домен хоста в прямой IPv4 для обхода DNS-блокировок МТС
             host_ip = resolve_to_ip(self.host)
-            # Если хост был доменом, сохраняем его в SNI, если SNI не был явно задан
-            if not clean_params.get("sni") and host_ip != self.host:
-                clean_params["sni"] = self.host
+            # Сохраняем оригинальный домен в SNI и в HTTP Host (для WS/HTTP/xHTTP), если он не был явно задан
+            if host_ip != self.host:
+                if not clean_params.get("sni"):
+                    clean_params["sni"] = self.host
+                net_type = clean_params.get("type", "tcp").strip().lower()
+                if net_type in ("ws", "http", "h2", "xhttp", "splithttp") and not clean_params.get("host"):
+                    clean_params["host"] = self.host
 
             query = urllib.parse.urlencode(clean_params)
             fragment = urllib.parse.quote(tag) if tag else ""
@@ -132,6 +151,8 @@ class ProxyNode:
                     "enabled": True,
                     "server_name": self.sni or self.params.get("host", "") or self.host
                 }
+                if self.params.get("allowInsecure") == "1" or self.params.get("insecure") == "1":
+                    tls["insecure"] = True
                 fp = self.params.get("fp", "chrome")
                 if fp:
                     tls["utls"] = {"enabled": True, "fingerprint": fp}
@@ -178,6 +199,8 @@ class ProxyNode:
                 "enabled": True,
                 "server_name": self.sni or self.host
             }
+            if self.params.get("allowInsecure") == "1" or self.params.get("insecure") == "1":
+                tls["insecure"] = True
             if fp:
                 tls["utls"] = {"enabled": True, "fingerprint": fp}
             if pbk_raw or self.security == "reality":
