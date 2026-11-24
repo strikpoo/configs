@@ -89,7 +89,13 @@ def main() -> int:
     _rotate_log()
 
     if not args.force and _is_quiet_hours():
-        _log("Пропуск запуска: ночной перерыв (23:30–07:30).")
+        last_line = ""
+        if LOG_FILE.exists():
+            lines = LOG_FILE.read_text(encoding="utf-8", errors="ignore").splitlines()
+            if lines:
+                last_line = lines[-1]
+        if "ночной перерыв" not in last_line:
+            _log("Пропуск запуска: ночной перерыв (23:30–07:30).")
         return 0
 
     lock_handle = open(LOCK_FILE, "a+", encoding="utf-8")
