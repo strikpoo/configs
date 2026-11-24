@@ -40,6 +40,10 @@ jobs:
           xray version
 
       - name: Run Harvester
+        env:
+          VK_ACCESS_TOKEN: ${{ secrets.VK_ACCESS_TOKEN }}
+          VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
+          VK_SUFFIX: g
         run: |
           python main.py --no-push
 

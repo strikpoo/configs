@@ -4,6 +4,8 @@ output/cache_nodes.pkl
 output/happ.html
 output/happ_config.json
 output/happ_config.zip
+*.docx
+vk_config.json
 *.log
 *.lock
 
