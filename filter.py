@@ -163,11 +163,14 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
     if "cloudflare.com" in sni:
         return False
 
-    # Исключаем Cloudflare CDN и Fastly Anycast IP (они не работают как прямой Reality)
+    # Исключаем Cloudflare CDN и Anycast IP, а также заблокированные в РФ подсети
     bad_markers = (
         "fastly", "199.232.", "151.101.", "167.82.", "146.75.",
         "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.24.", "104.27.",
-        "172.64.", "172.67.", "188.114.", "162.159."
+        "172.64.", "172.67.", "188.114.", "162.159.",
+        # Подсети Anycast / IBM Cloud / Alibaba / Chinese proxies, заблокированные РКН в РФ:
+        "169.40.", "47.251.", "47.252.", "47.253.", "47.254.",
+        "156.229.", "166.0.", "185.95.231."
     )
     if any(m in h or m in sni for m in bad_markers):
         return False
@@ -179,46 +182,60 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
     return True
 
 
-def is_trusted_sni(sni: str) -> bool:
-    """Проверка SNI на максимальную совместимость с мобильным ТСПУ МТС."""
+def is_mts_confirmed_sni(sni: str) -> bool:
+    """Топовые проверенные SNI, пробивающие мобильный ТСПУ МТС в РФ."""
     if not sni:
         return False
     sni = sni.lower().strip()
-    # Приоритетные SNI, подтвержденные на сети МТС
-    if "nlafterdate" in sni or "h1clayd" in sni:
+    return "nlafterdate" in sni or "h1clayd" in sni
+
+
+def is_trusted_sni(sni: str) -> bool:
+    """Проверка SNI на надежные мировые домены."""
+    if not sni:
+        return False
+    sni = sni.lower().strip()
+    if is_mts_confirmed_sni(sni):
         return True
     trusted = (
         "apple.com", "icloud.com", "itunes.com", "aaplimg.com",
         "microsoft.com", "live.com", "azure.com", "skype.com",
-        "amazon.com", "aws.amazon.com", "cloudfront.net",
-        "samsung.com", "yahoo.com", "nvidia.com", "sony.com"
+        "samsung.com", "nvidia.com", "sony.com"
     )
     return any(sni == t or sni.endswith("." + t) for t in trusted)
 
 
 def get_bl_rank(node: ProxyNode) -> int:
     """Приоритет узлов Black-List под мобильные сети (МТС ТСПУ):
-    Ранг 0: nlafterdate / h1clayd / Apple / Microsoft + Port 443 + Vision + Прямой IP
-    Ранг 1: nlafterdate / h1clayd / Apple / Microsoft + Port 443 + Vision (домен)
-    Ранг 2: Прочие Reality на порту 443 + Vision
-    Ранг 3: Reality на порту 443 без Vision
-    Ранг 4: Прочие порты
+    Ранг 0: nlafterdate / h1clayd на 443 с Vision (прямой IP)
+    Ранг 1: nlafterdate / h1clayd на 443 с Vision (домен)
+    Ранг 2: Доверенные мировые SNI (Apple, Microsoft, Samsung) на 443 с Vision
+    Ранг 3: Прочие Reality на 443 с Vision
+    Ранг 4: Reality на 443 без Vision
+    Ранг 5: Прочие порты
     """
     flow = node.params.get("flow", "").lower()
     net = node.params.get("type", "tcp").lower().strip()
     is_p443 = str(node.port) == "443"
     sni = (node.sni or "").lower()
-    is_mts_fav = is_trusted_sni(sni)
     is_vision = "vision" in flow and net in ("tcp", "raw", "")
     is_direct_ip = all(p.isdigit() for p in node.host.split(".")) if node.host.count(".") == 3 else False
 
-    if is_p443 and is_vision and is_mts_fav:
+    if is_mts_confirmed_sni(sni) and is_p443 and is_vision:
         return 0 if is_direct_ip else 1
-    if is_p443 and is_vision:
+    elif is_mts_confirmed_sni(sni):
+        return 1
+
+    if is_trusted_sni(sni) and is_p443 and is_vision:
         return 2
-    if is_p443:
+
+    if is_p443 and is_vision:
         return 3
-    return 4
+
+    if is_p443:
+        return 4
+
+    return 5
 
 
 def is_germany_node(node: ProxyNode) -> bool:
@@ -353,17 +370,18 @@ def classify_nodes(
         node.name = clean_name
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
-    # Ограничение Black-List максимум 50 серверами под мобильные сети (МТС ТСПУ):
-    # 1. Подтвержденные Sing-Box URL-тестом узлы с пингом < 800мс идут первыми, строго по возрастанию пинга
-    # 2. Подтвержденные узлы с высоким пингом (> 800мс) смещаются назад (на мобильных они дают таймаут)
-    # 3. Далее идут высокоранговые неподтвержденные узлы под МТС (nlafterdate, h1clayd, Apple, Microsoft)
+    # Для мобильной сети МТС (железный приоритет проверенных в РФ доменов):
+    # 1. Подтвержденные Sing-Box URL-тестом узлы (0 если проверен, 1 если нет)
+    # 2. ЖЕЛЕЗНЫЙ РАНГ МТС: Ранг 0 (nlafterdate и h1clayd) ВСЕГДА ВПЕРЕДИ!
+    #    (Никакой американский датацентр с пингом 34мс на GitHub не имеет права вытеснять рабочий узел в РФ!)
+    # 3. Отсекаем пинг > 800мс
+    # 4. По возрастанию пинга внутри ранга
     bl_candidates.sort(
         key=lambda x: (
             not x[2],                                     # 0 если проверен Sing-Box (True), 1 если нет
+            get_bl_rank(x[0]),                            # Ранг МТС (0 = nlafterdate/h1clayd ВСЕГДА ПЕРВЫМИ!)
             x[1] > 800 if x[2] else True,                 # На мобильном интернете пинг > 800мс дает таймаут
-            x[1] if (x[2] and x[1] <= 800) else 9999.0,   # Быстрые проверенные строго по пингу
-            get_bl_rank(x[0]),                            # Ранг МТС (nlafterdate, h1clayd, direct IP)
-            x[1] if x[1] > 0 else 9999.0                  # Прочий TCP пинг
+            x[1] if x[1] > 0 else 9999.0                  # Задержка
         )
     )
     selected_bl = bl_candidates[:50]
