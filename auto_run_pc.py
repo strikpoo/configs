@@ -73,12 +73,24 @@ def _get_python_cli() -> str:
     return str(exe)
 
 
+def _is_quiet_hours(now: datetime.datetime = None) -> bool:
+    """Тихое окно 23:30–07:30 (допуск 1 мин на 07:29 перед утренним запуском)."""
+    now = now or datetime.datetime.now()
+    hm = now.hour * 60 + now.minute
+    return hm >= (23 * 60 + 30) or hm < (7 * 60 + 29)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Background PC runner for VPN Harvester")
     parser.add_argument("--no-git", action="store_true", help="Run harvester locally without git commit/push")
+    parser.add_argument("--force", action="store_true", help="Ignore quiet hours (23:30-07:30)")
     args = parser.parse_args()
 
     _rotate_log()
+
+    if not args.force and _is_quiet_hours():
+        _log("Пропуск запуска: ночной перерыв (23:30–07:30).")
+        return 0
 
     lock_handle = open(LOCK_FILE, "a+", encoding="utf-8")
     try:
