@@ -95,7 +95,7 @@ def run_singbox_urltest(nodes: List[ProxyNode]) -> List[Tuple[ProxyNode, float]]
             singbox_bin = Path(which_sb)
         else:
             logger.warning(f"Бинарник Sing-Box не найден по пути {SINGBOX_PATH}. Пропускаем Stage 2.")
-            return [(node, 50.0) for node in nodes]
+            return []
 
     if not nodes:
         return []
