@@ -245,7 +245,208 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #04 (cloudru.bravada-conn..)",
+      "tag": "🇩🇪 Germany Relay #04 (de.chick-chirik.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "159.194.213.167",
+            "port": 443,
+            "users": [
+              {
+                "id": "7cbd9bf9-a3b1-4257-8406-df6109cd882f",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "wsSettings": {
+          "path": "/422f47b619cd"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #05 (80cb66x.nl13.h1clayd..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "77.221.157.45",
+            "port": 443,
+            "users": [
+              {
+                "id": "cda0862a-0f87-4be9-8ed8-1d0c9e382839",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/d610f026b146",
+          "host": "vk.com",
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "80cb66x.nl13.h1clayd.click",
+          "fingerprint": "chrome",
+          "publicKey": "jhVdP7NFUaEXGfrmOqJlMCHTvqn3fymbzPfPT6NO4i0",
+          "shortId": "f72d4a2c7cbbacb1"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Selectel #06 (olvento.space)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.225.36.219",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": "olvento.sync.v1"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #07 (www.cloudflare.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "46.28.71.247",
+            "port": 443,
+            "users": [
+              {
+                "id": "12c53e32-e589-47d6-b857-e4132294f767",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "v4MuZIvFrTPT5GHMSaPryUAbIZlLstmsUTzmC1E-JTE",
+          "shortId": "0dfc23fe80778c00"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #08 (jarmelo.autos)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.225.36.219",
+            "port": 443,
+            "users": [
+              {
+                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/garage/sync",
+          "host": "jarmelo.autos",
+          "mode": "packet-up"
+        },
+        "security": "tls"
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #09 (rubik.cakecat.cc)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.142.106.164",
+            "port": 443,
+            "users": [
+              {
+                "id": "4eb9a6e9-bf0e-4808-9df0-71d7b121ee64",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/xh-7f3a9c",
+          "host": "vk.com",
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "rubik.cakecat.cc",
+          "fingerprint": "chrome",
+          "publicKey": "RAHctmydk9WkPzebS9mCPMLmIYsgapp-JyZpvRSE4X8",
+          "shortId": "3b197bfcd43c9535"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #10 (cloudru.bravada-conn..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -283,16 +484,16 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #05 (olvento.space)",
+      "tag": "🇩🇪 Germany Relay #11 (f0d7aft.nl13.h1clayd..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.225.36.219",
+            "address": "77.221.157.45",
             "port": 443,
             "users": [
               {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
+                "id": "cda0862a-0f87-4be9-8ed8-1d0c9e382839",
                 "encryption": "none"
               }
             ]
@@ -300,19 +501,27 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "grpcSettings": {
-          "serviceName": "olvento.sync.v1"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
-        "security": "tls"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "f0d7aft.nl13.h1clayd.click",
+          "fingerprint": "chrome",
+          "publicKey": "kkCGiCQCKnkozJR1KKCRNtmdBECmThCgI9VSv7iDcWI",
+          "shortId": "8956c57cb4c4f8d2"
+        }
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #06 (yandex.ru)",
+      "tag": "🇩🇪 Germany Relay #12 (yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -350,151 +559,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #07 (eh4.vk.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "212.233.123.94",
-            "port": 443,
-            "users": [
-              {
-                "id": "a16a3e32-8d63-4dec-8c67-1361388a64ca",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "eh4.vk.ru",
-          "fingerprint": "chrome",
-          "publicKey": "sfrOxTviJp1f1woMZiMOj1zkeStBPUoVogApP2eovgA",
-          "shortId": "b254091454b40458"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #08 (www.cloudflare.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "45.90.59.15",
-            "port": 443,
-            "users": [
-              {
-                "id": "3950b45e-740d-4dca-ac95-505ec8534592",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.cloudflare.com",
-          "fingerprint": "chrome",
-          "publicKey": "P7S4UPFlQbmiBr4txyy8NZIMTrmO3UdxyH16WBU-YzY",
-          "shortId": "19253fae84102271"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #09 (80cb66x.nl13.h1clayd..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "77.221.157.45",
-            "port": 443,
-            "users": [
-              {
-                "id": "cda0862a-0f87-4be9-8ed8-1d0c9e382839",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/d610f026b146",
-          "host": "vk.com",
-          "mode": "auto"
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "80cb66x.nl13.h1clayd.click",
-          "fingerprint": "chrome",
-          "publicKey": "jhVdP7NFUaEXGfrmOqJlMCHTvqn3fymbzPfPT6NO4i0",
-          "shortId": "f72d4a2c7cbbacb1"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #10 (nor.mouse-moj.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.137.67",
-            "port": 443,
-            "users": [
-              {
-                "id": "ddffa8f4-e108-43ef-a324-a823f535120e",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api",
-          "host": "nor.mouse-moj.site",
-          "mode": "auto"
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #11 (www.vk.com)",
+      "tag": "🇩🇪 Germany Relay #13 (www.vk.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -532,7 +597,83 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #12 (seal-de1.bypassme.on..)",
+      "tag": "🇩🇪 Germany Relay #14 (eh4.vk.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "212.233.123.94",
+            "port": 443,
+            "users": [
+              {
+                "id": "a16a3e32-8d63-4dec-8c67-1361388a64ca",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "eh4.vk.ru",
+          "fingerprint": "chrome",
+          "publicKey": "sfrOxTviJp1f1woMZiMOj1zkeStBPUoVogApP2eovgA",
+          "shortId": "b254091454b40458"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #15 (eh.vk.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "144.124.233.205",
+            "port": 443,
+            "users": [
+              {
+                "id": "49aabf68-e986-4722-8fd1-1702ce996bb6",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "eh.vk.com",
+          "fingerprint": "chrome",
+          "publicKey": "kY32I2PvI5UYqhjoZlcL0z6V6r1AV_lLZolQH78ApmU",
+          "shortId": "ae575a16aa1a19a9"
+        }
+      }
+    },
+    {
+      "tag": "🇩🇪 Germany Relay #16 (seal-de1.bypassme.on..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -570,7 +711,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #13 (cdn.rucdncomp.pro)",
+      "tag": "🇩🇪 Germany Relay #17 (cdn.rucdncomp.pro)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -599,71 +740,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #14 (netra-28e601.ruzgars..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.178.143",
-            "port": 443,
-            "users": [
-              {
-                "id": "ccaa9413-2163-466e-a915-29c215b0be0a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/vl/D1utewa490l8iCymueVABy77F5t?ed=2560",
-          "headers": {
-            "Host": "netra-28e601.ruzgarsis053gmailcomsaccount.workers.dev"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #15 (wandering-river-cd33..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.160.188",
-            "port": 443,
-            "users": [
-              {
-                "id": "443b1e88-41fa-43bb-ff6c-982544254b74",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/87fab74555d6e093",
-          "headers": {
-            "Host": "wandering-river-cd33.mramezanian1375.workers.dev"
-          }
-        },
-        "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #16 (api.mediaroshcha.cc)",
+      "tag": "🇩🇪 Germany Relay #18 (api.mediaroshcha.cc)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -701,12 +778,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #17 (ædígí.RadioTeHran.oRG.)",
+      "tag": "🇩🇪 Germany Relay #19 (ædígí.RadioTeHran.oRG.)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "162.159.136.234",
+            "address": "162.159.130.234",
             "port": 80,
             "users": [
               {
@@ -733,12 +810,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #18 (de.tutvpn.com)",
+      "tag": "🇩🇪 Germany Relay #20 (de.tutvpn.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.67.135.27",
+            "address": "104.21.26.7",
             "port": 443,
             "users": [
               {
@@ -764,7 +841,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #19 (paperbirch.merlano.m..)",
+      "tag": "🇩🇪 Germany Relay #21 (paperbirch.merlano.m..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -796,7 +873,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #20 (eu-central.862400.xyz)",
+      "tag": "🇩🇪 Germany Relay #22 (eu-central.862400.xyz)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -828,7 +905,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #21 (dl2.mbndadwsdf132131..)",
+      "tag": "🇩🇪 Germany Relay #23 (dl2.mbndadwsdf132131..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -860,12 +937,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #22 (ghbi.ir)",
+      "tag": "🇩🇪 Germany Relay #24 (ghbi.ir)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.21.55.180",
+            "address": "172.67.172.26",
             "port": 443,
             "users": [
               {
@@ -891,7 +968,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #23 (3h-unitedstates1.09v..)",
+      "tag": "🇩🇪 Germany Relay #25 (3h-unitedstates1.09v..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -923,7 +1000,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #24 (www.amd.com)",
+      "tag": "🇩🇪 Germany Relay #26 (www.amd.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -960,7 +1037,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #25 (monte.quantumveritas..)",
+      "tag": "🇩🇪 Germany Relay #27 (monte.quantumveritas..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -991,7 +1068,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #26 (willow.kryonix.space)",
+      "tag": "🇩🇪 Germany Relay #28 (willow.kryonix.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1022,44 +1099,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #27 (15d7fft.nl11.h1clayd..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "132.243.163.174",
-            "port": 443,
-            "users": [
-              {
-                "id": "26843758-24de-4f76-b5d0-624038e353c4",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "15d7fft.nl11.h1clayd.click",
-          "fingerprint": "chrome",
-          "publicKey": "xv6OUZcyzEHXFMTfumuJH-1Rd4NQ0cdmWikek4mm0m4",
-          "shortId": "c71118d9399fb8c2"
-        }
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Relay #28 (delivery.mp.microsof..)",
+      "tag": "🇩🇪 Germany Relay #29 (delivery.mp.microsof..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1097,12 +1137,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #29 (ok-config-10.4zkaban..)",
+      "tag": "🇩🇪 Germany Relay #30 (ok-config-10.4zkaban..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.147.22",
+            "address": "104.17.148.22",
             "port": 80,
             "users": [
               {
@@ -1129,12 +1169,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #30 (www.dideman.com)",
+      "tag": "🇩🇪 Germany Relay #31 (www.dideman.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.147.22",
+            "address": "104.17.148.22",
             "port": 443,
             "users": [
               {
@@ -1161,12 +1201,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #31 (cdn-serverdl3.kgo.info)",
+      "tag": "🇩🇪 Germany Relay #32 (cdn-serverdl3.kgo.info)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.67.215.234",
+            "address": "104.21.16.205",
             "port": 443,
             "users": [
               {
@@ -1192,12 +1232,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #32 (cdn2.zovip2.ir)",
+      "tag": "🇩🇪 Germany Relay #33 (cdn2.zovip2.ir)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "91.107.179.79",
+            "address": "65.109.208.214",
             "port": 443,
             "users": [
               {
@@ -1224,7 +1264,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #33 (dl.google.com)",
+      "tag": "🇩🇪 Germany Relay #34 (dl.google.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1262,7 +1302,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #34 (65f7ddeds274.fuhuovp..)",
+      "tag": "🇩🇪 Germany Relay #35 (65f7ddeds274.fuhuovp..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1293,12 +1333,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #35 (u643766ueff6480ds124..)",
+      "tag": "🇩🇪 Germany Relay #36 (u643766ueff6480ds124..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.67.223.224",
+            "address": "104.21.46.52",
             "port": 443,
             "users": [
               {
@@ -1325,7 +1365,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #36 (www.aparat.com)",
+      "tag": "🇩🇪 Germany Relay #37 (www.aparat.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1362,7 +1402,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #37 (youxuanku.kdns.fr)",
+      "tag": "🇩🇪 Germany Relay #38 (youxuanku.kdns.fr)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1394,7 +1434,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #38 (v5.smartyevent.click)",
+      "tag": "🇩🇪 Germany Relay #39 (v5.smartyevent.click)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1426,7 +1466,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #39 (f0f0bet.fi2.h1clayd...)",
+      "tag": "🇩🇪 Germany Selectel #40 (f0f0bet.fi2.h1clayd...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1461,7 +1501,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #40 (jp-ak.astralweb.tech)",
+      "tag": "🇩🇪 Germany Relay #41 (jp-ak.astralweb.tech)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1499,7 +1539,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #41 (base.hosamobenl.co.uk)",
+      "tag": "🇩🇪 Germany Relay #42 (base.hosamobenl.co.uk)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1530,7 +1570,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Selectel #42 (b-wl.fr-2.bnc-gt.co.uk)",
+      "tag": "🇩🇪 Germany Selectel #43 (b-wl.fr-2.bnc-gt.co.uk)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1559,7 +1599,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #43 (www.tradingview.com)",
+      "tag": "🇩🇪 Germany Relay #44 (www.tradingview.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1597,7 +1637,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #44 (cdnjs.com)",
+      "tag": "🇩🇪 Germany Relay #45 (cdnjs.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1635,7 +1675,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #45 (nl-central.v8x2b.lol)",
+      "tag": "🇩🇪 Germany Relay #46 (nl-central.v8x2b.lol)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1673,7 +1713,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #46 (amp-api-edge.apps.ap..)",
+      "tag": "🇩🇪 Germany Relay #47 (amp-api-edge.apps.ap..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1711,12 +1751,12 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #47 (t86y6leiyaph7tsvb170..)",
+      "tag": "🇩🇪 Germany Relay #48 (t86y6leiyaph7tsvb170..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.17.147.22",
+            "address": "104.17.148.22",
             "port": 443,
             "users": [
               {
@@ -1743,7 +1783,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #48 (no-sni)",
+      "tag": "🇩🇪 Germany Relay #49 (no-sni)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1774,7 +1814,7 @@
       }
     },
     {
-      "tag": "🇩🇪 Germany Relay #49 (vaa.fastcdn2.com)",
+      "tag": "🇩🇪 Germany Relay #50 (vaa.fastcdn2.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1802,41 +1842,6 @@
           "mode": "auto"
         },
         "security": "tls"
-      }
-    },
-    {
-      "tag": "🇩🇪 Germany Selectel #50 (resurrected.warrioro..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.246.224.220",
-            "port": 443,
-            "users": [
-              {
-                "id": "a2800cd8-853f-4811-b89d-6a862c44896a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "xyz"
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "resurrected.warriorofblacksun.run",
-          "fingerprint": "chrome",
-          "publicKey": "Ww_HS9_n7ob3uESSXtbU23EPM-BOJ5ZYLp-RFB0L0SY",
-          "shortId": ""
-        }
       }
     }
   ]
