@@ -487,15 +487,18 @@ def classify_nodes(
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
     # Для Black-List (мобильный ТСПУ + Wi-Fi):
-    # 1. Проверенные URL-тестом узлы всегда впереди
-    # 2. Все прямые VLESS Reality и TLS-TCP/xHTTP (ранги 0..2) выше мобильно-нестабильных TLS-WS (ранг 3) и Cloudflare CDN (ранг 4)
-    # 3. Внутри группы — рабочие (< 2200мс) раньше совсем медленных, затем ранг и минимальный пинг
+    # 1. Стабильные (прошедшие 2/2 gstatic <= 2.8с в Xray) всегда строго впереди!
+    # 2. Остальные URL-проверенные перед голым TCP-резервом
+    # 3. Все прямые VLESS Reality и TLS-TCP/xHTTP (ранги 0..2) выше TLS-WS (3) и Cloudflare CDN (4)
+    # 4. Внутри группы — быстрые (<= 1800мс) раньше медленных, затем ранг и минимальный пинг
     def bl_sort_key(item):
         node, ping_ms, verified = item
         rank = get_bl_rank(node)
+        is_stable = getattr(node, "bl_verified", False)
         is_fragile = rank >= 3  # TLS-WS и Cloudflare CDN
-        is_slow = (ping_ms > 2200 or ping_ms <= 0) if verified else True
+        is_slow = (ping_ms > 1800 or ping_ms <= 0) if verified else True
         return (
+            not is_stable,
             not verified,
             is_fragile,
             rank == 4,
@@ -523,9 +526,9 @@ def classify_nodes(
             dedup_bl_candidates.append(item)
 
     # Максимум 1 конфиг на один физический resolved IP в основном топе-20 (чтобы 1 сервер не забивал весь список)
-    # и до 3 Cloudflare CDN; дубли одного IP добираются только если уникальных IP не хватило до 20
+    # и до 5 быстрых проверенных 2/2 Cloudflare CDN в хвосте; дубли одного IP добираются только если уникальных IP < 20
     bl_limit = 20
-    cf_limit = 3
+    cf_limit = 5
     selected_bl = []
     cf_overflow = []
     overflow_bl = []

@@ -323,7 +323,13 @@ def _build_xray_outbound(n: ProxyNode, tag_out: str) -> Optional[dict]:
     }
 
 
-def _run_xray_chunk(xray_bin: Path, chunk: List[Tuple[ProxyNode, dict]]) -> List[Tuple[ProxyNode, float]]:
+def _run_xray_chunk(
+    xray_bin: Path,
+    chunk: List[Tuple[ProxyNode, dict]],
+    test_url: str = URL_TEST_ENDPOINT,
+    req_timeout: Optional[float] = None,
+    checks: int = 1,
+) -> List[Tuple[ProxyNode, float]]:
     """Запуск одного чанка узлов в Xray-core с автоделением при сбойном конфиге."""
     if not chunk:
         return []
@@ -355,23 +361,31 @@ def _run_xray_chunk(xray_bin: Path, chunk: List[Tuple[ProxyNode, dict]]) -> List
         temp_cfg.unlink(missing_ok=True)
         if len(chunk) > 1:
             mid = len(chunk) // 2
-            return _run_xray_chunk(xray_bin, chunk[:mid]) + _run_xray_chunk(xray_bin, chunk[mid:])
+            return (
+                _run_xray_chunk(xray_bin, chunk[:mid], test_url=test_url, req_timeout=req_timeout, checks=checks)
+                + _run_xray_chunk(xray_bin, chunk[mid:], test_url=test_url, req_timeout=req_timeout, checks=checks)
+            )
         logger.warning(f"Xray пропустил сбойный узел {chunk[0][0].host}:{chunk[0][0].port} ({err.strip()[-160:]})")
         return []
+
+    eff_timeout = req_timeout if req_timeout is not None else max(URL_TEST_TIMEOUT + 0.5, 6.5)
 
     def check_node(item):
         node, port = item
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({'http': f'http://127.0.0.1:{port}', 'https': f'http://127.0.0.1:{port}'}))
-        t0 = time.time()
-        try:
-            req = urllib.request.Request(URL_TEST_ENDPOINT, headers={'User-Agent': 'Mozilla/5.0'})
-            with opener.open(req, timeout=max(URL_TEST_TIMEOUT + 0.5, 6.5)) as resp:
-                elapsed = (time.time() - t0) * 1000.0
-                if resp.status in (200, 204):
-                    return (node, elapsed)
-        except Exception:
-            pass
-        return None
+        delays = []
+        for _ in range(checks):
+            t0 = time.time()
+            try:
+                req = urllib.request.Request(test_url, headers={'User-Agent': 'Mozilla/5.0'})
+                with opener.open(req, timeout=eff_timeout) as resp:
+                    if resp.status in (200, 204):
+                        delays.append((time.time() - t0) * 1000.0)
+                    else:
+                        return None
+            except Exception:
+                return None
+        return (node, sum(delays) / len(delays)) if len(delays) == checks else None
 
     alive: List[Tuple[ProxyNode, float]] = []
     try:
@@ -380,7 +394,8 @@ def _run_xray_chunk(xray_bin: Path, chunk: List[Tuple[ProxyNode, dict]]) -> List
                 if res:
                     node, delay = res
                     alive.append((node, delay))
-                    logger.info(f" [Xray OK] {delay:.0f}ms | {node.params.get('type','tcp')} | {node.sni or node.host} ({node.host})")
+                    if checks == 1:
+                        logger.info(f" [Xray OK] {delay:.0f}ms | {node.params.get('type','tcp')} | {node.sni or node.host} ({node.host})")
     finally:
         try:
             proc.terminate()
@@ -394,20 +409,29 @@ def _run_xray_chunk(xray_bin: Path, chunk: List[Tuple[ProxyNode, dict]]) -> List
     return alive
 
 
-def run_xray_urltest(nodes: List[ProxyNode], max_nodes: int = 220) -> List[Tuple[ProxyNode, float]]:
-    """
-    Тестирование White-List узлов (xHTTP, TCP/RAW, gRPC, WS) через нативное ядро Xray-core (>= 25.x).
-    Работает на всех транспортах и поддерживает реальные клиенты INCY / Happ / v2rayN.
-    """
+def _resolve_xray_bin() -> Optional[Path]:
     import shutil
     xray_bin = Path(XRAY_PATH)
-    if not xray_bin.exists():
-        which_xr = shutil.which("xray")
-        if which_xr:
-            xray_bin = Path(which_xr)
-        else:
-            logger.warning(f"Бинарник Xray не найден по пути {XRAY_PATH}. Пропускаем Xray тест.")
-            return []
+    if xray_bin.exists():
+        return xray_bin
+    which_xr = shutil.which("xray")
+    return Path(which_xr) if which_xr else None
+
+
+def run_xray_urltest(
+    nodes: List[ProxyNode],
+    max_nodes: int = 220,
+    test_url: str = URL_TEST_ENDPOINT,
+    req_timeout: Optional[float] = None,
+    checks: int = 1,
+) -> List[Tuple[ProxyNode, float]]:
+    """
+    Тестирование узлов (xHTTP, TCP/RAW, gRPC, WS) через нативное ядро Xray-core (>= 25.x).
+    """
+    xray_bin = _resolve_xray_bin()
+    if not xray_bin:
+        logger.warning(f"Бинарник Xray не найден по пути {XRAY_PATH}. Пропускаем Xray тест.")
+        return []
     if not nodes:
         return []
 
@@ -424,10 +448,13 @@ def run_xray_urltest(nodes: List[ProxyNode], max_nodes: int = 220) -> List[Tuple
 
     alive: List[Tuple[ProxyNode, float]] = []
     for start in range(0, len(prepared), 35):
-        alive.extend(_run_xray_chunk(xray_bin, prepared[start:start + 35]))
+        alive.extend(_run_xray_chunk(xray_bin, prepared[start:start + 35], test_url=test_url, req_timeout=req_timeout, checks=checks))
 
     alive.sort(key=lambda x: x[1])
-    logger.info(f"Xray URL-тест завершен: проверено {len(prepared)} узлов, РАБОТАЮТ: {len(alive)} серверов!")
+    if checks == 1:
+        logger.info(f"Xray URL-тест завершен: проверено {len(prepared)} узлов, РАБОТАЮТ: {len(alive)} серверов!")
+    else:
+        logger.info(f"Контрольный тест ЧС (2/2 gstatic <= {req_timeout or 2.8}с): {len(alive)} стабильных из {len(prepared)} кандидатов")
     return alive
 
 
@@ -554,28 +581,32 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
                 results.append((n, d))
 
     # Запуск Xray для всех xHTTP, не прошедших Sing-Box White-List кандидатов и добора Black-List
-    # Сперва ограничиваем дубли одного resolved IP до 2 штук на IP в Xray-доборе, чтобы хватило слотов разным серверам
-    wl_extra_for_xray = [n for n in wl_sb_candidates if n.unique_key not in seen_res][:220]
-    bl_pool = [
-        n for n in bl_test_nodes
-        if not is_cloudflare_ip(resolve_to_ip(n.host)) and n.unique_key not in seen_res and get_bl_rank(n) <= 3
-    ]
+    # Ограничиваем дубли одного resolved IP в Xray-доборе, включая запасные Cloudflare (<= 1 на IP)
+    wl_extra_for_xray = [n for n in wl_sb_candidates if n.unique_key not in seen_res][:200]
+    bl_pool = [n for n in bl_test_nodes if n.unique_key not in seen_res]
     bl_pool.sort(key=lambda x: (get_bl_rank(x), x.tcp_ping or 999.0))
     bl_direct_for_xray = []
     bl_xr_overflow = []
+    bl_cf_added = 0
     bl_ip_cnt = {}
     for n in bl_pool:
         rip = resolve_to_ip(n.host).lower()
+        is_cf = is_cloudflare_ip(rip)
+        cap = 1 if is_cf else 2
+        if is_cf and bl_cf_added >= 35:
+            continue
         c = bl_ip_cnt.get(rip, 0)
-        if c < 2:
+        if c < cap:
             bl_direct_for_xray.append(n)
             bl_ip_cnt[rip] = c + 1
-            if len(bl_direct_for_xray) >= 280:
+            if is_cf:
+                bl_cf_added += 1
+            if len(bl_direct_for_xray) >= 270:
                 break
         else:
             bl_xr_overflow.append(n)
-    if len(bl_direct_for_xray) < 280:
-        bl_direct_for_xray.extend(bl_xr_overflow[:(280 - len(bl_direct_for_xray))])
+    if len(bl_direct_for_xray) < 270:
+        bl_direct_for_xray.extend(bl_xr_overflow[:(270 - len(bl_direct_for_xray))])
 
     xray_queue = []
     seen_xr = set()
@@ -584,11 +615,33 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
             seen_xr.add(n.unique_key)
             xray_queue.append(n)
     if xray_queue:
-        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 620)
+        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 600)
         for n, d in xray_alive:
             if n.unique_key not in seen_res:
                 seen_res.add(n.unique_key)
                 results.append((n, d))
+
+    # Контрольный двойной тест ЧС через Xray по gstatic.com/generate_204 (2/2 <= 2.8с), как проверяют INCY/Happ на телефоне
+    bl_survivors = [n for n, _ in results if is_valid_blacklist_node(n)]
+    if bl_survivors and _resolve_xray_bin():
+        stable_bl = await asyncio.to_thread(
+            run_xray_urltest,
+            bl_survivors,
+            len(bl_survivors),
+            "https://www.gstatic.com/generate_204",
+            2.8,
+            2,
+        )
+        stable_map = {n.unique_key: d for n, d in stable_bl}
+        if stable_map:
+            updated_results = []
+            for n, d in results:
+                if n.unique_key in stable_map:
+                    n.bl_verified = True
+                    updated_results.append((n, stable_map[n.unique_key]))
+                else:
+                    updated_results.append((n, d))
+            results = updated_results
 
     if os.name != "nt" and results:
         results = await asyncio.to_thread(verify_ru_reachability_checkhost, results)

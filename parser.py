@@ -50,6 +50,7 @@ class ProxyNode:
     gemini_ok: bool = False
     gemini_delay: float = 0.0
     tcp_ping: float = 0.0
+    bl_verified: bool = False
 
     @property
     def unique_key(self) -> str:
