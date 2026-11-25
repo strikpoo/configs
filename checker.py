@@ -523,10 +523,11 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
     ]
     wl_sb_candidates.sort(key=lambda x: (get_wl_rank(x), x.tcp_ping or 999.0))
 
-    # Объединяем без дубликатов для единого прогона Sing-Box
+    # Объединяем без дубликатов для единого прогона Sing-Box (xHTTP отправляем напрямую в Xray)
+    bl_sb_nodes = [n for n in bl_test_nodes if n.params.get("type", "tcp").lower() not in ("xhttp", "splithttp")]
     sb_combined = []
     seen_sb = set()
-    for n in bl_test_nodes + wl_sb_candidates[:400]:
+    for n in bl_sb_nodes + wl_sb_candidates[:400]:
         if n.unique_key not in seen_sb:
             seen_sb.add(n.unique_key)
             sb_combined.append(n)
@@ -559,7 +560,7 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
         if not is_cloudflare_ip(n.host) and n.unique_key not in seen_res and get_bl_rank(n) <= 2
     ]
     bl_direct_for_xray.sort(key=lambda x: (get_bl_rank(x), x.tcp_ping or 999.0))
-    bl_direct_for_xray = bl_direct_for_xray[:220]
+    bl_direct_for_xray = bl_direct_for_xray[:260]
     xray_queue = []
     seen_xr = set()
     for n in xhttp_nodes + wl_extra_for_xray + bl_direct_for_xray:
@@ -567,7 +568,7 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
             seen_xr.add(n.unique_key)
             xray_queue.append(n)
     if xray_queue:
-        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 480)
+        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 560)
         for n, d in xray_alive:
             if n.unique_key not in seen_res:
                 seen_res.add(n.unique_key)

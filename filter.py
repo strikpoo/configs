@@ -264,7 +264,7 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
         return False
 
     net = node.params.get("type", "tcp").lower().strip()
-    if net not in ("tcp", "raw", "ws", "grpc", ""):
+    if net not in ("tcp", "raw", "xhttp", "splithttp", "ws", "grpc", ""):
         return False
 
     h = node.host.lower()
@@ -278,8 +278,8 @@ def is_valid_blacklist_node(node: ProxyNode) -> bool:
         if net == "ws" or is_cloudflare_ip(h):
             return False
     else:
-        # Для VLESS TLS + WS требуется доменный host/sni (не голый IP и не cloudflare.com)
-        if net == "ws" and not (sni or node.params.get("host")):
+        # Для VLESS TLS + WS / xHTTP требуется доменный host/sni
+        if net in ("ws", "xhttp", "splithttp") and not (sni or node.params.get("host")):
             return False
 
     # СТРОГО исключаем российские домены (.ru/VK/Yandex/White-SNI) из Black-List
@@ -337,10 +337,10 @@ def is_trusted_sni(sni: str) -> bool:
 def get_bl_rank(node: ProxyNode) -> int:
     """Ранжирование узлов Black-List с приоритетом мобильной устойчивости (МТС/ТСПУ + Wi-Fi):
     Ранг 0: Прямой не-Cloudflare VLESS Reality TCP (Vision) на порту 443
-    Ранг 1: Прочие прямые не-Cloudflare VLESS Reality (без Vision, gRPC, нестандартные порты)
-    Ранг 2: Прямой не-Cloudflare VLESS TLS TCP на 443/8443 (без WebSocket)
+    Ранг 1: Прочие прямые не-Cloudflare VLESS Reality (без Vision, xHTTP, gRPC, нестандартные порты)
+    Ранг 2: Прямой не-Cloudflare VLESS TLS TCP (443/8443) или прямой VLESS TLS xHTTP (без WebSocket)
     Ранг 3: Прямой не-Cloudflare VLESS TLS WebSocket (резерв, чаще режется на мобильных)
-    Ранг 4: Чистые Cloudflare CDN Worker VLESS TLS WS (без cloudflare.com в SNI)
+    Ранг 4: Чистые Cloudflare CDN Worker VLESS TLS WS/xHTTP (без cloudflare.com в SNI)
     """
     sec = node.params.get("security", "").lower().strip()
     flow = node.params.get("flow", "").lower()
@@ -354,7 +354,7 @@ def get_bl_rank(node: ProxyNode) -> int:
         return 0
     if sec == "reality":
         return 1
-    if sec == "tls" and net in ("tcp", "raw", "") and str(node.port) in ("443", "8443"):
+    if sec == "tls" and ((net in ("tcp", "raw", "") and str(node.port) in ("443", "8443")) or net in ("xhttp", "splithttp")):
         return 2
     return 3
 
