@@ -211,7 +211,7 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
             "routing": {}
         }
 
-    cfg_name = f"🇷🇺 White-List TSPO Bypass ({len(outbounds)} nodes)" if is_whitelist else f"🌐 Global Black-List ({len(outbounds)} nodes)"
+    cfg_name = "🏳️ БС" if is_whitelist else "🏴 ЧС"
     target_filename = "happ_whitelist.json" if is_whitelist else "happ_blacklist.json"
     subject_selector = ["⚡", "🇷🇺", "🇩🇪", "🌐", "node-"] if is_whitelist else ["⚡", "🌐", "node-"]
 
@@ -277,6 +277,13 @@ def generate_happ_json(nodes_list: List[str], max_nodes: int = 50, is_whitelist:
     return happ_file
 
 
+def _format_subscription_text(nodes_list: List[str], title: str) -> str:
+    """Формирует текст подписки с мета-заголовками названия профиля (#profile-title) для клиентов (INCY / Happ / v2rayNG)."""
+    title_b64 = base64.b64encode(title.encode("utf-8")).decode("ascii")
+    header = f"#profile-title: base64:{title_b64}\n#profile-update-interval: 1\n"
+    return header + "\n".join(nodes_list) + "\n"
+
+
 def save_subscriptions(whitelist: List[str], blacklist: List[str]) -> Path:
     """Сохранение списков в директорию output/."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -288,14 +295,17 @@ def save_subscriptions(whitelist: List[str], blacklist: List[str]) -> Path:
     happ_txt_file = OUTPUT_DIR / "happ_whitelist.txt"
     happ_b64_file = OUTPUT_DIR / "happ_whitelist_base64.txt"
 
+    wl_text = _format_subscription_text(whitelist, "🏳️ БС")
+    bl_text = _format_subscription_text(blacklist, "🏴 ЧС")
+
     # Сохранение White-List
     with open(wl_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(whitelist) + "\n")
+        f.write(wl_text)
 
     with open(happ_txt_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(whitelist) + "\n")
+        f.write(wl_text)
 
-    wl_b64 = base64.b64encode("\n".join(whitelist).encode("utf-8")).decode("utf-8")
+    wl_b64 = base64.b64encode(wl_text.encode("utf-8")).decode("utf-8")
     with open(wl_b64_file, "w", encoding="utf-8") as f:
         f.write(wl_b64 + "\n")
 
@@ -304,9 +314,9 @@ def save_subscriptions(whitelist: List[str], blacklist: List[str]) -> Path:
 
     # Сохранение Black-List
     with open(bl_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(blacklist) + "\n")
+        f.write(bl_text)
 
-    bl_b64 = base64.b64encode("\n".join(blacklist).encode("utf-8")).decode("utf-8")
+    bl_b64 = base64.b64encode(bl_text.encode("utf-8")).decode("utf-8")
     with open(bl_b64_file, "w", encoding="utf-8") as f:
         f.write(bl_b64 + "\n")
 

@@ -63,7 +63,7 @@ def _read_links_from_file(path: Path) -> List[str]:
     lines = []
     for raw in path.read_text(encoding="utf-8", errors="ignore").splitlines():
         line = raw.strip()
-        if line and "://" in line:
+        if line and not line.startswith("#") and "://" in line:
             lines.append(line)
     return lines
 
