@@ -95,7 +95,7 @@
           "🌐",
           "node-"
         ],
-        "fallbackTag": "⚡ [486ms] 🌐 White Relay #01 (www.gosuslugi.ru)",
+        "fallbackTag": "⚡ [825ms] 🌐 White Relay #01 (ya.ru)",
         "strategy": {
           "type": "leastPing"
         }
@@ -150,16 +150,16 @@
   },
   "outbounds": [
     {
-      "tag": "⚡ [486ms] 🌐 White Relay #01 (www.gosuslugi.ru)",
+      "tag": "⚡ [825ms] 🌐 White Relay #01 (ya.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "147.45.98.78",
+            "address": "89.110.97.112",
             "port": 443,
             "users": [
               {
-                "id": "918b1fa3-3e63-4c8d-87a4-8f635ffb7cd3",
+                "id": "Fluffy_VPN-IrUwcGXw",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -180,15 +180,15 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.gosuslugi.ru",
+          "serverName": "ya.ru",
           "fingerprint": "firefox",
-          "publicKey": "C8jwxMahtF-BpgtauR6I6dVXCc0X8VM9nbFxDQ3LzF0",
-          "shortId": "b4"
+          "publicKey": "H5bvfKmqjKwkbRbqd2bKW-jep85VFVB7QzaV75Chqm0",
+          "shortId": ""
         }
       }
     },
     {
-      "tag": "⚡ [490ms] 🇩🇪 White Relay #02 (ya.ru)",
+      "tag": "⚡ [2651ms] 🇩🇪 White Relay #02 (ya.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -226,42 +226,7 @@
       }
     },
     {
-      "tag": "⚡ [991ms] 🌐 White gRPC #03 (id.vk.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "212.109.193.107",
-            "port": 2096,
-            "users": [
-              {
-                "id": "c28bd116-61d1-44bf-a3e2-589978d247f2",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": "vless-grpc-reality"
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "id.vk.com",
-          "fingerprint": "safari",
-          "publicKey": "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc",
-          "shortId": ""
-        }
-      }
-    },
-    {
-      "tag": "⚡ [298ms] 🇷🇺 Russia CIDR #01 (144.hexdey.com)",
+      "tag": "⚡ [333ms] 🇷🇺 Russia CIDR #01 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -299,7 +264,7 @@
       }
     },
     {
-      "tag": "⚡ [403ms] 🇷🇺 Russia CIDR #02 (144.hexdey.com)",
+      "tag": "⚡ [404ms] 🇷🇺 Russia CIDR #02 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -337,7 +302,7 @@
       }
     },
     {
-      "tag": "⚡ [3561ms] 🇷🇺 Russia CIDR #03 (unlik.club)",
+      "tag": "⚡ [5332ms] 🇷🇺 Russia CIDR #03 (unlik.club)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -373,7 +338,7 @@
       }
     },
     {
-      "tag": "⚡ [760ms] 🇷🇺 Russia xHTTP #04 (cdn.white.gigobingo.ru)",
+      "tag": "⚡ [1106ms] 🇷🇺 Russia xHTTP #04 (cdn.white.gigobingo.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -430,7 +395,55 @@
       }
     },
     {
-      "tag": "⚡ [794ms] 🇷🇺 Russia xHTTP #05 (ch3-cdn.insidenet.ru)",
+      "tag": "⚡ [1230ms] 🇷🇺 Russia xHTTP #05 (ycde2.subs-sosavpn.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.72.112.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "4a3e1246-4ac0-4212-abac-a34008218f66",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v4/media/session/poll.ts",
+          "host": "ycde2.subs-sosavpn.ru",
+          "mode": "packet-up",
+          "extra": {
+            "xmux": {
+              "cMaxLifetimeMs": 300000,
+              "cMaxReuseTimes": 100,
+              "maxConcurrency": "16-32",
+              "maxConnections": 0,
+              "hKeepAlivePeriod": 30
+            },
+            "uplinkDataKey": "X-Payload",
+            "uplinkHTTPMethod": "GET",
+            "scMaxEachPostBytes": 4096,
+            "uplinkDataPlacement": "header"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ycde2.subs-sosavpn.ru",
+          "fingerprint": "edge"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [2776ms] 🇷🇺 Russia xHTTP #06 (ch3-cdn.insidenet.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -493,103 +506,7 @@
       }
     },
     {
-      "tag": "⚡ [1401ms] 🇷🇺 Russia xHTTP #06 (ycde2.subs-sosavpn.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.72.112.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "4a3e1246-4ac0-4212-abac-a34008218f66",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/v4/media/session/poll.ts",
-          "host": "ycde2.subs-sosavpn.ru",
-          "mode": "packet-up",
-          "extra": {
-            "xmux": {
-              "cMaxLifetimeMs": 300000,
-              "cMaxReuseTimes": 100,
-              "maxConcurrency": "16-32",
-              "maxConnections": 0,
-              "hKeepAlivePeriod": 30
-            },
-            "uplinkDataKey": "X-Payload",
-            "uplinkHTTPMethod": "GET",
-            "scMaxEachPostBytes": 4096,
-            "uplinkDataPlacement": "header"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "ycde2.subs-sosavpn.ru",
-          "fingerprint": "edge"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [6200ms] 🇷🇺 Russia xHTTP #07 (keno-nl-cdn-cello.ke..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.72.112.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "0259e5aa-c188-4334-b204-32cd5ea859f6",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/uploadFile/",
-          "host": "keno-nl-cdn-cello.keno.su",
-          "mode": "packet-up",
-          "extra": {
-            "xmux": {
-              "cMaxLifetimeMs": 300000,
-              "cMaxReuseTimes": 100,
-              "maxConcurrency": "16-32",
-              "maxConnections": 0,
-              "hKeepAlivePeriod": 30
-            },
-            "uplinkDataKey": "X-Payload",
-            "uplinkHTTPMethod": "GET",
-            "scMaxEachPostBytes": 4096,
-            "uplinkDataPlacement": "header"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "keno-nl-cdn-cello.keno.su",
-          "fingerprint": "edge"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [1130ms] 🌐 White xHTTP #04 (ch3-cdn.insidenet.ru)",
+      "tag": "⚡ [1091ms] 🌐 White xHTTP #03 (ch3-cdn.insidenet.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -652,7 +569,83 @@
       }
     },
     {
-      "tag": "⚡ [1467ms] 🌐 White Relay #05 (vnsrx.speedtec.ru)",
+      "tag": "⚡ [1197ms] 🌐 White Relay #04 (czvkg.speedtec.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "5.35.82.51",
+            "port": 443,
+            "users": [
+              {
+                "id": "de32225b-374c-4a6a-830e-7c4e367fcfb5",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "czvkg.speedtec.ru",
+          "fingerprint": "firefox",
+          "publicKey": "y9YvruB31Qg8f21GSH91VtYJ7KPc1EFMihuHAWKDKQY",
+          "shortId": "78a6ecc36813aada"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1540ms] 🌐 White Relay #05 (bwjhp.speedtec.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "155.212.131.25",
+            "port": 443,
+            "users": [
+              {
+                "id": "de32225b-374c-4a6a-830e-7c4e367fcfb5",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "bwjhp.speedtec.ru",
+          "fingerprint": "firefox",
+          "publicKey": "e7l3pSGpDItm7X8B22Cz_9dsJe_3Ari0zfBJa2-syho",
+          "shortId": "5365e0742b59048d"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [2097ms] 🌐 White Relay #06 (vnsrx.speedtec.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -690,7 +683,7 @@
       }
     },
     {
-      "tag": "⚡ [3800ms] 🌐 White xHTTP #06 (ycfl.subs-sosavpn.ru)",
+      "tag": "⚡ [2496ms] 🌐 White xHTTP #07 (ycfl.subs-sosavpn.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -725,16 +718,71 @@
       }
     },
     {
-      "tag": "⚡ [6066ms] 🇷🇺 Russia CIDR #08 (contract.starsov.pro)",
+      "tag": "⚡ [1145ms] 🇷🇺 Russia xHTTP #07 (cdnpl.worldfly.io)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.225.32.175",
+            "address": "188.72.112.1",
             "port": 443,
             "users": [
               {
-                "id": "d3d4e690-db61-4b84-8687-7c1ff79c89ff",
+                "id": "b432a23a-acff-425c-bf69-70480cd6ed09",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v1/assets/",
+          "host": "cdnpl.worldfly.io",
+          "mode": "packet-up",
+          "extra": {
+            "noGRPCHeader": true,
+            "noSSEHeader": false,
+            "scMaxBufferedPosts": 256,
+            "scMaxEachPostBytes": "12000-12000",
+            "scMinPostsIntervalMs": "50-150",
+            "serverMaxHeaderBytes": 65536,
+            "uplinkChunkSize": "8000-8000",
+            "uplinkDataKey": "X-Client-Token",
+            "uplinkDataPlacement": "header",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingBytes": "16-64",
+            "xmux": {
+              "cMaxReuseTimes": 0,
+              "hKeepAlivePeriod": 30,
+              "hMaxRequestTimes": "100-200",
+              "hMaxReusableSecs": "600-900",
+              "maxConnections": 4
+            }
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "cdnpl.worldfly.io",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1156ms] 🇷🇺 Russia CIDR #08 (birch-ledger.justext..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "212.233.90.78",
+            "port": 443,
+            "users": [
+              {
+                "id": "9548ef84-b54d-41dc-b17c-9da21d52ba82",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -755,91 +803,15 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "contract.starsov.pro",
-          "fingerprint": "firefox",
-          "publicKey": "8rdhihFgU72DVkhH6ROS9j2WyNc_spuiGXrT_YvNJ0M",
-          "shortId": "f51bc11ebd9f2835"
+          "serverName": "birch-ledger.justext.space",
+          "fingerprint": "safari",
+          "publicKey": "FwPphm8xGAKY6u74WDRVrcVye3A7GdLDfJoNSDWFsFQ",
+          "shortId": "2c6df23e"
         }
       }
     },
     {
       "tag": "🇷🇺 Russia CIDR #09 (passport.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.86.145.214",
-            "port": 12358,
-            "users": [
-              {
-                "id": "e603affa-cf4f-4b6a-a866-6d5d5bb3a13d",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "passport.yandex.ru",
-          "fingerprint": "firefox",
-          "publicKey": "6V01vmstwvGJXz2r2eHE55Fr_L1KRYhjCwk5KD6CwmE",
-          "shortId": "b6f632a91065521e"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #10 (max.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.229.9.174",
-            "port": 49094,
-            "users": [
-              {
-                "id": "00da270a-c35a-4102-afbc-2788ef40003a",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "max.ru",
-          "fingerprint": "firefox",
-          "publicKey": "Td6o-BHBTNeIugm0r2RjtHgYFkhbRoInB1VxEQtOjyg",
-          "shortId": "c95f"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #11 (passport.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -877,7 +849,45 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #12 (max.ru)",
+      "tag": "🇷🇺 Russia CIDR #10 (passport.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.86.145.190",
+            "port": 12460,
+            "users": [
+              {
+                "id": "6dd184c8-8c27-4eb2-95a5-85679881d99f",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "passport.yandex.ru",
+          "fingerprint": "firefox",
+          "publicKey": "6iY9vVjXFPDfNVhmDsV5IlC0NcaPpaba83dxDEmxVzo",
+          "shortId": "7d752340c0e7c473"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #11 (max.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -911,6 +921,44 @@
           "fingerprint": "chrome",
           "publicKey": "bqLr1d3mbuP10WAYxWj8OEdSuZlVvrywrKq2U6ACw2w",
           "shortId": "12b9ecabbf3a3b88"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #12 (yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "84.201.145.167",
+            "port": 51191,
+            "users": [
+              {
+                "id": "0408e624-0d2a-49bc-8c1c-cbcf5fb75328",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yandex.ru",
+          "fingerprint": "edge",
+          "publicKey": "PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY",
+          "shortId": "6ba85179e30d4fc2"
         }
       }
     },
@@ -953,131 +1001,83 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #14 (passport.yandex.ru)",
+      "tag": "🇷🇺 Russia CIDR #14 (ads.x5.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "185.86.145.190",
-            "port": 12460,
-            "users": [
-              {
-                "id": "6dd184c8-8c27-4eb2-95a5-85679881d99f",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "passport.yandex.ru",
-          "fingerprint": "firefox",
-          "publicKey": "6iY9vVjXFPDfNVhmDsV5IlC0NcaPpaba83dxDEmxVzo",
-          "shortId": "7d752340c0e7c473"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #15 (yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "84.201.145.167",
-            "port": 51191,
-            "users": [
-              {
-                "id": "0408e624-0d2a-49bc-8c1c-cbcf5fb75328",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yandex.ru",
-          "fingerprint": "edge",
-          "publicKey": "PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY",
-          "shortId": "6ba85179e30d4fc2"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia xHTTP #16 (api-maps.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "51.250.44.57",
+            "address": "158.160.228.216",
             "port": 443,
             "users": [
               {
-                "id": "cfe3363b-5b32-4e4e-a5fb-805fa0c91981",
-                "encryption": "none"
+                "id": "04913a93-529d-021c-9ffd-b37948df532b",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/xhttp",
-          "host": "api-maps.yandex.ru",
-          "mode": "stream-up",
-          "extra": {
-            "xmux": {
-              "cMaxReuseTimes": 0,
-              "maxConcurrency": "4-7",
-              "hKeepAlivePeriod": 0,
-              "hMaxRequestTimes": "600-900",
-              "hMaxReusableSecs": "1800-3000"
-            },
-            "noGRPCHeader": false,
-            "xPaddingBytes": "100-1000"
+        "rawSettings": {
+          "header": {
+            "type": "none"
           }
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "api-maps.yandex.ru",
+          "serverName": "ads.x5.ru",
           "fingerprint": "chrome",
-          "publicKey": "ntl-B6DVFe9ezroTPPzzWDgjw-toGDqiAS4do2oiNg4",
-          "shortId": "7a72a20b90679b00"
+          "publicKey": "sYDQC1RUZKqtJau7wrl-i5yAYy613d9e72FRGAwvYUM",
+          "shortId": ""
         }
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #17 (s3.t2.ru)",
+      "tag": "🇷🇺 Russia CIDR #15 (ads.x5.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "158.160.228.216",
+            "port": 443,
+            "users": [
+              {
+                "id": "04913a93-529d-0244-9ffd-b37948df532b",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "ads.x5.ru",
+          "fingerprint": "chrome",
+          "publicKey": "sYDQC1RUZKqtJau7wrl-i5yAYy613d9e72FRGAwvYUM",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #16 (s3.t2.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1114,7 +1114,7 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #18 (api-maps.yandex.ru)",
+      "tag": "🇷🇺 Russia CIDR #17 (api-maps.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1152,16 +1152,16 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #19 (ads.x5.ru)",
+      "tag": "🇷🇺 Russia CIDR #18 (passport.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "158.160.228.216",
-            "port": 443,
+            "address": "185.86.145.214",
+            "port": 12358,
             "users": [
               {
-                "id": "04913a93-529d-0230-9ffd-b37948df532b",
+                "id": "e603affa-cf4f-4b6a-a866-6d5d5bb3a13d",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -1182,53 +1182,15 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "ads.x5.ru",
-          "fingerprint": "chrome",
-          "publicKey": "sYDQC1RUZKqtJau7wrl-i5yAYy613d9e72FRGAwvYUM",
-          "shortId": ""
+          "serverName": "passport.yandex.ru",
+          "fingerprint": "firefox",
+          "publicKey": "6V01vmstwvGJXz2r2eHE55Fr_L1KRYhjCwk5KD6CwmE",
+          "shortId": "b6f632a91065521e"
         }
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #20 (ads.x5.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "158.160.228.216",
-            "port": 443,
-            "users": [
-              {
-                "id": "04913a93-529d-0208-9ffd-b37948df532b",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ads.x5.ru",
-          "fingerprint": "chrome",
-          "publicKey": "sYDQC1RUZKqtJau7wrl-i5yAYy613d9e72FRGAwvYUM",
-          "shortId": ""
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #21 (max.ru)",
+      "tag": "🇷🇺 Russia CIDR #19 (max.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1266,7 +1228,45 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #22 (api-maps.yandex.ru)",
+      "tag": "🇷🇺 Russia CIDR #20 (api-maps.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "51.250.25.145",
+            "port": 443,
+            "users": [
+              {
+                "id": "a94f48d8-9ce0-417f-b539-59da0858d516",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api-maps.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "ZDHa3Fbl_IxcBtjcWmZtqtsmK1u2vA4en8zDpIkhUA8",
+          "shortId": "6d021e2120ed3fac"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #21 (api-maps.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1304,120 +1304,7 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #23 (api-maps.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "158.160.198.58",
-            "port": 443,
-            "users": [
-              {
-                "id": "596b215c-3743-4893-b24a-4e396c4ab80f",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api-maps.yandex.ru",
-          "fingerprint": "chrome",
-          "publicKey": "DQW3GuEvmRgUQnnKdHjSZhgaEDcu_07Ijuqibd72-0I",
-          "shortId": "ca7dd27a72c7c203"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #24 (yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.229.9.240",
-            "port": 443,
-            "users": [
-              {
-                "id": "a5893c8b-28a2-4947-9a1c-708db25506c3",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yandex.ru",
-          "fingerprint": "random",
-          "publicKey": "1uox9vg8wi_akm_7I_v8xM0MF32jTtqkxlvnqC9Yux8",
-          "shortId": "27e53bbcab7593d7"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #25 (api-maps.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "84.201.172.164",
-            "port": 443,
-            "users": [
-              {
-                "id": "cb2e5fc3-c1bb-4cfc-b18c-69e450fbd017",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api-maps.yandex.ru",
-          "fingerprint": "chrome",
-          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
-          "shortId": "2476f063981ffd92"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #26 (api-maps.yandex.ru)",
+      "tag": "🇷🇺 Russia CIDR #22 (api-maps.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1454,7 +1341,7 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #27 (static.rutube.ru)",
+      "tag": "🇷🇺 Russia CIDR #23 (static.rutube.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1492,16 +1379,16 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #28 (www.vk.com)",
+      "tag": "🇷🇺 Russia CIDR #24 (travel.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "185.229.9.234",
+            "address": "217.13.104.148",
             "port": 443,
             "users": [
               {
-                "id": "efa160b9-7267-4fa4-8698-711503cc9482",
+                "id": "74b6eee7-898d-4f32-9987-a035210ec5e2",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -1522,10 +1409,162 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.vk.com",
+          "serverName": "travel.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
+          "shortId": "6354585c37827955"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #25 (api.vk.me)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.134.203.106",
+            "port": 443,
+            "users": [
+              {
+                "id": "3af3f8f0-569f-4dd3-be99-2ef4bfe7867c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.vk.me",
+          "fingerprint": "edge",
+          "publicKey": "fNfokzklCF4l_c8k8PciOCjm5ecNoF_sNLjEtaO-xzI",
+          "shortId": "db04ce8bdb8900f1"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #26 (max.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.229.9.174",
+            "port": 49094,
+            "users": [
+              {
+                "id": "00da270a-c35a-4102-afbc-2788ef40003a",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "max.ru",
           "fingerprint": "firefox",
-          "publicKey": "7o36V1H4H_34kTMpwCfJmDB1bbd21Rgbk2dM_dAonyM",
-          "shortId": "0bb3fbdc6cb178d4"
+          "publicKey": "Td6o-BHBTNeIugm0r2RjtHgYFkhbRoInB1VxEQtOjyg",
+          "shortId": "c95f"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #27 (yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.229.9.240",
+            "port": 443,
+            "users": [
+              {
+                "id": "a5893c8b-28a2-4947-9a1c-708db25506c3",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yandex.ru",
+          "fingerprint": "random",
+          "publicKey": "1uox9vg8wi_akm_7I_v8xM0MF32jTtqkxlvnqC9Yux8",
+          "shortId": "27e53bbcab7593d7"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #28 (travel.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "217.13.104.149",
+            "port": 443,
+            "users": [
+              {
+                "id": "74b6eee7-898d-4f32-9987-a035210ec5e2",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "travel.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
+          "shortId": "33554379411b3219"
         }
       }
     },
@@ -1606,7 +1645,130 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #31 (eh.vk.com)",
+      "tag": "🇷🇺 Russia CIDR #31 (api-maps.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "84.201.172.164",
+            "port": 443,
+            "users": [
+              {
+                "id": "cb2e5fc3-c1bb-4cfc-b18c-69e450fbd017",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api-maps.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
+          "shortId": "2476f063981ffd92"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #32 (api-maps.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "158.160.198.58",
+            "port": 443,
+            "users": [
+              {
+                "id": "596b215c-3743-4893-b24a-4e396c4ab80f",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api-maps.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "DQW3GuEvmRgUQnnKdHjSZhgaEDcu_07Ijuqibd72-0I",
+          "shortId": "ca7dd27a72c7c203"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia xHTTP #33 (api-maps.yandex.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "51.250.44.57",
+            "port": 443,
+            "users": [
+              {
+                "id": "cfe3363b-5b32-4e4e-a5fb-805fa0c91981",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/xhttp",
+          "host": "api-maps.yandex.ru",
+          "mode": "stream-up",
+          "extra": {
+            "xmux": {
+              "cMaxReuseTimes": 0,
+              "maxConcurrency": "4-7",
+              "hKeepAlivePeriod": 0,
+              "hMaxRequestTimes": "600-900",
+              "hMaxReusableSecs": "1800-3000"
+            },
+            "noGRPCHeader": false,
+            "xPaddingBytes": "100-1000"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api-maps.yandex.ru",
+          "fingerprint": "chrome",
+          "publicKey": "ntl-B6DVFe9ezroTPPzzWDgjw-toGDqiAS4do2oiNg4",
+          "shortId": "7a72a20b90679b00"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #34 (eh.vk.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1644,16 +1806,51 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #32 (api-maps.yandex.ru)",
+      "tag": "🇷🇺 Russia gRPC #35 (www.vk.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "51.250.25.145",
+            "address": "185.86.144.32",
             "port": 443,
             "users": [
               {
-                "id": "a94f48d8-9ce0-417f-b539-59da0858d516",
+                "id": "895f94cb-5567-4731-bc2c-2f89a54bafe4",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "grpcSettings": {
+          "serviceName": ""
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.vk.com",
+          "fingerprint": "chrome",
+          "publicKey": "4NjqiB_FliKff9bP2ASI3WWuhfuyviPeKoz1DyZJQDE",
+          "shortId": "574aa52c"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #36 (www.vk.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.229.9.234",
+            "port": 443,
+            "users": [
+              {
+                "id": "efa160b9-7267-4fa4-8698-711503cc9482",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -1674,53 +1871,15 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "api-maps.yandex.ru",
-          "fingerprint": "chrome",
-          "publicKey": "ZDHa3Fbl_IxcBtjcWmZtqtsmK1u2vA4en8zDpIkhUA8",
-          "shortId": "6d021e2120ed3fac"
+          "serverName": "www.vk.com",
+          "fingerprint": "firefox",
+          "publicKey": "7o36V1H4H_34kTMpwCfJmDB1bbd21Rgbk2dM_dAonyM",
+          "shortId": "0bb3fbdc6cb178d4"
         }
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #33 (travel.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "217.13.104.149",
-            "port": 443,
-            "users": [
-              {
-                "id": "74b6eee7-898d-4f32-9987-a035210ec5e2",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "travel.yandex.ru",
-          "fingerprint": "chrome",
-          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
-          "shortId": "33554379411b3219"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #34 (api-maps.yandex.ru)",
+      "tag": "🇷🇺 Russia CIDR #37 (api-maps.yandex.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1754,117 +1913,6 @@
           "fingerprint": "chrome",
           "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
           "shortId": "17802e8ff84f12df"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #35 (lk.x5.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.229.9.242",
-            "port": 443,
-            "users": [
-              {
-                "id": "29c46e15-5adc-461a-add7-4c8e834bb488",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "lk.x5.ru",
-          "fingerprint": "firefox",
-          "publicKey": "c67EFkKYBrghsRRhpjpmeMyVqMhrvt0tBIkf5pDnp34",
-          "shortId": ""
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #36 (api.vk.me)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.134.203.106",
-            "port": 443,
-            "users": [
-              {
-                "id": "3af3f8f0-569f-4dd3-be99-2ef4bfe7867c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api.vk.me",
-          "fingerprint": "edge",
-          "publicKey": "fNfokzklCF4l_c8k8PciOCjm5ecNoF_sNLjEtaO-xzI",
-          "shortId": "db04ce8bdb8900f1"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia gRPC #37 (www.vk.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.86.144.32",
-            "port": 443,
-            "users": [
-              {
-                "id": "895f94cb-5567-4731-bc2c-2f89a54bafe4",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "grpcSettings": {
-          "serviceName": ""
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.vk.com",
-          "fingerprint": "chrome",
-          "publicKey": "4NjqiB_FliKff9bP2ASI3WWuhfuyviPeKoz1DyZJQDE",
-          "shortId": "574aa52c"
         }
       }
     },
@@ -1945,7 +1993,83 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #40 (www.vk.com)",
+      "tag": "🇷🇺 Russia CIDR #40 (lk.x5.ru)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.229.9.242",
+            "port": 443,
+            "users": [
+              {
+                "id": "29c46e15-5adc-461a-add7-4c8e834bb488",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "lk.x5.ru",
+          "fingerprint": "firefox",
+          "publicKey": "c67EFkKYBrghsRRhpjpmeMyVqMhrvt0tBIkf5pDnp34",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #41 (api.vk.me)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.134.203.106",
+            "port": 443,
+            "users": [
+              {
+                "id": "3af3f8f0-569f-4dd3-be99-2ef4bfe7867c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.vk.me",
+          "fingerprint": "firefox",
+          "publicKey": "fNfokzklCF4l_c8k8PciOCjm5ecNoF_sNLjEtaO-xzI",
+          "shortId": "db04ce8bdb8900f1"
+        }
+      }
+    },
+    {
+      "tag": "🇷🇺 Russia CIDR #42 (www.vk.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1983,7 +2107,7 @@
       }
     },
     {
-      "tag": "🇷🇺 Russia CIDR #41 (www.ya.ru)",
+      "tag": "🇷🇺 Russia CIDR #43 (www.ya.ru)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -2017,115 +2141,6 @@
           "fingerprint": "chrome",
           "publicKey": "CAlp9qO94iFo9e_lZ_WtmlF4nJSQlBNJk-etZhXouxY",
           "shortId": "b0ca2d2014b4696c"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #42 (api.vk.me)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.134.203.106",
-            "port": 443,
-            "users": [
-              {
-                "id": "3af3f8f0-569f-4dd3-be99-2ef4bfe7867c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api.vk.me",
-          "fingerprint": "ios",
-          "publicKey": "fNfokzklCF4l_c8k8PciOCjm5ecNoF_sNLjEtaO-xzI",
-          "shortId": "db04ce8bdb8900f1"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #43 (travel.yandex.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "217.13.104.148",
-            "port": 443,
-            "users": [
-              {
-                "id": "74b6eee7-898d-4f32-9987-a035210ec5e2",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "travel.yandex.ru",
-          "fingerprint": "chrome",
-          "publicKey": "FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg",
-          "shortId": "6354585c37827955"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 Russia CIDR #44 (d.nehtar.ru)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "95.129.236.149",
-            "port": 443,
-            "users": [
-              {
-                "id": "efa160b9-7267-4fa4-8698-711503cc9482",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/gateway/v1/ws/74c4d5e82a8e50ccf09fc628c17dc9be"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "d.nehtar.ru",
-          "fingerprint": "firefox"
         }
       }
     },
