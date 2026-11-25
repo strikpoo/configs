@@ -14,24 +14,52 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+
+      - name: Check if RU PC pushed recently (< 12h)
+        id: guard
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Manual trigger — running unconditionally."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          last_pc_ts=$(git log -n 1 --grep='Auto-update from RU PC' --format=%ct || echo 0)
+          last_pc_ts=${last_pc_ts:-0}
+          now_ts=$(date -u +%s)
+          age_sec=$((now_ts - last_pc_ts))
+
+          if [ "$last_pc_ts" -gt 0 ] && [ "$age_sec" -lt 43200 ]; then
+            echo "Skipping scheduled run: RU PC pushed $((age_sec / 60)) min ago (< 12h fallback threshold)."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "RU PC inactive >= 12h (age=${age_sec}s) — running backup build."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Python
+        if: steps.guard.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Install Sing-Box core (for URL-Test)
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           curl -fsSL https://github.com/SagerNet/sing-box/releases/download/v1.10.7/sing-box-1.10.7-linux-amd64.tar.gz | sudo tar -xz --strip-components=1 -C /usr/local/bin/ sing-box-1.10.7-linux-amd64/sing-box
           sudo chmod +x /usr/local/bin/sing-box
           sing-box version
 
       - name: Install Xray-core (for xHTTP White-List URL-Test)
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           curl -fsSL https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o /tmp/xray.zip
           sudo unzip -oq /tmp/xray.zip xray -d /usr/local/bin/
@@ -40,6 +68,7 @@ jobs:
           xray version
 
       - name: Run Harvester
+        if: steps.guard.outputs.should_run == 'true'
         env:
           VK_ACCESS_TOKEN: ${{ secrets.VK_ACCESS_TOKEN }}
           VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
@@ -48,6 +77,7 @@ jobs:
           python main.py --no-push
 
       - name: Commit and push updated configs
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -60,4 +90,3 @@ jobs:
             fi
             git push
           fi
-
