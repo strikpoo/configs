@@ -56,6 +56,10 @@ class ProxyNode:
         """Уникальный ключ для дедупликации серверов (строго физический сервер + учетные данные, без fp)."""
         pbk = self.params.get("pbk", "").strip().replace(" ", "+")
         net = self.params.get("type", "tcp").strip().lower()
+        if net in ("raw", ""):
+            net = "tcp"
+        elif net == "splithttp":
+            net = "xhttp"
         auth = self.uuid.strip().lower() if self.uuid else pbk
         return f"{self.protocol}@{self.host.lower()}:{self.port}@{auth}@{net}"
 

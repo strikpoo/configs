@@ -173,7 +173,7 @@ def main() -> int:
         ahead_chk = _run_cmd(["git", "rev-list", "--count", "HEAD..origin/main"], env=git_env, timeout=15)
         behind_cnt = int((ahead_chk.stdout or "0").strip() or "0") if ahead_chk.returncode == 0 else 0
         if behind_cnt > 0:
-            reb = _run_cmd(["git", "rebase", "-X", "theirs", "origin/main"], env=git_env, timeout=45)
+            reb = _run_cmd(["git", "rebase", "--autostash", "-X", "theirs", "origin/main"], env=git_env, timeout=45)
             # При rebase на origin/main наши локальные коммиты — это "theirs", поэтому при конфликтах побеждает свежая сборка с ПК!
             if reb.returncode != 0:
                 _run_cmd(["git", "rebase", "--abort"], env=git_env, timeout=15)

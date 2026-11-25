@@ -8,7 +8,7 @@ import ipaddress
 import logging
 import urllib.request
 from typing import List, Tuple, Dict, Set
-from parser import ProxyNode
+from parser import ProxyNode, resolve_to_ip
 from config import RU_WHITE_SNI
 
 logger = logging.getLogger("harvester.filter")
@@ -432,12 +432,13 @@ def classify_nodes(
     # 3. Задержка
     wl_pairs.sort(key=lambda x: (not x[3], x[2], x[1] > 1200 if x[3] else True, x[1]))
 
-    # Ограничение White-List до 100 уникальных серверов (максимум 2 записи на host:port)
+    # Ограничение White-List до 100 серверов (максимум 2 записи на физический resolved IP:port)
     selected_wl = []
     wl_overflow = []
     wl_hp_counts: Dict[Tuple[str, int], int] = {}
     for item in wl_pairs:
-        hp = (item[0].host.lower(), int(item[0].port))
+        resolved_host = resolve_to_ip(item[0].host).lower()
+        hp = (resolved_host, int(item[0].port))
         cnt = wl_hp_counts.get(hp, 0)
         if cnt < 2:
             selected_wl.append(item)
@@ -487,13 +488,13 @@ def classify_nodes(
 
     # Для Black-List (мобильный ТСПУ + Wi-Fi):
     # 1. Проверенные URL-тестом узлы всегда впереди
-    # 2. Все прямые VLESS Reality и TLS-TCP (ранги 0..2) всегда ВЫШЕ мобильно-нестабильных TLS-WS (ранг 3) и Cloudflare CDN (ранг 4)
-    # 3. Внутри группы — быстрые (до 1500мс) раньше медленных, затем ранг и минимальный пинг
+    # 2. Все прямые VLESS Reality и TLS-TCP/xHTTP (ранги 0..2) выше мобильно-нестабильных TLS-WS (ранг 3) и Cloudflare CDN (ранг 4)
+    # 3. Внутри группы — рабочие (< 2200мс) раньше совсем медленных, затем ранг и минимальный пинг
     def bl_sort_key(item):
         node, ping_ms, verified = item
         rank = get_bl_rank(node)
         is_fragile = rank >= 3  # TLS-WS и Cloudflare CDN
-        is_slow = (ping_ms > 1500 or ping_ms <= 0) if verified else True
+        is_slow = (ping_ms > 2200 or ping_ms <= 0) if verified else True
         return (
             not verified,
             is_fragile,
@@ -503,26 +504,43 @@ def classify_nodes(
             ping_ms if ping_ms > 0 else 9999.0,
         )
 
+    # Убираем дубликаты одного и того же узла под доменом vs resolved IP до финальной выборки
+    dedup_bl_candidates: List[Tuple[ProxyNode, float, bool]] = []
+    seen_bl_resolved = set()
     bl_candidates.sort(key=bl_sort_key)
+    for item in bl_candidates:
+        node = item[0]
+        r_ip = resolve_to_ip(node.host).lower()
+        net = node.params.get("type", "tcp").strip().lower()
+        if net in ("raw", ""):
+            net = "tcp"
+        elif net == "splithttp":
+            net = "xhttp"
+        auth = node.uuid.strip().lower() or node.params.get("pbk", "").strip()
+        rkey = f"{node.protocol}@{r_ip}:{node.port}@{auth}@{net}"
+        if rkey not in seen_bl_resolved:
+            seen_bl_resolved.add(rkey)
+            dedup_bl_candidates.append(item)
 
-    # Ограничиваем до 2 узлов на один (host, port) и до 3 Cloudflare CDN в топе 20
+    # Максимум 1 конфиг на один физический resolved IP в основном топе-20 (чтобы 1 сервер не забивал весь список)
+    # и до 3 Cloudflare CDN; дубли одного IP добираются только если уникальных IP не хватило до 20
     bl_limit = 20
     cf_limit = 3
     selected_bl = []
     cf_overflow = []
     overflow_bl = []
-    host_port_counts: Dict[Tuple[str, int], int] = {}
+    ip_counts: Dict[str, int] = {}
     cf_count = 0
-    for item in bl_candidates:
-        is_cf = is_cloudflare_ip(item[0].host)
-        hp = (item[0].host.lower(), int(item[0].port))
-        cnt = host_port_counts.get(hp, 0)
-        if cnt < 2:
+    for item in dedup_bl_candidates:
+        r_ip = resolve_to_ip(item[0].host).lower()
+        is_cf = is_cloudflare_ip(r_ip)
+        cnt = ip_counts.get(r_ip, 0)
+        if cnt < 1:
             if is_cf and cf_count >= cf_limit:
                 cf_overflow.append(item)
                 continue
             selected_bl.append(item)
-            host_port_counts[hp] = cnt + 1
+            ip_counts[r_ip] = 1
             if is_cf:
                 cf_count += 1
             if len(selected_bl) >= bl_limit:
@@ -533,7 +551,20 @@ def classify_nodes(
     if len(selected_bl) < bl_limit:
         selected_bl.extend(cf_overflow[:(bl_limit - len(selected_bl))])
     if len(selected_bl) < bl_limit:
-        selected_bl.extend(overflow_bl[:(bl_limit - len(selected_bl))])
+        for item in overflow_bl:
+            r_ip = resolve_to_ip(item[0].host).lower()
+            if ip_counts.get(r_ip, 0) < 2:
+                selected_bl.append(item)
+                ip_counts[r_ip] = ip_counts.get(r_ip, 0) + 1
+                if len(selected_bl) >= bl_limit:
+                    break
+    if len(selected_bl) < bl_limit:
+        selected_ids = {id(x[0]) for x in selected_bl}
+        for item in overflow_bl:
+            if id(item[0]) not in selected_ids:
+                selected_bl.append(item)
+                if len(selected_bl) >= bl_limit:
+                    break
 
     blacklist_uris: List[str] = []
 
