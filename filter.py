@@ -505,7 +505,9 @@ def classify_nodes(
 
     bl_candidates.sort(key=bl_sort_key)
 
-    # Ограничиваем до 2 узлов на один (host, port) и до 6 Cloudflare CDN в топе 50
+    # Ограничиваем до 2 узлов на один (host, port) и до 3 Cloudflare CDN в топе 20
+    bl_limit = 20
+    cf_limit = 3
     selected_bl = []
     cf_overflow = []
     overflow_bl = []
@@ -516,22 +518,22 @@ def classify_nodes(
         hp = (item[0].host.lower(), int(item[0].port))
         cnt = host_port_counts.get(hp, 0)
         if cnt < 2:
-            if is_cf and cf_count >= 6:
+            if is_cf and cf_count >= cf_limit:
                 cf_overflow.append(item)
                 continue
             selected_bl.append(item)
             host_port_counts[hp] = cnt + 1
             if is_cf:
                 cf_count += 1
-            if len(selected_bl) >= 50:
+            if len(selected_bl) >= bl_limit:
                 break
         else:
             overflow_bl.append(item)
 
-    if len(selected_bl) < 50:
-        selected_bl.extend(cf_overflow[:(50 - len(selected_bl))])
-    if len(selected_bl) < 50:
-        selected_bl.extend(overflow_bl[:(50 - len(selected_bl))])
+    if len(selected_bl) < bl_limit:
+        selected_bl.extend(cf_overflow[:(bl_limit - len(selected_bl))])
+    if len(selected_bl) < bl_limit:
+        selected_bl.extend(overflow_bl[:(bl_limit - len(selected_bl))])
 
     blacklist_uris: List[str] = []
 
@@ -547,5 +549,5 @@ def classify_nodes(
             clean_name = f"{prefix}🌐 Global Reality #{i:02d} ({display_sni})"
         blacklist_uris.append(node.build_uri(new_name=clean_name))
 
-    logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит 50)")
+    logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит {bl_limit})")
     return (whitelist_uris, blacklist_uris)
