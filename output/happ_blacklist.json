@@ -91,7 +91,7 @@
           "🌐",
           "node-"
         ],
-        "fallbackTag": "⚡ [333ms] 🌐 Global Reality #01 (144.hexdey.com)",
+        "fallbackTag": "⚡ [398ms] 🌐 Global Reality #01 (144.hexdey.com)",
         "strategy": {
           "type": "leastPing"
         }
@@ -146,7 +146,7 @@
   },
   "outbounds": [
     {
-      "tag": "⚡ [333ms] 🌐 Global Reality #01 (144.hexdey.com)",
+      "tag": "⚡ [398ms] 🌐 Global Reality #01 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -184,7 +184,7 @@
       }
     },
     {
-      "tag": "⚡ [404ms] 🌐 Global Reality #02 (144.hexdey.com)",
+      "tag": "⚡ [596ms] 🌐 Global Reality #02 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -222,16 +222,16 @@
       }
     },
     {
-      "tag": "⚡ [1156ms] 🌐 Global Reality #03 (birch-ledger.justext..)",
+      "tag": "⚡ [823ms] 🌐 Global Reality #03 (contract.starsov.pro)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "212.233.90.78",
+            "address": "188.225.32.175",
             "port": 443,
             "users": [
               {
-                "id": "9548ef84-b54d-41dc-b17c-9da21d52ba82",
+                "id": "d3d4e690-db61-4b84-8687-7c1ff79c89ff",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -252,15 +252,52 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "birch-ledger.justext.space",
-          "fingerprint": "safari",
-          "publicKey": "FwPphm8xGAKY6u74WDRVrcVye3A7GdLDfJoNSDWFsFQ",
-          "shortId": "2c6df23e"
+          "serverName": "contract.starsov.pro",
+          "fingerprint": "firefox",
+          "publicKey": "8rdhihFgU72DVkhH6ROS9j2WyNc_spuiGXrT_YvNJ0M",
+          "shortId": "f51bc11ebd9f2835"
         }
       }
     },
     {
-      "tag": "⚡ [419ms] 🌐 Global Reality #04 (no-sni)",
+      "tag": "⚡ [1237ms] 🌐 Global Reality #04 (jurnal.primetap.pro)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "217.60.30.70",
+            "port": 8443,
+            "users": [
+              {
+                "id": "80b3cf20-c77c-4fb9-a69e-55c9dadd58c8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v2/live/84bdcf675b7dc43f",
+          "host": "jurnal.primetap.pro",
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "jurnal.primetap.pro",
+          "fingerprint": "chrome",
+          "publicKey": "q4_o7NvD6vQg4hYsyO29Q6PVufjTJHDUbQTqstre9EQ",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "⚡ [462ms] 🌐 Global Reality #05 (no-sni)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -295,51 +332,7 @@
       }
     },
     {
-      "tag": "⚡ [1105ms] 🌐 Global Reality #05 (fl1.internium.forum)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "194.122.84.6",
-            "port": 443,
-            "users": [
-              {
-                "id": "4f2c5cf9-7c4d-45b5-963e-6a6bed829e10",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/connect",
-          "host": "fl1.internium.forum",
-          "mode": "auto",
-          "extra": {
-            "xmux": {
-              "maxConcurrency": "16-32",
-              "cMaxReuseTimes": "256-512",
-              "hMaxRequestTimes": "600-900",
-              "hMaxReusableSecs": "1800-3000",
-              "hKeepAlivePeriod": 30
-            }
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fl1.internium.forum",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [1145ms] 🌐 Global Reality #06 (cdnpl.worldfly.io)",
+      "tag": "⚡ [472ms] 🌐 Global Reality #06 (maple.kryonix.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -348,7 +341,7 @@
             "port": 443,
             "users": [
               {
-                "id": "b432a23a-acff-425c-bf69-70480cd6ed09",
+                "id": "83706ae4-be2f-4b2b-8079-c3eb4e0b2e3e",
                 "encryption": "none"
               }
             ]
@@ -362,103 +355,56 @@
           "tcpKeepAliveInterval": 60
         },
         "xhttpSettings": {
-          "path": "/api/v1/assets/",
-          "host": "cdnpl.worldfly.io",
-          "mode": "packet-up",
-          "extra": {
-            "noGRPCHeader": true,
-            "noSSEHeader": false,
-            "scMaxBufferedPosts": 256,
-            "scMaxEachPostBytes": "12000-12000",
-            "scMinPostsIntervalMs": "50-150",
-            "serverMaxHeaderBytes": 65536,
-            "uplinkChunkSize": "8000-8000",
-            "uplinkDataKey": "X-Client-Token",
-            "uplinkDataPlacement": "header",
-            "uplinkHTTPMethod": "GET",
-            "xPaddingBytes": "16-64",
-            "xmux": {
-              "cMaxReuseTimes": 0,
-              "hKeepAlivePeriod": 30,
-              "hMaxRequestTimes": "100-200",
-              "hMaxReusableSecs": "600-900",
-              "maxConnections": 4
-            }
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "cdnpl.worldfly.io",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [1229ms] 🌐 Global Reality #07 (cdnpl.worldfly.io)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.72.112.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "b432a23a-acff-425c-bf69-70480cd6ed09",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/v1/assets/",
-          "host": "cdnpl.worldfly.io",
+          "path": "/api/api_v2/mediaupload_process",
+          "host": "maple.kryonix.space",
           "mode": "packet-up",
           "extra": {
             "xmux": {
-              "cMaxReuseTimes": 0,
-              "maxConnections": 4,
-              "hKeepAlivePeriod": 30,
-              "hMaxRequestTimes": "100-200",
-              "hMaxReusableSecs": "600-900"
+              "cMaxReuseTimes": "16-32",
+              "hMaxReusableSecs": "120-240",
+              "maxConnections": 2
             },
+            "seqKey": "segment",
             "noSSEHeader": false,
-            "noGRPCHeader": true,
-            "uplinkDataKey": "X-Client-Token",
-            "xPaddingBytes": "16-64",
-            "uplinkChunkSize": "8000-8000",
+            "xPaddingKey": "cacheVersion",
+            "seqPlacement": "query",
+            "sessionIDKey": "media_session",
+            "uplinkDataKey": "data",
+            "xPaddingBytes": "64-320",
+            "sessionIDTable": "Base62",
+            "xPaddingHeader": "Referer",
+            "xPaddingMethod": "tokenish",
+            "sessionIDLength": "22-30",
+            "uplinkChunkSize": "4096-6144",
             "uplinkHTTPMethod": "GET",
-            "scMaxBufferedPosts": 256,
-            "scMaxEachPostBytes": "12000-12000",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "queryInHeader",
+            "scMaxBufferedPosts": 512,
+            "scMaxEachPostBytes": "20480-24576",
+            "sessionIDPlacement": "query",
             "uplinkDataPlacement": "header",
-            "scMinPostsIntervalMs": "50-150",
-            "serverMaxHeaderBytes": 65536
+            "scMinPostsIntervalMs": "2-3",
+            "serverMaxHeaderBytes": 262144
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "cdnpl.worldfly.io",
+          "serverName": "maple.kryonix.space",
           "fingerprint": "firefox"
         }
       }
     },
     {
-      "tag": "⚡ [1311ms] 🌐 Global Reality #08 (curlypebble.com)",
+      "tag": "⚡ [478ms] 🌐 Global Reality #07 (juniper.kryonix.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "78.159.240.111",
-            "port": 2053,
+            "address": "188.72.112.1",
+            "port": 443,
             "users": [
               {
-                "id": "37af0181-5598-4aad-a040-d926bcb65757",
+                "id": "83706ae4-be2f-4b2b-8079-c3eb4e0b2e3e",
                 "encryption": "none"
               }
             ]
@@ -472,19 +418,110 @@
           "tcpKeepAliveInterval": 60
         },
         "xhttpSettings": {
-          "path": "/api/v1/upload",
-          "host": "curlypebble.com",
-          "mode": "auto"
+          "path": "/api/api_v2/mediaupload_process",
+          "host": "juniper.kryonix.space",
+          "mode": "packet-up",
+          "extra": {
+            "xmux": {
+              "cMaxReuseTimes": "16-32",
+              "hMaxReusableSecs": "120-240",
+              "maxConnections": 2
+            },
+            "seqKey": "segment",
+            "noSSEHeader": false,
+            "xPaddingKey": "cacheVersion",
+            "seqPlacement": "query",
+            "sessionIDKey": "media_session",
+            "uplinkDataKey": "data",
+            "xPaddingBytes": "64-320",
+            "sessionIDTable": "Base62",
+            "xPaddingHeader": "Referer",
+            "xPaddingMethod": "tokenish",
+            "sessionIDLength": "22-30",
+            "uplinkChunkSize": "4096-6144",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "queryInHeader",
+            "scMaxBufferedPosts": 512,
+            "scMaxEachPostBytes": "20480-24576",
+            "sessionIDPlacement": "query",
+            "uplinkDataPlacement": "header",
+            "scMinPostsIntervalMs": "2-3",
+            "serverMaxHeaderBytes": 262144
+          }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "curlypebble.com",
+          "serverName": "juniper.kryonix.space",
           "fingerprint": "firefox"
         }
       }
     },
     {
-      "tag": "⚡ [1315ms] 🌐 Global Reality #09 (birch.kryonix.space)",
+      "tag": "⚡ [622ms] 🌐 Global Reality #08 (rowan.kryonix.space)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.72.112.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "83706ae4-be2f-4b2b-8079-c3eb4e0b2e3e",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/api_v2/mediaupload_process",
+          "host": "rowan.kryonix.space",
+          "mode": "packet-up",
+          "extra": {
+            "xmux": {
+              "cMaxReuseTimes": "16-32",
+              "hMaxReusableSecs": "120-240",
+              "maxConnections": 2
+            },
+            "seqKey": "segment",
+            "noSSEHeader": false,
+            "xPaddingKey": "cacheVersion",
+            "seqPlacement": "query",
+            "sessionIDKey": "media_session",
+            "uplinkDataKey": "data",
+            "xPaddingBytes": "64-320",
+            "sessionIDTable": "Base62",
+            "xPaddingHeader": "Referer",
+            "xPaddingMethod": "tokenish",
+            "sessionIDLength": "22-30",
+            "uplinkChunkSize": "4096-6144",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "queryInHeader",
+            "scMaxBufferedPosts": 512,
+            "scMaxEachPostBytes": "20480-24576",
+            "sessionIDPlacement": "query",
+            "uplinkDataPlacement": "header",
+            "scMinPostsIntervalMs": "2-3",
+            "serverMaxHeaderBytes": 262144
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rowan.kryonix.space",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [657ms] 🌐 Global Reality #09 (birch.kryonix.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -547,16 +584,16 @@
       }
     },
     {
-      "tag": "⚡ [1365ms] 🌐 Global Reality #10 (fl1.internium.forum)",
+      "tag": "⚡ [657ms] 🌐 Global Reality #10 (video-api.kunko.online)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "31.59.190.52",
+            "address": "188.72.112.1",
             "port": 443,
             "users": [
               {
-                "id": "4f2c5cf9-7c4d-45b5-963e-6a6bed829e10",
+                "id": "840a81c7-5298-465d-9aae-7240dd8b8814",
                 "encryption": "none"
               }
             ]
@@ -570,38 +607,242 @@
           "tcpKeepAliveInterval": 60
         },
         "xhttpSettings": {
-          "path": "/connect",
-          "host": "fl1.internium.forum",
-          "mode": "auto",
+          "path": "/api/v4/media/session/poll",
+          "host": "video-api.kunko.online",
+          "mode": "packet-up",
           "extra": {
             "xmux": {
-              "maxConcurrency": "16-32",
-              "cMaxReuseTimes": "256-512",
-              "hMaxRequestTimes": "600-900",
-              "hMaxReusableSecs": "1800-3000",
-              "hKeepAlivePeriod": 30
-            }
+              "cMaxReuseTimes": "128-256",
+              "maxConcurrency": "8-16",
+              "hKeepAlivePeriod": 30,
+              "hMaxRequestTimes": "600-1000",
+              "hMaxReusableSecs": "1800-3600"
+            },
+            "seqKey": "offset",
+            "headers": {
+              "Accept": "application/vnd.api+json, application/json, text/plain, */*",
+              "Pragma": "no-cache",
+              "Cache-Control": "no-cache",
+              "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"
+            },
+            "sessionKey": "media_sid",
+            "xPaddingKey": "q",
+            "seqPlacement": "query",
+            "uplinkDataKey": "X-Playback-Token",
+            "xPaddingBytes": "48-320",
+            "xPaddingMethod": "tokenish",
+            "sessionPlacement": "path",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "query",
+            "scMaxBufferedPosts": 64,
+            "scMaxEachPostBytes": "1536-6144",
+            "uplinkDataPlacement": "header",
+            "scMinPostsIntervalMs": "10-30",
+            "serverMaxHeaderBytes": 32768
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "fl1.internium.forum",
+          "serverName": "video-api.kunko.online",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [703ms] 🌐 Global Reality #11 (willow.kryonix.space)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.72.112.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "83706ae4-be2f-4b2b-8079-c3eb4e0b2e3e",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/api_v2/mediaupload_process",
+          "host": "willow.kryonix.space",
+          "mode": "packet-up",
+          "extra": {
+            "xmux": {
+              "cMaxReuseTimes": "16-32",
+              "hMaxReusableSecs": "120-240",
+              "maxConnections": 2
+            },
+            "seqKey": "segment",
+            "noSSEHeader": false,
+            "xPaddingKey": "cacheVersion",
+            "seqPlacement": "query",
+            "sessionIDKey": "media_session",
+            "uplinkDataKey": "data",
+            "xPaddingBytes": "64-320",
+            "sessionIDTable": "Base62",
+            "xPaddingHeader": "Referer",
+            "xPaddingMethod": "tokenish",
+            "sessionIDLength": "22-30",
+            "uplinkChunkSize": "4096-6144",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "queryInHeader",
+            "scMaxBufferedPosts": 512,
+            "scMaxEachPostBytes": "20480-24576",
+            "sessionIDPlacement": "query",
+            "uplinkDataPlacement": "header",
+            "scMinPostsIntervalMs": "2-3",
+            "serverMaxHeaderBytes": 262144
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "willow.kryonix.space",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [790ms] 🌐 Global Reality #12 (linden.kryonix.space)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.72.112.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "83706ae4-be2f-4b2b-8079-c3eb4e0b2e3e",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/api_v2/mediaupload_process",
+          "host": "linden.kryonix.space",
+          "mode": "packet-up",
+          "extra": {
+            "xmux": {
+              "cMaxReuseTimes": "16-32",
+              "hMaxReusableSecs": "120-240",
+              "maxConnections": 2
+            },
+            "seqKey": "segment",
+            "noSSEHeader": false,
+            "xPaddingKey": "cacheVersion",
+            "seqPlacement": "query",
+            "sessionIDKey": "media_session",
+            "uplinkDataKey": "data",
+            "xPaddingBytes": "64-320",
+            "sessionIDTable": "Base62",
+            "xPaddingHeader": "Referer",
+            "xPaddingMethod": "tokenish",
+            "sessionIDLength": "22-30",
+            "uplinkChunkSize": "4096-6144",
+            "uplinkHTTPMethod": "GET",
+            "xPaddingObfsMode": true,
+            "xPaddingPlacement": "queryInHeader",
+            "scMaxBufferedPosts": 512,
+            "scMaxEachPostBytes": "20480-24576",
+            "sessionIDPlacement": "query",
+            "uplinkDataPlacement": "header",
+            "scMinPostsIntervalMs": "2-3",
+            "serverMaxHeaderBytes": 262144
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "linden.kryonix.space",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1461ms] 🌐 Global Reality #13 (origin4.pd-service.s..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.72.112.1",
+            "port": 443,
+            "users": [
+              {
+                "id": "cdfc923e-8d34-4b44-ac72-ab41ec560ba8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api-test-de",
+          "host": "origin4.pd-service.shop",
+          "mode": "packet-up",
+          "extra": {
+            "scMaxEachPostBytes": 16000,
+            "scMinPostsIntervalMs": 30,
+            "scMaxBufferedPosts": 30,
+            "xPaddingObfsMode": true,
+            "xPaddingKey": "dc",
+            "xPaddingHeader": "X-Cache",
+            "xPaddingMethod": "tokenish",
+            "xPaddingPlacement": "queryInHeader",
+            "uplinkHTTPMethod": "OPTIONS",
+            "scMaxConcurrentPosts": 100,
+            "xPaddingBytes": "100-1000",
+            "noGRPCHeader": false,
+            "xmux": {
+              "hMaxReusableSecs": 50,
+              "hMaxRequestTimes": 600,
+              "maxConcurrency": "16-32"
+            },
+            "uplinkDataPlacement": "header"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "origin4.pd-service.shop",
           "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "⚡ [2554ms] 🌐 Global Reality #11 (nl.wordpress.org)",
+      "tag": "⚡ [4508ms] 🇫🇮 (games.robloxfans.fun)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "217.216.217.127",
+            "address": "109.73.207.225",
             "port": 443,
             "users": [
               {
-                "id": "By-BlackRay-Channel",
-                "encryption": "none"
+                "id": "ef1da56e-8117-03eb-bcd8-9094ebbdf985",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -620,15 +861,15 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "nl.wordpress.org",
+          "serverName": "games.robloxfans.fun",
           "fingerprint": "firefox",
-          "publicKey": "DHhDwTmyUJETVMQUC3xCUK2yApgnRMsyOUK8oVUceRY",
-          "shortId": "21439457"
+          "publicKey": "KFIPjM9UI5YaPMOKE2oJWg9pO1HD_FlByAwirvVauhA",
+          "shortId": "812e5d00c043b6ec"
         }
       }
     },
     {
-      "tag": "⚡ [2731ms] 🌐 Global Reality #12 (nl.wordpress.org)",
+      "tag": "⚡ [1756ms] 🌐 Global Reality #15 (nl.wordpress.org)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -665,7 +906,83 @@
       }
     },
     {
-      "tag": "⚡ [5491ms] 🌐 Global Reality #13 (15b171g.nl7.h1clayd...)",
+      "tag": "⚡ [1880ms] 🌐 Global Reality #16 (swdist.apple.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "1.160.21.172",
+            "port": 47396,
+            "users": [
+              {
+                "id": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "swdist.apple.com",
+          "fingerprint": "random",
+          "publicKey": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
+          "shortId": "fa514b83"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [2034ms] 🇩🇪 Germany, Frankfurt am Main | [BL] (swdist.apple.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "1.160.21.172",
+            "port": 19482,
+            "users": [
+              {
+                "id": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "swdist.apple.com",
+          "fingerprint": "firefox",
+          "publicKey": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
+          "shortId": "fa514b83"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [4208ms] 🌐 Global Reality #18 (15b171g.nl7.h1clayd...)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -700,7 +1017,44 @@
       }
     },
     {
-      "tag": "⚡ [2582ms] 🌐 Global Reality #14 (polarladder.com)",
+      "tag": "⚡ [4626ms] 🌐 Global Reality #19 (e60833x.nl7.h1clayd...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "89.169.54.244",
+            "port": 443,
+            "users": [
+              {
+                "id": "cda0862a-0f87-4be9-8ed8-1d0c9e382839",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/d20896a4ce30",
+          "host": "e60833x.nl7.h1clayd.click",
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "e60833x.nl7.h1clayd.click",
+          "fingerprint": "chrome",
+          "publicKey": "jIRVNEf9SpuWP2nJrAbHGGIUnfzOmwZZlrNGw-Y-O2Q",
+          "shortId": "2d2598d60447a967"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1778ms] 🌐 Global Reality #20 (polarladder.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -731,230 +1085,6 @@
         "tlsSettings": {
           "serverName": "polarladder.com",
           "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [3256ms] 🌐 Global Reality #15 (nl2.internium.forum)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "153.52.144.43",
-            "port": 443,
-            "users": [
-              {
-                "id": "4f2c5cf9-7c4d-45b5-963e-6a6bed829e10",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/connect",
-          "host": "nl2.internium.forum",
-          "mode": "auto",
-          "extra": {
-            "xmux": {
-              "maxConcurrency": "16-32",
-              "cMaxReuseTimes": "256-512",
-              "hMaxRequestTimes": "600-900",
-              "hMaxReusableSecs": "1800-3000",
-              "hKeepAlivePeriod": 30
-            }
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "nl2.internium.forum",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [168ms] 🇳🇱 The Netherlands, Amsterdam | [BL] (fr-free.fastestrelay..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.139.189",
-            "port": 443,
-            "users": [
-              {
-                "id": "364D2D52-E61E-4E52-80EC-2BC6BDF15349",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/700gvl",
-          "headers": {
-            "Host": "fr-free.fastestrelay.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fr-free.fastestrelay.com",
-          "fingerprint": "edge"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [5332ms] 🌐 Global Reality #17 (unlik.club)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.178.208.167",
-            "port": 443,
-            "users": [
-              {
-                "id": "80b3cf20-c77c-4fb9-a69e-55c9dadd58c8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/player/collect/9c8514f9552d/",
-          "headers": {
-            "Host": "tochkacdn.top"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "unlik.club",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [382ms] 🌐 Global Reality #18 (freeceshi6.frii.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/proxyip=ProxyIP.JP.CMLiussss.netfp=chrome",
-          "headers": {
-            "Host": "freeceshi6.frii.site"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "freeceshi6.frii.site",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [406ms] 🌐 Global Reality #19 (freeceshi6.frii.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.64.154.113",
-            "port": 8443,
-            "users": [
-              {
-                "id": "53bbdad4-2f4e-45db-8df4-fa491a6a7227",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "freeceshi6.frii.site"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "freeceshi6.frii.site",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [456ms] 🇺🇸 United States, Los Angeles | [BL] (ws.liuzedong.ltd)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.155.153",
-            "port": 443,
-            "users": [
-              {
-                "id": "FCEAD694-2E27-4EEB-8836-9D4ACF3E028B",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "wsSettings": {
-          "path": "/ws",
-          "headers": {
-            "Host": "ws.liuzedong.ltd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "ws.liuzedong.ltd",
-          "fingerprint": "chrome"
         }
       }
     },
