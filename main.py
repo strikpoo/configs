@@ -67,8 +67,8 @@ async def run_pipeline(skip_check: bool = False, auto_push: bool = True, limit: 
         logger.info("Попытка отправки списков на подключенный телефон через ADB...")
         push_to_android_adb("whitelist.txt")
         push_to_android_adb("blacklist.txt")
-        push_to_android_adb("happ_whitelist.json")
-        push_to_android_adb("happ_blacklist.json")
+        push_to_android_adb("whitelist_base64.txt")
+        push_to_android_adb("blacklist_base64.txt")
         push_to_android_adb("happ_whitelist.txt")
         push_to_android_adb("happ_whitelist_base64.txt")
 

@@ -24,8 +24,6 @@ OUTPUT_FILES = [
     "output/whitelist_base64.txt",
     "output/blacklist.txt",
     "output/blacklist_base64.txt",
-    "output/happ_whitelist.json",
-    "output/happ_blacklist.json",
     "output/happ_whitelist.txt",
     "output/happ_whitelist_base64.txt",
 ]
