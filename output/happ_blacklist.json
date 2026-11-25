@@ -378,11 +378,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "1.160.33.76",
-            "port": 19482,
+            "address": "195.123.226.21",
+            "port": 443,
             "users": [
               {
-                "id": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
+                "id": "6589c320-db68-43cd-a273-b46299bab355",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }

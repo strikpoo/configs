@@ -681,8 +681,8 @@
       "settings": {
         "vnext": [
           {
-            "address": "111.88.131.104",
-            "port": 443,
+            "address": "141.133.202.12",
+            "port": 1443,
             "users": [
               {
                 "id": "7aa77858-f235-000c-9434-7ab060848b17",
@@ -765,7 +765,7 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
@@ -814,7 +814,7 @@
             "port": 443,
             "users": [
               {
-                "id": "4a3e1246-4ac0-4212-abac-a34008218f66",
+                "id": "c2899785-db42-4279-af85-5130e841cec5",
                 "encryption": "none"
               }
             ]
@@ -828,18 +828,24 @@
           "tcpKeepAliveInterval": 60
         },
         "xhttpSettings": {
-          "path": "/api/v4/media/session/poll.ts",
-          "host": "ycfl.subs-sosavpn.ru",
+          "path": "/api/v1/events",
+          "host": "681942.xyz",
           "mode": "packet-up",
           "extra": {
-            "scMaxEachPostBytes": 4096,
-            "uplinkDataKey": "X-Payload",
+            "headers": {},
+            "noGRPCHeader": false,
+            "scMaxEachPostBytes": 2048,
+            "scMinPostsIntervalMs": 30,
+            "scStreamUpServerSecs": "20-80",
+            "uplinkChunkSize": 2048,
             "uplinkDataPlacement": "header",
             "uplinkHTTPMethod": "GET",
+            "xPaddingBytes": "100-1000",
             "xmux": {
-              "cMaxLifetimeMs": 300000,
-              "cMaxReuseTimes": 100,
-              "hKeepAlivePeriod": 30,
+              "cMaxReuseTimes": 0,
+              "hKeepAlivePeriod": 0,
+              "hMaxRequestTimes": "600-900",
+              "hMaxReusableSecs": "1800-3000",
               "maxConcurrency": "16-32",
               "maxConnections": 0
             }
@@ -847,8 +853,8 @@
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "ycfl.subs-sosavpn.ru",
-          "fingerprint": "edge"
+          "serverName": "yccdn.cloud.yandex.net",
+          "fingerprint": "firefox"
         }
       }
     },
@@ -957,8 +963,8 @@
         "realitySettings": {
           "serverName": "rumicro642.richhoodfoc.com",
           "fingerprint": "chrome",
-          "publicKey": "fPvZxeP0GErdI22fbEAqbMaz-QMumNIDzBNgKZmRsWY",
-          "shortId": "a7b12f3265f97f4a"
+          "publicKey": "M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc",
+          "shortId": "123abcdf"
         }
       }
     },
@@ -1196,11 +1202,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "84.201.145.167",
-            "port": 51191,
+            "address": "195.133.93.227",
+            "port": 9543,
             "users": [
               {
-                "id": "0408e624-0d2a-49bc-8c1c-cbcf5fb75328",
+                "id": "920b3cd9-4f82-4669-bbd2-d4a28b9052c6",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -1221,10 +1227,10 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "yandex.ru",
-          "fingerprint": "edge",
-          "publicKey": "PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY",
-          "shortId": "6ba85179e30d4fc2"
+          "serverName": "storage.yandexcloud.net",
+          "fingerprint": "chrome",
+          "publicKey": "M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc",
+          "shortId": "123abcdf"
         }
       }
     },
@@ -1498,8 +1504,8 @@
       "settings": {
         "vnext": [
           {
-            "address": "185.229.9.240",
-            "port": 443,
+            "address": "178.172.227.228",
+            "port": 10444,
             "users": [
               {
                 "id": "a5893c8b-28a2-4947-9a1c-708db25506c3",
