@@ -91,7 +91,7 @@
           "🌐",
           "node-"
         ],
-        "fallbackTag": "⚡ [203ms] 🌐 Global Reality #01 (6bf329t.nl18.h1clayd..)",
+        "fallbackTag": "⚡ [242ms] 🌐 Global Reality #01 (www.paperandpaths.eu)",
         "strategy": {
           "type": "leastPing"
         }
@@ -146,16 +146,16 @@
   },
   "outbounds": [
     {
-      "tag": "⚡ [203ms] 🌐 Global Reality #01 (6bf329t.nl18.h1clayd..)",
+      "tag": "⚡ [242ms] 🌐 Global Reality #01 (www.paperandpaths.eu)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "13.141.36.43",
+            "address": "153.56.230.227",
             "port": 443,
             "users": [
               {
-                "id": "e894c08a-fecc-46f5-bf03-c95d0274c79d",
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -176,15 +176,167 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "6bf329t.nl18.h1clayd.click",
+          "serverName": "www.paperandpaths.eu",
           "fingerprint": "firefox",
-          "publicKey": "p35RUaaaItuoyNiCrLpGeStBUpEJMSiZ2AajdfhhmiM",
-          "shortId": "92aee92130b46fe2"
+          "publicKey": "GBaL4fKf6KafZIOJ7Zxn9XWkGvgNTA536OvNmHmCIn0",
+          "shortId": "5ecabf5e44ce3b0f"
         }
       }
     },
     {
-      "tag": "⚡ [380ms] 🌐 Global Reality #02 (144.hexdey.com)",
+      "tag": "⚡ [401ms] 🌐 Global Reality #02 (www.paperandpaths.eu)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "153.56.230.9",
+            "port": 443,
+            "users": [
+              {
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.paperandpaths.eu",
+          "fingerprint": "firefox",
+          "publicKey": "GBaL4fKf6KafZIOJ7Zxn9XWkGvgNTA536OvNmHmCIn0",
+          "shortId": "5ecabf5e44ce3b0f"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [423ms] 🌐 Global Reality #03 (www.paperandpaths.eu)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "194.238.79.141",
+            "port": 443,
+            "users": [
+              {
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.paperandpaths.eu",
+          "fingerprint": "firefox",
+          "publicKey": "GBaL4fKf6KafZIOJ7Zxn9XWkGvgNTA536OvNmHmCIn0",
+          "shortId": "5ecabf5e44ce3b0f"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [429ms] 🌐 Global Reality #04 (suboard.net)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "91.103.140.245",
+            "port": 443,
+            "users": [
+              {
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "suboard.net",
+          "fingerprint": "firefox",
+          "publicKey": "uNCjQ0dM09BDmtjOBlRHrBcBCAjwvGAJgLsomGIJEkA",
+          "shortId": "f802aa74"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [519ms] 🌐 Global Reality #05 (podcasts.radiopult.net)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "153.56.231.227",
+            "port": 443,
+            "users": [
+              {
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "podcasts.radiopult.net",
+          "fingerprint": "firefox",
+          "publicKey": "YXNmCyyyvFqCWjgUzDexg0CHjk8QYRgWNfqvpFdIk3k",
+          "shortId": "d30cb21db3289c97"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [529ms] 🌐 Global Reality #06 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -222,12 +374,88 @@
       }
     },
     {
-      "tag": "⚡ [1052ms] 🌐 Global Reality #03 (rumicro748.richhoodf..)",
+      "tag": "⚡ [540ms] 🌐 Global Reality #07 (6bf329t.nl18.h1clayd..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "178.217.98.134",
+            "address": "13.141.36.43",
+            "port": 443,
+            "users": [
+              {
+                "id": "e894c08a-fecc-46f5-bf03-c95d0274c79d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "6bf329t.nl18.h1clayd.click",
+          "fingerprint": "firefox",
+          "publicKey": "p35RUaaaItuoyNiCrLpGeStBUpEJMSiZ2AajdfhhmiM",
+          "shortId": "92aee92130b46fe2"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [553ms] 🌐 Global Reality #08 (www.paperandpaths.eu)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "91.238.123.83",
+            "port": 443,
+            "users": [
+              {
+                "id": "e45300b1-36e7-4183-8d0d-9b24d2a3d69c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.paperandpaths.eu",
+          "fingerprint": "firefox",
+          "publicKey": "GBaL4fKf6KafZIOJ7Zxn9XWkGvgNTA536OvNmHmCIn0",
+          "shortId": "5ecabf5e44ce3b0f"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [782ms] 🌐 Global Reality #09 (rumicro749.richhoodf..)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "178.217.98.60",
             "port": 443,
             "users": [
               {
@@ -252,20 +480,58 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "rumicro748.richhoodfoc.com",
+          "serverName": "rumicro749.richhoodfoc.com",
           "fingerprint": "firefox",
-          "publicKey": "HFb2ouHGn6rQqkKvHLziI4H2rp7PRUX8P50zUEtzDig",
-          "shortId": "44fe90328a9b2656"
+          "publicKey": "stAHGePVvyd7wH5KnYu6I73CjPd49QDnzNf-Ev-juwQ",
+          "shortId": "40638902cebb6be2"
         }
       }
     },
     {
-      "tag": "⚡ [1068ms] 🇩🇪 (rugermicro2.gangplat..)",
+      "tag": "⚡ [923ms] 🌐 Global Reality #10 (vesnagate.site)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "5.42.104.42",
+            "address": "89.40.31.54",
+            "port": 443,
+            "users": [
+              {
+                "id": "53cef1c5-c3db-4ba2-908f-f62351ee1c52",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "vesnagate.site",
+          "fingerprint": "firefox",
+          "publicKey": "fZZx3tJHWY0booB9erIuAbJ7lohhGx9s9q3CxsyaaRE",
+          "shortId": "a085b7e1f7cbd2"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1107ms] 🌐 Global Reality #11 (nehor730.gangtype.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "48.102.133.177",
             "port": 443,
             "users": [
               {
@@ -290,15 +556,53 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "rugermicro2.gangplatform.com",
+          "serverName": "nehor730.gangtype.com",
           "fingerprint": "firefox",
-          "publicKey": "nPYLh9nRxKK0OQVQrboJyKN4Y3DViI412cbN9Tbz9AQ",
-          "shortId": "53668ac88eefee81"
+          "publicKey": "HSJUGn3x8tOGS-8PsKu8xgmakV988XKhDGXolBmbj1M",
+          "shortId": "858614add772c0d8"
         }
       }
     },
     {
-      "tag": "⚡ [1587ms] 🌐 Global Reality #05 (nemicro543.aidating.am)",
+      "tag": "⚡ [1405ms] 🌐 Global Reality #12 (nexz747.richhoodfoc...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "82.152.141.139",
+            "port": 443,
+            "users": [
+              {
+                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "nexz747.richhoodfoc.com",
+          "fingerprint": "firefox",
+          "publicKey": "UIHULCJ5JuqZHg66twX_GyTtaSE4Zu7XN2VCX4Hc0l0",
+          "shortId": "cf7cd748e03a6be8"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1480ms] 🌐 Global Reality #13 (nemicro543.aidating.am)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -336,12 +640,12 @@
       }
     },
     {
-      "tag": "⚡ [1689ms] 🌐 Global Reality #06 (rumicro598.richhoodf..)",
+      "tag": "⚡ [1758ms] 🌐 Global Reality #14 (nemicro503.jointacti..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "138.16.183.114",
+            "address": "82.152.141.167",
             "port": 443,
             "users": [
               {
@@ -366,21 +670,21 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "rumicro598.richhoodfoc.com",
+          "serverName": "nemicro503.jointaction.am",
           "fingerprint": "chrome",
-          "publicKey": "_47gV6n-pPkLD9-pTEHSglSwxWfUhrVj1ou4Wwc6pj0",
-          "shortId": "c6a810bdcb5cf374"
+          "publicKey": "FvLfKSHg-IuXqNk70I9GcP19Xib0NjEkJjfjdUjw0WI",
+          "shortId": "9de43827829f021f"
         }
       }
     },
     {
-      "tag": "⚡ [2023ms] 🇳🇱 (ruiot747.gangtype.com)",
+      "tag": "⚡ [523ms] 🌐 Global Reality #15 (sbmicro731.alexdjane..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "157.22.184.213",
-            "port": 443,
+            "address": "37.18.14.25",
+            "port": 18442,
             "users": [
               {
                 "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
@@ -404,96 +708,21 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "ruiot747.gangtype.com",
+          "serverName": "sbmicro731.alexdjane.am",
           "fingerprint": "firefox",
-          "publicKey": "tlAfLrhaFWvls1KhUZ9T4lj-8C2XyrGNx-ib5UYDPnc",
-          "shortId": "94f045a31f6a3769"
+          "publicKey": "qcQLgmXcaZnmi6G19qfREf1_vj-f05z8CVW0q8-4vyQ",
+          "shortId": "fdf358c631f381c3"
         }
       }
     },
     {
-      "tag": "⚡ [2143ms] 🌐 Global Reality #08 (birch-ledger.justext..)",
+      "tag": "⚡ [1475ms] 🌐 Global Reality #16 (vesnagate.site)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "212.233.90.78",
-            "port": 443,
-            "users": [
-              {
-                "id": "9548ef84-b54d-41dc-b17c-9da21d52ba82",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "birch-ledger.justext.space",
-          "fingerprint": "safari",
-          "publicKey": "FwPphm8xGAKY6u74WDRVrcVye3A7GdLDfJoNSDWFsFQ",
-          "shortId": "2c6df23e"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [372ms] 🇫🇮 AetrisVPN (a80b5386.fi2.h1clayd..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "13.141.36.15",
-            "port": 443,
-            "users": [
-              {
-                "id": "2ccb06b6-9eac-44eb-ade7-c1e5afb8e7df",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "a80b5386.fi2.h1clayd.click",
-          "fingerprint": "firefox",
-          "publicKey": "PslSaSQWP4BZZmkL7irab4FMti8sW6BvoC7ytFjJFyc",
-          "shortId": "cc678f10161992a9"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [735ms] 🇫🇷 (vesnagate.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "62.109.9.14",
-            "port": 587,
+            "address": "2.59.42.168",
+            "port": 8888,
             "users": [
               {
                 "id": "53cef1c5-c3db-4ba2-908f-f62351ee1c52",
@@ -525,80 +754,7 @@
       }
     },
     {
-      "tag": "⚡ [1379ms] 🌐 Global Reality #11 (swdist.apple.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "1.160.6.79",
-            "port": 47396,
-            "users": [
-              {
-                "id": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "swdist.apple.com",
-          "fingerprint": "random",
-          "publicKey": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
-          "shortId": "fa514b83"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [432ms] 🌐 Global Reality #12 (no-sni)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.104.55.246",
-            "port": 443,
-            "users": [
-              {
-                "id": "076799f8-d922-4bf1-805d-e758e6eb925f",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "free.server.darknetlk.com",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [610ms] 🌐 Global Reality #13 (birch.kryonix.space)",
+      "tag": "⚡ [546ms] 🌐 Global Reality #17 (birch.kryonix.space)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -661,16 +817,51 @@
       }
     },
     {
-      "tag": "⚡ [1560ms] 🌐 Global Reality #14 (ifdmbpb.kdns.fr)",
+      "tag": "⚡ [973ms] 🌐 Global Reality #18 (polarladder.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "43.155.175.232",
+            "address": "78.159.240.62",
+            "port": 2053,
+            "users": [
+              {
+                "id": "37af0181-5598-4aad-a040-d926bcb65757",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "xhttpSettings": {
+          "path": "/api/v1/upload",
+          "host": "polarladder.com",
+          "mode": "auto"
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "polarladder.com",
+          "fingerprint": "firefox"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1016ms] 🌐 Global Reality #19 (no-sni)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.104.55.246",
             "port": 443,
             "users": [
               {
-                "id": "9a600801-e889-4705-9adb-bf9aeb366fc7",
+                "id": "076799f8-d922-4bf1-805d-e758e6eb925f",
                 "encryption": "none"
               }
             ]
@@ -690,51 +881,13 @@
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "ifdmbpb.kdns.fr",
-          "fingerprint": "firefox"
+          "serverName": "free.server.darknetlk.com",
+          "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "⚡ [2727ms] 🌐 Global Reality #15 (vesnagate.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "89.40.31.54",
-            "port": 443,
-            "users": [
-              {
-                "id": "53cef1c5-c3db-4ba2-908f-f62351ee1c52",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "vesnagate.site",
-          "fingerprint": "firefox",
-          "publicKey": "fZZx3tJHWY0booB9erIuAbJ7lohhGx9s9q3CxsyaaRE",
-          "shortId": "a085b7e1f7cbd2"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [2743ms] 🌐 Global Reality #16 (ruhsds597.aidating.am)",
+      "tag": "⚡ [1953ms] 🌐 Global Reality #20 (ruhsds597.aidating.am)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -765,160 +918,9 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "ruhsds597.aidating.am",
-          "fingerprint": "chrome",
+          "fingerprint": "firefox",
           "publicKey": "y3RvS7ce35rCDD85mwXc_jQZ88rQmioWXtPolyk5eCk",
           "shortId": "0b8a8ce8060f6d38"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [2830ms] 🌐 Global Reality #17 (nehor730.gangtype.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "48.102.133.177",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "nehor730.gangtype.com",
-          "fingerprint": "firefox",
-          "publicKey": "HSJUGn3x8tOGS-8PsKu8xgmakV988XKhDGXolBmbj1M",
-          "shortId": "858614add772c0d8"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [3047ms] 🌐 Global Reality #18 (nexz747.richhoodfoc...)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "82.152.141.139",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "nexz747.richhoodfoc.com",
-          "fingerprint": "firefox",
-          "publicKey": "UIHULCJ5JuqZHg66twX_GyTtaSE4Zu7XN2VCX4Hc0l0",
-          "shortId": "cf7cd748e03a6be8"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [6682ms] 🌐 Global Reality #19 (vesnagate.site)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "130.51.100.3",
-            "port": 443,
-            "users": [
-              {
-                "id": "53cef1c5-c3db-4ba2-908f-f62351ee1c52",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "vesnagate.site",
-          "fingerprint": "firefox",
-          "publicKey": "fZZx3tJHWY0booB9erIuAbJ7lohhGx9s9q3CxsyaaRE",
-          "shortId": "a085b7e1f7cbd2"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [2460ms] 🌐 Global Reality #20 (cdn-us.cahmes.space)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "136.148.85.91",
-            "port": 8443,
-            "users": [
-              {
-                "id": "ab53f3b6-7962-4bc1-90f6-8420767b22a8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/xhttp",
-          "host": "us-05.avroraservice.online",
-          "mode": "stream-one"
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "cdn-us.cahmes.space",
-          "fingerprint": "firefox",
-          "publicKey": "KZejN2d1cwCrITHNxFYQVZ4rpMTZzHgJd9p30MZm_3k",
-          "shortId": "6bd33a75ebc0f26e"
         }
       }
     },
