@@ -91,7 +91,7 @@
           "🌐",
           "node-"
         ],
-        "fallbackTag": "⚡ [284ms] 🌐 Global Reality #01 (144.hexdey.com)",
+        "fallbackTag": "⚡ [324ms] https://t.me/ForceRunVPN-🇩🇪-FrankfurtamMain-741ms-Clouvider Limited (yahoo.com)",
         "strategy": {
           "type": "leastPing"
         }
@@ -146,7 +146,273 @@
   },
   "outbounds": [
     {
-      "tag": "⚡ [284ms] 🌐 Global Reality #01 (144.hexdey.com)",
+      "tag": "⚡ [324ms] https://t.me/ForceRunVPN-🇩🇪-FrankfurtamMain-741ms-Clouvider Limited (yahoo.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "82.39.171.12",
+            "port": 443,
+            "users": [
+              {
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [363ms] 🌐 Global Reality #02 (www.apple.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "86.54.28.75",
+            "port": 443,
+            "users": [
+              {
+                "id": "44ae52b9-76fc-444d-8e43-186b4384b80a",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.apple.com",
+          "fingerprint": "chrome",
+          "publicKey": "PryGoq51ilG0eLUPl9i0xCvmk1xpwkyFSr_tG4GNLlU",
+          "shortId": "1d86d17709852910"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [385ms] 🌐 Global Reality #03 (broe.primetap.cards)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "31.59.156.16",
+            "port": 443,
+            "users": [
+              {
+                "id": "80b3cf20-c77c-4fb9-a69e-55c9dadd58c8",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "broe.primetap.cards",
+          "fingerprint": "firefox",
+          "publicKey": "M102pOyYWWXO23uugneRjqRqc30SGQN1jIwCYg9STRE",
+          "shortId": "8acb6e79c1b29c4b"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [430ms] 🇫🇮230335 (www.google.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "31.76.77.231",
+            "port": 443,
+            "users": [
+              {
+                "id": "e894c08a-fecc-46f5-bf03-c95d0274c79d",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.google.com",
+          "fingerprint": "chrome",
+          "publicKey": "PMtmgfkxpREXi51S_EUUi3KbYauQLjGD6c_llKRk8H4",
+          "shortId": "cc85fc7134024405"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [435ms] 🌐 Global Reality #05 (lt.memepn.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "84.32.209.54",
+            "port": 443,
+            "users": [
+              {
+                "id": "f69e272f-e0e5-4e9d-b180-5be63930cde9",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "lt.memepn.com",
+          "fingerprint": "chrome",
+          "publicKey": "drl7nndYdfzZY1aQ0eUAWmNV0nsHig2uDnu9siy9biQ",
+          "shortId": "868419504747f6de"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [606ms] 🇳🇱 (absolute-disaster.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.171.135.229",
+            "port": 443,
+            "users": [
+              {
+                "id": "06ec3898-f952-52a5-8547-51ae1e6f0a62",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "absolute-disaster.org",
+          "fingerprint": "chrome",
+          "publicKey": "mpo4BIcoWiMXAQGt5a8IJ4MFkPJQyLC50dO_bXzC7z0",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "⚡ [630ms] 🇳🇱🥥12🏝️ Нидерланды LTE (absolute-disaster.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "147.45.108.45",
+            "port": 443,
+            "users": [
+              {
+                "id": "1e2b9c0c-4f9b-56f5-a062-1c4f2d2aa200",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "absolute-disaster.org",
+          "fingerprint": "firefox",
+          "publicKey": "IuzAWh6UM62Txrnh_No9y5n6wmZecyR1ki8z5xor-0g",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "⚡ [669ms] 🌐 Global Reality #08 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -184,7 +450,7 @@
       }
     },
     {
-      "tag": "⚡ [314ms] 🌐 Global Reality #02 (144.hexdey.com)",
+      "tag": "⚡ [703ms] 🌐 Global Reality #09 (144.hexdey.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -222,16 +488,16 @@
       }
     },
     {
-      "tag": "⚡ [714ms] 🇫🇮 (games.robloxfans.fun)",
+      "tag": "⚡ [708ms] 🌐 Global Reality #10 (ch.mntw.lol)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "109.73.207.225",
+            "address": "195.15.207.252",
             "port": 443,
             "users": [
               {
-                "id": "ef1da56e-8117-03eb-bcd8-9094ebbdf985",
+                "id": "65b6bc06-44c9-4b21-8dc0-bdf1d688c0e6",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -252,24 +518,24 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "games.robloxfans.fun",
-          "fingerprint": "firefox",
-          "publicKey": "KFIPjM9UI5YaPMOKE2oJWg9pO1HD_FlByAwirvVauhA",
-          "shortId": "812e5d00c043b6ec"
+          "serverName": "ch.mntw.lol",
+          "fingerprint": "chrome",
+          "publicKey": "dqhYuWM5WUOgUYe4FmvLZS-Nb4tY9qZ7_WffpePl6lQ",
+          "shortId": "76d0389e457fcba0"
         }
       }
     },
     {
-      "tag": "⚡ [1223ms] 🌐 Global Reality #04 (play.3apes.pro)",
+      "tag": "⚡ [711ms] 🌐 Global Reality #11 (deepl.com)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "94.183.167.153",
+            "address": "130.12.242.106",
             "port": 443,
             "users": [
               {
-                "id": "80b3cf20-c77c-4fb9-a69e-55c9dadd58c8",
+                "id": "bc058e69-0444-4c7b-98da-bd67f0b143da",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -290,530 +556,91 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "play.3apes.pro",
-          "fingerprint": "edge",
+          "serverName": "deepl.com",
+          "fingerprint": "chrome",
+          "publicKey": "vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8",
+          "shortId": "15affa0af66dfc79"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [743ms] 🌐 Global Reality #12 (lt.3apes.pro)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.81.129.162",
+            "port": 443,
+            "users": [
+              {
+                "id": "13908eee-ea78-4363-adab-6cca98ecfce3",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "lt.3apes.pro",
+          "fingerprint": "firefox",
           "publicKey": "q4_o7NvD6vQg4hYsyO29Q6PVufjTJHDUbQTqstre9EQ",
           "shortId": ""
         }
       }
     },
     {
-      "tag": "⚡ [1135ms] 🌐 Global Reality #05 (jurnal.primetap.pro)",
+      "tag": "⚡ [798ms] 🌐 Global Reality #13 (lites.3apes.pro)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "217.60.30.70",
-            "port": 8443,
+            "address": "185.81.129.197",
+            "port": 443,
             "users": [
               {
-                "id": "80b3cf20-c77c-4fb9-a69e-55c9dadd58c8",
-                "encryption": "none"
+                "id": "13908eee-ea78-4363-adab-6cca98ecfce3",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "raw",
         "sockopt": {
           "tcpKeepAliveIdle": 300,
           "tcpKeepAliveInterval": 60
         },
-        "xhttpSettings": {
-          "path": "/api/v2/live/84bdcf675b7dc43f",
-          "host": "jurnal.primetap.pro",
-          "mode": "auto"
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "jurnal.primetap.pro",
-          "fingerprint": "chrome",
+          "serverName": "lites.3apes.pro",
+          "fingerprint": "firefox",
           "publicKey": "q4_o7NvD6vQg4hYsyO29Q6PVufjTJHDUbQTqstre9EQ",
           "shortId": ""
         }
       }
     },
     {
-      "tag": "⚡ [370ms] 🌐 Global Reality #06 (polarladder.com)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "78.159.240.62",
-            "port": 2053,
-            "users": [
-              {
-                "id": "37af0181-5598-4aad-a040-d926bcb65757",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/v1/upload",
-          "host": "polarladder.com",
-          "mode": "auto"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "polarladder.com",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [483ms] 🇫🇮 AetrisVPN (api-6b04608f.adhil.uk)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "165.231.157.150",
-            "port": 8443,
-            "users": [
-              {
-                "id": "0173d52e-8e1b-4681-831e-11529677b72f",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "api-6b04608f.adhil.uk",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [654ms] 🌐 Global Reality #08 (no-sni)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.104.55.246",
-            "port": 443,
-            "users": [
-              {
-                "id": "076799f8-d922-4bf1-805d-e758e6eb925f",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "free.server.darknetlk.com",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [805ms] 🌐 Global Reality #09 (gm3.greencdn.org)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.72.112.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "7ce93cef-119d-4cba-9d9d-da0056ba979c",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/uploadFile/",
-          "host": "gm3.greencdn.org",
-          "mode": "packet-up",
-          "extra": {
-            "scMaxEachPostBytes": 4096,
-            "uplinkDataKey": "X-Payload",
-            "uplinkDataPlacement": "header",
-            "uplinkHTTPMethod": "GET",
-            "xPaddingBytes": "140-528",
-            "xmux": {
-              "cMaxReuseTimes": "66-100",
-              "hKeepAlivePeriod": 25,
-              "hMaxRequestTimes": "693-940",
-              "hMaxReusableSecs": "900-1426",
-              "maxConnections": "3-4"
-            }
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "gm3.greencdn.org",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [808ms] 🌐 Global Reality #10 (birch.kryonix.space)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.72.112.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b6a7fe0-206b-4071-9f96-cd397d1ec01a",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "xhttpSettings": {
-          "path": "/api/api_v2/mediaupload_process",
-          "host": "birch.kryonix.space",
-          "mode": "packet-up",
-          "extra": {
-            "noSSEHeader": false,
-            "scMaxBufferedPosts": 512,
-            "scMaxEachPostBytes": "20480-24576",
-            "scMinPostsIntervalMs": "2-3",
-            "seqKey": "segment",
-            "seqPlacement": "query",
-            "serverMaxHeaderBytes": 262144,
-            "sessionIDKey": "media_session",
-            "sessionIDLength": "22-30",
-            "sessionIDPlacement": "query",
-            "sessionIDTable": "Base62",
-            "uplinkChunkSize": "4096-6144",
-            "uplinkDataKey": "data",
-            "uplinkDataPlacement": "header",
-            "uplinkHTTPMethod": "GET",
-            "xPaddingBytes": "64-320",
-            "xPaddingHeader": "Referer",
-            "xPaddingKey": "cacheVersion",
-            "xPaddingMethod": "tokenish",
-            "xPaddingObfsMode": true,
-            "xPaddingPlacement": "queryInHeader",
-            "xmux": {
-              "cMaxReuseTimes": "16-32",
-              "hMaxReusableSecs": "120-240",
-              "maxConnections": 2
-            }
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "birch.kryonix.space",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [903ms] 🇳🇱 AetrisVPN (171.22.183.167)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "171.22.183.167",
-            "port": 443,
-            "users": [
-              {
-                "id": "04920673-035c-410d-94e4-5b1469d3fb6f",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "171.22.183.167",
-          "fingerprint": "ios"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [968ms] 🌐 Global Reality #12 (api-6b04608f.adhil.uk)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "165.231.157.140",
-            "port": 8443,
-            "users": [
-              {
-                "id": "0173d52e-8e1b-4681-831e-11529677b72f",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "api-6b04608f.adhil.uk",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [1441ms] 🌐 Global Reality #13 (api-6b04608f.adhil.uk)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "165.231.157.154",
-            "port": 8443,
-            "users": [
-              {
-                "id": "0173d52e-8e1b-4681-831e-11529677b72f",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "api-6b04608f.adhil.uk",
-          "fingerprint": "firefox"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [1802ms] 🌐 Global Reality #14 (rumicro642.richhoodf..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "84.54.44.117",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "rumicro642.richhoodfoc.com",
-          "fingerprint": "chrome",
-          "publicKey": "fPvZxeP0GErdI22fbEAqbMaz-QMumNIDzBNgKZmRsWY",
-          "shortId": "a7b12f3265f97f4a"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [2195ms] 🌐 Global Reality #15 (sbturkeymicro4.gangt..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "176.123.167.124",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "sbturkeymicro4.gangtype.com",
-          "fingerprint": "firefox",
-          "publicKey": "JR19BNl-sicrXGAED422ys_zI6BZoxRUjX2aL83MDyc",
-          "shortId": "03ba1a518a2eaa14"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [2359ms] 🌐 Global Reality #16 (ruaesing656.gangplat..)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "94.228.167.18",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ruaesing656.gangplatform.com",
-          "fingerprint": "chrome",
-          "publicKey": "90uNUU-i14MO0VEIipqtK_Pk3xMhtDDDWtfcv_Y1X2s",
-          "shortId": "b0f28b824c4f18f5"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [3085ms] 🌐 Global Reality #17 (ruae633.jointaction.am)",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "178.236.240.66",
-            "port": 443,
-            "users": [
-              {
-                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "raw",
-        "sockopt": {
-          "tcpKeepAliveIdle": 300,
-          "tcpKeepAliveInterval": 60
-        },
-        "rawSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ruae633.jointaction.am",
-          "fingerprint": "chrome",
-          "publicKey": "2BnTTOS3HvvIbNDEHPrhwnpPBc1HB7gEHkmQfUATkCw",
-          "shortId": "c0a60e2240745383"
-        }
-      }
-    },
-    {
-      "tag": "⚡ [4196ms] 🌐 Global Reality #18 (rusbox634.grizpliz.am)",
+      "tag": "⚡ [983ms] 🌐 Global Reality #14 (rusbox634.grizpliz.am)",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -851,16 +678,16 @@
       }
     },
     {
-      "tag": "⚡ [4696ms] 🌐 Global Reality #19 (us.memepn.com)",
+      "tag": "⚡ [1014ms] 🌐 Global Reality #15 (rucanmicro1.gangplat..)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "143.246.215.19",
+            "address": "84.54.47.216",
             "port": 443,
             "users": [
               {
-                "id": "f69e272f-e0e5-4e9d-b180-5be63930cde9",
+                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -881,24 +708,24 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "us.memepn.com",
-          "fingerprint": "firefox",
-          "publicKey": "drl7nndYdfzZY1aQ0eUAWmNV0nsHig2uDnu9siy9biQ",
-          "shortId": "868419504747f6de"
+          "serverName": "rucanmicro1.gangplatform.com",
+          "fingerprint": "chrome",
+          "publicKey": "3U3hb-HmOG5qptCzXIt8NQE3TE40eeTJsNpBV_B9hQA",
+          "shortId": "1dde6750d22c5634"
         }
       }
     },
     {
-      "tag": "⚡ [4783ms] 🌐 Global Reality #20 (contract.starsov.pro)",
+      "tag": "⚡ [1058ms] 🌐 Global Reality #16 (lite.3apes.pro)",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.225.32.252",
+            "address": "185.81.129.161",
             "port": 443,
             "users": [
               {
-                "id": "d3d4e690-db61-4b84-8687-7c1ff79c89ff",
+                "id": "13908eee-ea78-4363-adab-6cca98ecfce3",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -919,10 +746,162 @@
         },
         "security": "reality",
         "realitySettings": {
-          "serverName": "contract.starsov.pro",
+          "serverName": "lite.3apes.pro",
           "fingerprint": "firefox",
-          "publicKey": "8rdhihFgU72DVkhH6ROS9j2WyNc_spuiGXrT_YvNJ0M",
-          "shortId": "f51bc11ebd9f2835"
+          "publicKey": "q4_o7NvD6vQg4hYsyO29Q6PVufjTJHDUbQTqstre9EQ",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1080ms] 🌐 Global Reality #17 (absolute-disaster.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "72.56.38.83",
+            "port": 443,
+            "users": [
+              {
+                "id": "1e2b9c0c-4f9b-56f5-a062-1c4f2d2aa200",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "absolute-disaster.org",
+          "fingerprint": "chrome",
+          "publicKey": "ZzIetLcQtENjIXQ9XZqFo8p3J81p8Emj0wi51Uy07n8",
+          "shortId": ""
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1099ms] 🌐 Global Reality #18 (rusamicro6.gangtype...)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "88.210.34.18",
+            "port": 443,
+            "users": [
+              {
+                "id": "9df9ee1a-0671-4c6c-93c7-65598fb946f7",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "rusamicro6.gangtype.com",
+          "fingerprint": "safari",
+          "publicKey": "v_vyazre_waQFN1iDyL-deNRJvoFBuokDcHCOCdiQ2A",
+          "shortId": "1cb833e7c85a788b"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1134ms] 🌐 Global Reality #19 (yahoo.com)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.144.112.55",
+            "port": 443,
+            "users": [
+              {
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "chrome",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a"
+        }
+      }
+    },
+    {
+      "tag": "⚡ [1151ms] 🌐 Global Reality #20 (absolute-disaster.org)",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "147.45.108.45",
+            "port": 443,
+            "users": [
+              {
+                "id": "Fluffy_VPN-zKZUa4Ie",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpKeepAliveIdle": 300,
+          "tcpKeepAliveInterval": 60
+        },
+        "rawSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "absolute-disaster.org",
+          "fingerprint": "chrome",
+          "publicKey": "IuzAWh6UM62Txrnh_No9y5n6wmZecyR1ki8z5xor-0g",
+          "shortId": ""
         }
       }
     },
