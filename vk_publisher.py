@@ -101,7 +101,7 @@ def _upload_docx(doc_path: Path, upload_filename: str, group_id: int, token: str
                     "access_token": token,
                     "v": "5.199",
                 },
-                timeout=20,
+                timeout=(10, 15),
             ).json()
 
             if "response" not in srv:
@@ -118,7 +118,7 @@ def _upload_docx(doc_path: Path, upload_filename: str, group_id: int, token: str
                         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                     )
                 },
-                timeout=45,
+                timeout=(10, 20),
             )
             if not up_resp.text or not up_resp.text.strip():
                 logger.warning(f"Попытка {attempt + 1}/3 пустой ответ upload ({upload_filename})")
@@ -142,7 +142,7 @@ def _upload_docx(doc_path: Path, upload_filename: str, group_id: int, token: str
                     "access_token": token,
                     "v": "5.199",
                 },
-                timeout=20,
+                timeout=(10, 15),
             ).json()
 
             if "response" not in save or "doc" not in save["response"]:

@@ -136,10 +136,13 @@ def main() -> int:
                 src = BASE_DIR / fname
                 if src.exists():
                     shutil.copy2(src, harvester_out / src.name)
-            vk_res = _run_cmd([py_cli, str(vk_pub)], env=None, timeout=60)
-            vk_lines = [l.strip() for l in ((vk_res.stdout or "") + "\n" + (vk_res.stderr or "")).splitlines() if l.strip()]
-            for line in vk_lines[-5:]:
-                _log(f"  [VK] {line}")
+            try:
+                vk_res = _run_cmd([py_cli, str(vk_pub)], env=None, timeout=150)
+                vk_lines = [l.strip() for l in ((vk_res.stdout or "") + "\n" + (vk_res.stderr or "")).splitlines() if l.strip()]
+                for line in vk_lines[-5:]:
+                    _log(f"  [VK] {line}")
+            except subprocess.TimeoutExpired:
+                _log("  [VK] Предупреждение: публикация в VK превысила 150с, продолжаем git push.")
 
         if args.no_git:
             _log("Режим --no-git: git push пропущен.")
