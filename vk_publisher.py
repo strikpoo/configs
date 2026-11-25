@@ -88,68 +88,72 @@ def _build_single_docx(doc_path: Path, links: List[str]) -> Optional[Path]:
 
 
 def _upload_docx(doc_path: Path, upload_filename: str, group_id: int, token: str) -> Optional[str]:
-    """Загружает .docx файл на сервер документов VK (с автоповтором при временном сбое сервера) и возвращает attachment-строку."""
+    """Загружает .docx файл на сервер документов VK (с автоповтором при временном сбое/таймауте) и возвращает attachment-строку."""
     doc_bytes = doc_path.read_bytes()
     for attempt in range(3):
         if attempt > 0:
-            time.sleep(1.0)
-        srv = requests.get(
-            "https://api.vk.com/method/docs.getWallUploadServer",
-            params={
-                "group_id": group_id,
-                "access_token": token,
-                "v": "5.199",
-            },
-            timeout=15,
-        ).json()
-
-        if "response" not in srv:
-            logger.warning(f"Попытка {attempt + 1}/3 getWallUploadServer ({upload_filename}): {srv}")
-            continue
-
-        upload_url = srv["response"]["upload_url"]
-        up_resp = requests.post(
-            upload_url,
-            files={
-                "file": (
-                    upload_filename,
-                    doc_bytes,
-                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                )
-            },
-            timeout=30,
-        )
-        if not up_resp.text or not up_resp.text.strip():
-            logger.warning(f"Попытка {attempt + 1}/3 пустой ответ upload ({upload_filename})")
-            continue
-
+            time.sleep(1.5)
         try:
-            up = up_resp.json()
-        except ValueError:
-            logger.warning(f"Попытка {attempt + 1}/3 не-JSON ответ upload ({upload_filename}): {up_resp.text[:120]}")
+            srv = requests.get(
+                "https://api.vk.com/method/docs.getWallUploadServer",
+                params={
+                    "group_id": group_id,
+                    "access_token": token,
+                    "v": "5.199",
+                },
+                timeout=20,
+            ).json()
+
+            if "response" not in srv:
+                logger.warning(f"Попытка {attempt + 1}/3 getWallUploadServer ({upload_filename}): {srv}")
+                continue
+
+            upload_url = srv["response"]["upload_url"]
+            up_resp = requests.post(
+                upload_url,
+                files={
+                    "file": (
+                        upload_filename,
+                        doc_bytes,
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    )
+                },
+                timeout=45,
+            )
+            if not up_resp.text or not up_resp.text.strip():
+                logger.warning(f"Попытка {attempt + 1}/3 пустой ответ upload ({upload_filename})")
+                continue
+
+            try:
+                up = up_resp.json()
+            except ValueError:
+                logger.warning(f"Попытка {attempt + 1}/3 HTTP {up_resp.status_code} не-JSON ответ upload ({upload_filename})")
+                continue
+
+            if "file" not in up:
+                logger.warning(f"Попытка {attempt + 1}/3 ошибка upload ({upload_filename}): {up}")
+                continue
+
+            save = requests.post(
+                "https://api.vk.com/method/docs.save",
+                data={
+                    "file": up["file"],
+                    "title": upload_filename,
+                    "access_token": token,
+                    "v": "5.199",
+                },
+                timeout=20,
+            ).json()
+
+            if "response" not in save or "doc" not in save["response"]:
+                logger.warning(f"Попытка {attempt + 1}/3 ошибка docs.save ({upload_filename}): {save}")
+                continue
+
+            doc_info = save["response"]["doc"]
+            return f"doc{doc_info['owner_id']}_{doc_info['id']}"
+        except (requests.RequestException, ValueError) as exc:
+            logger.warning(f"Попытка {attempt + 1}/3 сетевой сбой upload ({upload_filename}): {exc}")
             continue
-
-        if "file" not in up:
-            logger.warning(f"Попытка {attempt + 1}/3 ошибка upload ({upload_filename}): {up}")
-            continue
-
-        save = requests.post(
-            "https://api.vk.com/method/docs.save",
-            data={
-                "file": up["file"],
-                "title": upload_filename,
-                "access_token": token,
-                "v": "5.199",
-            },
-            timeout=15,
-        ).json()
-
-        if "response" not in save or "doc" not in save["response"]:
-            logger.warning(f"Попытка {attempt + 1}/3 ошибка docs.save ({upload_filename}): {save}")
-            continue
-
-        doc_info = save["response"]["doc"]
-        return f"doc{doc_info['owner_id']}_{doc_info['id']}"
 
     logger.error(f"Не удалось загрузить {upload_filename} в VK после 3 попыток.")
     return None
@@ -197,25 +201,38 @@ def publish_to_vk(whitelist_links: Optional[List[str]] = None) -> bool:
                 continue
             if idx > 0 and published_posts:
                 time.sleep(0.5)
-            res = requests.post(
-                "https://api.vk.com/method/wall.post",
-                data={
-                    "owner_id": -int(group_id),
-                    "from_group": 1,
-                    "message": wall_msg,
-                    "attachments": att,
-                    "access_token": token,
-                    "v": "5.199",
-                },
-                timeout=15,
-            ).json()
+            res = {}
+            for post_attempt in range(3):
+                if post_attempt > 0:
+                    time.sleep(1.5)
+                try:
+                    res = requests.post(
+                        "https://api.vk.com/method/wall.post",
+                        data={
+                            "owner_id": -int(group_id),
+                            "from_group": 1,
+                            "message": wall_msg,
+                            "attachments": att,
+                            "access_token": token,
+                            "v": "5.199",
+                        },
+                        timeout=20,
+                    ).json()
+                except (requests.RequestException, ValueError) as exc:
+                    logger.warning(f"Попытка {post_attempt + 1}/3 wall.post ({upload_name}): {exc}")
+                    res = {}
+                    continue
+
+                if "response" in res:
+                    break
+                logger.warning(f"Попытка {post_attempt + 1}/3 ответ wall.post ({upload_name}): {res}")
 
             if "response" in res:
                 pid = res["response"].get("post_id")
                 published_posts.append(pid)
                 logger.info(f"Опубликован {upload_name} в VK (post_id: {pid})")
             else:
-                logger.error(f"Ошибка публикации {upload_name} в VK: {res}")
+                logger.error(f"Ошибка публикации {upload_name} в VK после 3 попыток: {res}")
 
         return len(published_posts) == sum(1 for t in targets if t[3])
 

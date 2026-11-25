@@ -25,6 +25,7 @@ RU_WHITE_SNI = {
     # VK / Mail.ru
     "vk.com",
     "vk.ru",
+    "vk.me",
     "userapi.com",
     "sun6-21.userapi.com",
     "mail.ru",

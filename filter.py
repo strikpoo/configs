@@ -187,12 +187,13 @@ def get_wl_rank(node: ProxyNode) -> int:
     """
     Приоритет узлов для обхода региональных белых списков ТСПУ:
     Ранг 0: IP в официальном ТСПУ cidrwhitelist + официальный SNI Минцифры (максимальный шанс пробития!)
-    Ранг 1: Проверенные белые подсети в ТСПУ cidrwhitelist (VK Cloud / Citytelecom / HLL / Yandex Cloud)
-    Ранг 2: Прочие российские IP в официальном ТСПУ cidrwhitelist
-    Ранг 3: Официальный SNI Минцифры на любом живом сервере (yandex.net, yandex.ru, max.ru, mail.ru, vk.com)
-    Ранг 4: Прочие RU-префиксы + российский доменный SNI (.ru / .su / .рф)
-    Ранг 5: Российский доменный SNI (.ru / .su / .рф) на прочих серверах
-    Ранг 6: Прочие RU-префиксы на стандартном/нестандартном порту
+    Ранг 1: IP в официальном ТСПУ cidrwhitelist + российский доменный SNI (.ru / .su / .рф)
+    Ранг 2: Официальный SNI Минцифры на любом живом сервере (yandex.ru, vk.com, vk.me, gosuslugi.ru, max.ru, mail.ru)
+    Ранг 3: Проверенные белые подсети в ТСПУ cidrwhitelist (VK Cloud / Citytelecom / HLL / Yandex Cloud)
+    Ранг 4: Прочие российские IP в официальном ТСПУ cidrwhitelist
+    Ранг 5: Прочие RU-префиксы + российский доменный SNI (.ru / .su / .рф)
+    Ранг 6: Российский доменный SNI (.ru / .su / .рф) на прочих серверах
+    Ранг 7: Прочие RU-префиксы
     """
     if node.protocol not in ("vless", "vmess"):
         return 99
@@ -224,18 +225,20 @@ def get_wl_rank(node: ProxyNode) -> int:
 
     if in_tspu_ip and in_tspu_sni:
         return 0
-    if in_tspu_ip and is_confirmed_wl_prefix(node.host):
+    if in_tspu_ip and in_ru_dom:
         return 1
-    if in_tspu_ip:
-        return 2
     if in_tspu_sni:
+        return 2
+    if in_tspu_ip and is_confirmed_wl_prefix(node.host):
         return 3
-    if in_ru_net and in_ru_dom:
+    if in_tspu_ip:
         return 4
-    if in_ru_dom:
+    if in_ru_net and in_ru_dom:
         return 5
-    if in_ru_net:
+    if in_ru_dom:
         return 6
+    if in_ru_net:
+        return 7
 
     return 99
 
