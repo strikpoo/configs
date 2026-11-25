@@ -81,11 +81,17 @@ class ProxyNode:
                         json.loads(v)
                     except Exception:
                         continue
-                # Чистим рекламный спам Telegram, не задевая легитимные домены (например parchment.merlano)
+                # Чистим рекламный спам Telegram и битые значения host (напр. "/?")
                 val_low = v.lower()
                 if any(spam in val_low for spam in ("telegram.me", "telegram.org", "t.me/", "@")):
                     continue
+                if k == "host" and ("/" in v or "?" in v):
+                    continue
                 clean_params[k] = v
+
+            # Универсальный вид транспорта для всех клиентов (Sing-Box / Xray / INCY / Happ): raw -> tcp
+            if clean_params.get("type", "").strip().lower() in ("raw", ""):
+                clean_params["type"] = "tcp"
 
             # Не ломаем рабочий отпечаток сервера (firefox/ios/edge/safari/chrome); заменяем только пустой или qq/360
             fp_cur = (clean_params.get("fp") or "").strip().lower()

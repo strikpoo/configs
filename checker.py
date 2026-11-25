@@ -552,12 +552,14 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
                 seen_res.add(n.unique_key)
                 results.append((n, d))
 
-    # Запуск Xray для всех xHTTP, не прошедших Sing-Box White-List кандидатов и добора прямых Black-List (до 105 шт)
+    # Запуск Xray для всех xHTTP, не прошедших Sing-Box White-List кандидатов и добора прямых Black-List (приоритет VLESS Reality)
     wl_extra_for_xray = [n for n in wl_sb_candidates if n.unique_key not in seen_res][:250]
     bl_direct_for_xray = [
         n for n in bl_test_nodes
         if not is_cloudflare_ip(n.host) and n.unique_key not in seen_res and get_bl_rank(n) <= 2
-    ][:105]
+    ]
+    bl_direct_for_xray.sort(key=lambda x: (get_bl_rank(x), x.tcp_ping or 999.0))
+    bl_direct_for_xray = bl_direct_for_xray[:220]
     xray_queue = []
     seen_xr = set()
     for n in xhttp_nodes + wl_extra_for_xray + bl_direct_for_xray:
@@ -565,7 +567,7 @@ async def check_nodes_pool(nodes: List[ProxyNode]) -> Tuple[List[Tuple[ProxyNode
             seen_xr.add(n.unique_key)
             xray_queue.append(n)
     if xray_queue:
-        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 420)
+        xray_alive = await asyncio.to_thread(run_xray_urltest, xray_queue, 480)
         for n, d in xray_alive:
             if n.unique_key not in seen_res:
                 seen_res.add(n.unique_key)

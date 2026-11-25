@@ -335,11 +335,12 @@ def is_trusted_sni(sni: str) -> bool:
 
 
 def get_bl_rank(node: ProxyNode) -> int:
-    """Ранжирование узлов Black-List с учетом совместимости с МТС и Wi-Fi:
-    Ранг 0: Прямой не-Cloudflare VLESS Reality TCP (Vision) на порту 443 (лучший выбор и для МТС, и для Wi-Fi)
-    Ранг 1: Прямой не-Cloudflare VLESS TLS TCP на 443/8443 (быстрые прямые и каскадные TLS-узлы)
-    Ранг 2: Прочие прямые не-Cloudflare Reality/TLS (gRPC, нестандартные порты, прямой WS)
-    Ранг 3: Чистые Cloudflare CDN Worker VLESS TLS WS (без cloudflare.com в SNI)
+    """Ранжирование узлов Black-List с приоритетом мобильной устойчивости (МТС/ТСПУ + Wi-Fi):
+    Ранг 0: Прямой не-Cloudflare VLESS Reality TCP (Vision) на порту 443
+    Ранг 1: Прочие прямые не-Cloudflare VLESS Reality (без Vision, gRPC, нестандартные порты)
+    Ранг 2: Прямой не-Cloudflare VLESS TLS TCP на 443/8443 (без WebSocket)
+    Ранг 3: Прямой не-Cloudflare VLESS TLS WebSocket (резерв, чаще режется на мобильных)
+    Ранг 4: Чистые Cloudflare CDN Worker VLESS TLS WS (без cloudflare.com в SNI)
     """
     sec = node.params.get("security", "").lower().strip()
     flow = node.params.get("flow", "").lower()
@@ -348,12 +349,14 @@ def get_bl_rank(node: ProxyNode) -> int:
     is_cf = is_cloudflare_ip(node.host)
 
     if is_cf:
-        return 3
+        return 4
     if sec == "reality" and is_p443 and "vision" in flow and net in ("tcp", "raw", ""):
         return 0
-    if sec == "tls" and net in ("tcp", "raw", "") and str(node.port) in ("443", "8443"):
+    if sec == "reality":
         return 1
-    return 2
+    if sec == "tls" and net in ("tcp", "raw", "") and str(node.port) in ("443", "8443"):
+        return 2
+    return 3
 
 
 def is_germany_node(node: ProxyNode) -> bool:
@@ -482,22 +485,22 @@ def classify_nodes(
         node.name = clean_name
         whitelist_uris.append(node.build_uri(new_name=clean_name))
 
-    # Для Black-List (МТС + Wi-Fi):
-    # 1. Проверенные YouTube-тестом узлы всегда впереди
-    # 2. Прямые не-CDN узлы до 1200мс впереди медленных (> 1200мс) и Cloudflare CDN
-    # 3. Внутри уровня — минимальный реальный пинг, а доля Cloudflare CDN ограничена (не более 6 шт при наличии прямых)
+    # Для Black-List (мобильный ТСПУ + Wi-Fi):
+    # 1. Проверенные URL-тестом узлы всегда впереди
+    # 2. Все прямые VLESS Reality и TLS-TCP (ранги 0..2) всегда ВЫШЕ мобильно-нестабильных TLS-WS (ранг 3) и Cloudflare CDN (ранг 4)
+    # 3. Внутри группы — быстрые (до 1500мс) раньше медленных, затем ранг и минимальный пинг
     def bl_sort_key(item):
         node, ping_ms, verified = item
         rank = get_bl_rank(node)
-        tier = 0 if rank <= 1 else (1 if rank == 2 else 2)
-        is_slow = (ping_ms > 1200 or ping_ms <= 0) if verified else True
+        is_fragile = rank >= 3  # TLS-WS и Cloudflare CDN
+        is_slow = (ping_ms > 1500 or ping_ms <= 0) if verified else True
         return (
             not verified,
-            tier == 2,
+            is_fragile,
+            rank == 4,
             is_slow,
-            tier,
-            ping_ms if ping_ms > 0 else 9999.0,
             rank,
+            ping_ms if ping_ms > 0 else 9999.0,
         )
 
     bl_candidates.sort(key=bl_sort_key)
