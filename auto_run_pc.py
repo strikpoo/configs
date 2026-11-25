@@ -21,11 +21,7 @@ NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 OUTPUT_FILES = [
     "output/whitelist.txt",
-    "output/whitelist_base64.txt",
     "output/blacklist.txt",
-    "output/blacklist_base64.txt",
-    "output/happ_whitelist.txt",
-    "output/happ_whitelist_base64.txt",
 ]
 
 

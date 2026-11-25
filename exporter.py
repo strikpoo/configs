@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Экспортер готовых подписок (.txt) и доставка на подключенное устройство через ADB.
+Экспортер готовых подписок (whitelist.txt и blacklist.txt) и доставка на подключенное устройство через ADB.
 """
 
 import base64
@@ -12,6 +12,18 @@ from config import OUTPUT_DIR, ADB_PATH, DEVICE_TARGET_DIR
 
 logger = logging.getLogger("harvester.exporter")
 
+_LEGACY_OUTPUT_FILES = (
+    "whitelist_base64.txt",
+    "blacklist_base64.txt",
+    "happ_whitelist.txt",
+    "happ_whitelist_base64.txt",
+    "happ_whitelist.json",
+    "happ_blacklist.json",
+    "happ_config.json",
+    "happ_config.zip",
+    "happ.html",
+)
+
 
 def _format_subscription_text(nodes_list: List[str], title: str) -> str:
     """Формирует текст подписки с мета-заголовками названия профиля (#profile-title) для клиентов (INCY / Happ / v2rayNG)."""
@@ -21,49 +33,21 @@ def _format_subscription_text(nodes_list: List[str], title: str) -> str:
 
 
 def save_subscriptions(whitelist: List[str], blacklist: List[str]) -> Path:
-    """Сохранение подписок в директорию output/ (только .txt форматы)."""
+    """Сохранение подписок в директорию output/ (только whitelist.txt и blacklist.txt)."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Удаляем устаревшие non-.txt форматы подписок, если остались на диске
-    for legacy_name in ("happ_whitelist.json", "happ_blacklist.json", "happ_config.json", "happ_config.zip", "happ.html"):
+    for legacy_name in _LEGACY_OUTPUT_FILES:
         (OUTPUT_DIR / legacy_name).unlink(missing_ok=True)
 
     wl_file = OUTPUT_DIR / "whitelist.txt"
     bl_file = OUTPUT_DIR / "blacklist.txt"
-    wl_b64_file = OUTPUT_DIR / "whitelist_base64.txt"
-    bl_b64_file = OUTPUT_DIR / "blacklist_base64.txt"
-    happ_txt_file = OUTPUT_DIR / "happ_whitelist.txt"
-    happ_b64_file = OUTPUT_DIR / "happ_whitelist_base64.txt"
 
-    wl_text = _format_subscription_text(whitelist, "🏳️ БС")
-    bl_text = _format_subscription_text(blacklist, "🏴 ЧС")
-
-    # Сохранение White-List (.txt)
-    with open(wl_file, "w", encoding="utf-8") as f:
-        f.write(wl_text)
-
-    with open(happ_txt_file, "w", encoding="utf-8") as f:
-        f.write(wl_text)
-
-    wl_b64 = base64.b64encode(wl_text.encode("utf-8")).decode("utf-8")
-    with open(wl_b64_file, "w", encoding="utf-8") as f:
-        f.write(wl_b64 + "\n")
-
-    with open(happ_b64_file, "w", encoding="utf-8") as f:
-        f.write(wl_b64 + "\n")
-
-    # Сохранение Black-List (.txt)
-    with open(bl_file, "w", encoding="utf-8") as f:
-        f.write(bl_text)
-
-    bl_b64 = base64.b64encode(bl_text.encode("utf-8")).decode("utf-8")
-    with open(bl_b64_file, "w", encoding="utf-8") as f:
-        f.write(bl_b64 + "\n")
+    wl_file.write_text(_format_subscription_text(whitelist, "🏳️ БС"), encoding="utf-8")
+    bl_file.write_text(_format_subscription_text(blacklist, "🏴 ЧС"), encoding="utf-8")
 
     logger.info(f"Файлы успешно сохранены в папку: {OUTPUT_DIR}")
     logger.info(f" -> {wl_file.name} ({len(whitelist)} узлов)")
     logger.info(f" -> {bl_file.name} ({len(blacklist)} узлов)")
-    logger.info(f" -> {wl_b64_file.name}, {bl_b64_file.name}, {happ_txt_file.name}, {happ_b64_file.name} (.txt)")
 
     return OUTPUT_DIR
 
