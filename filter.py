@@ -10,6 +10,7 @@ import urllib.request
 from typing import List, Tuple, Dict, Set
 from parser import ProxyNode, resolve_to_ip
 from config import RU_WHITE_SNI
+from geo import resolve_nodes_countries, format_country_label
 
 logger = logging.getLogger("harvester.filter")
 
@@ -387,10 +388,37 @@ def is_germany_node(node: ProxyNode) -> bool:
     return False
 
 
+def _format_node_name(
+    idx: int,
+    node: ProxyNode,
+    ping_ms: float,
+    url_verified: bool,
+    country_code: str,
+    is_whitelist: bool = False,
+) -> str:
+    """Форматирует чистое отображаемое имя узла: задержка, флаг, страна на русском, номер и SNI."""
+    display_sni = (node.sni or node.params.get("host") or "").strip() or "no-sni"
+    if len(display_sni) > 22:
+        display_sni = display_sni[:20] + ".."
+    prefix = f"⚡ [{int(ping_ms)}ms] " if url_verified else ""
+    flag, country_ru = format_country_label(country_code)
+
+    transport_tag = ""
+    if is_whitelist:
+        net = node.params.get("type", "tcp").lower().strip()
+        if net in ("xhttp", "splithttp"):
+            transport_tag = " [xHTTP]"
+        elif net == "grpc":
+            transport_tag = " [gRPC]"
+
+    return f"{prefix}{flag} {country_ru} #{idx:02d}{transport_tag} ({display_sni})"
+
+
 def classify_nodes(
     alive_nodes_with_ping: List[Tuple[ProxyNode, float]],
     tcp_alive_nodes: List[ProxyNode] = None,
-    all_raw_nodes: List[ProxyNode] = None
+    all_raw_nodes: List[ProxyNode] = None,
+    resolve_geo: bool = True,
 ) -> Tuple[List[str], List[str]]:
     """
     Разделение живых узлов на:
@@ -449,42 +477,6 @@ def classify_nodes(
             wl_overflow.append(item)
     if len(selected_wl) < 100:
         selected_wl.extend(wl_overflow[:(100 - len(selected_wl))])
-
-    whitelist_uris: List[str] = []
-    de_count = 0
-    ru_count = 0
-
-    for node, ping_ms, rank, url_verified in selected_wl:
-        display_sni = node.sni or node.params.get("host", "no-sni")
-        if len(display_sni) > 22:
-            display_sni = display_sni[:20] + ".."
-        net = node.params.get("type", "tcp").lower().strip()
-        prefix = f"⚡ [{int(ping_ms)}ms] " if url_verified else ""
-
-        if is_russian_cidr(node):
-            ru_count += 1
-            flag = "🇷🇺"
-            if "nvidia" in display_sni:
-                label = f"Russia Nvidia #{ru_count:02d}"
-            elif net in ("xhttp", "splithttp"):
-                label = f"Russia xHTTP #{ru_count:02d}"
-            elif net == "grpc":
-                label = f"Russia gRPC #{ru_count:02d}"
-            else:
-                label = f"Russia CIDR #{ru_count:02d}"
-        else:
-            de_count += 1
-            flag = "🇩🇪" if is_germany_node(node) else "🌐"
-            if net in ("xhttp", "splithttp"):
-                label = f"White xHTTP #{de_count:02d}"
-            elif net == "grpc":
-                label = f"White gRPC #{de_count:02d}"
-            else:
-                label = f"White Relay #{de_count:02d}"
-
-        clean_name = f"{prefix}{flag} {label} ({display_sni})"
-        node.name = clean_name
-        whitelist_uris.append(node.build_uri(new_name=clean_name))
 
     # Для Black-List (мобильный ТСПУ + Wi-Fi):
     # 1. Стабильные (прошедшие 2/2 gstatic <= 2.8с в Xray) всегда строго впереди!
@@ -569,19 +561,35 @@ def classify_nodes(
                 if len(selected_bl) >= bl_limit:
                     break
 
-    blacklist_uris: List[str] = []
+    country_codes: Dict[str, str] = {}
+    if resolve_geo:
+        geo_targets = [(item[0], item[3]) for item in selected_wl] + [(item[0], item[2]) for item in selected_bl]
+        country_codes = resolve_nodes_countries(geo_targets)
 
+    whitelist_uris: List[str] = []
+    wl_codes: List[str] = []
+    for i, (node, ping_ms, _rank, url_verified) in enumerate(selected_wl, 1):
+        code = country_codes.get(
+            node.unique_key,
+            "RU" if is_russian_cidr(node) else ("CF" if is_cloudflare_ip(node.host) else ""),
+        )
+        wl_codes.append(code)
+        clean_name = _format_node_name(i, node, ping_ms, url_verified, code, is_whitelist=True)
+        node.name = clean_name
+        whitelist_uris.append(node.build_uri(new_name=clean_name))
+
+    blacklist_uris: List[str] = []
     for i, (node, ping_ms, url_verified) in enumerate(selected_bl, 1):
-        display_sni = node.sni or node.params.get("host", "no-sni")
-        if len(display_sni) > 22:
-            display_sni = display_sni[:20] + ".."
-        orig_name = node.name.strip()
-        prefix = f"⚡ [{int(ping_ms)}ms] " if url_verified else ""
-        if any(f in orig_name for f in ("🇨🇿", "🇩🇪", "🇯🇵", "🇸🇪", "🇸🇬", "🇮🇪", "🇦🇪", "🇫🇮", "🇧🇬", "🇳🇱", "🇺🇸", "🇬🇧", "🇫🇷")):
-            clean_name = f"{prefix}{orig_name} ({display_sni})"
-        else:
-            clean_name = f"{prefix}🌐 Global Reality #{i:02d} ({display_sni})"
+        code = country_codes.get(node.unique_key, "CF" if is_cloudflare_ip(node.host) else "")
+        clean_name = _format_node_name(i, node, ping_ms, url_verified, code, is_whitelist=False)
+        node.name = clean_name
         blacklist_uris.append(node.build_uri(new_name=clean_name))
 
-    logger.info(f"Классификация завершена: White-List: {len(whitelist_uris)} шт (🇩🇪 Германия: {de_count}, 🇷🇺 Россия: {ru_count}), Black-List: {len(blacklist_uris)} шт (лимит {bl_limit})")
+    ru_count = sum(1 for c in wl_codes if c == "RU")
+    foreign_count = len(whitelist_uris) - ru_count
+    logger.info(
+        f"Классификация завершена: White-List: {len(whitelist_uris)} шт "
+        f"(🌐 Зарубеж/выход: {foreign_count}, 🇷🇺 РФ: {ru_count}), "
+        f"Black-List: {len(blacklist_uris)} шт (лимит {bl_limit})"
+    )
     return (whitelist_uris, blacklist_uris)
