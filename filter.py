@@ -460,7 +460,8 @@ def classify_nodes(
     # 3. Задержка
     wl_pairs.sort(key=lambda x: (not x[3], x[2], x[1] > 1200 if x[3] else True, x[1]))
 
-    # Ограничение White-List до 100 серверов (максимум 2 записи на физический resolved IP:port)
+    # Ограничение White-List до 20 серверов (максимум 2 записи на физический resolved IP:port)
+    wl_limit = 20
     selected_wl = []
     wl_overflow = []
     wl_hp_counts: Dict[Tuple[str, int], int] = {}
@@ -471,12 +472,12 @@ def classify_nodes(
         if cnt < 2:
             selected_wl.append(item)
             wl_hp_counts[hp] = cnt + 1
-            if len(selected_wl) >= 100:
+            if len(selected_wl) >= wl_limit:
                 break
         else:
             wl_overflow.append(item)
-    if len(selected_wl) < 100:
-        selected_wl.extend(wl_overflow[:(100 - len(selected_wl))])
+    if len(selected_wl) < wl_limit:
+        selected_wl.extend(wl_overflow[:(wl_limit - len(selected_wl))])
 
     # Для Black-List (мобильный ТСПУ + Wi-Fi):
     # 1. Стабильные (прошедшие 2/2 gstatic <= 2.8с в Xray) всегда строго впереди!
